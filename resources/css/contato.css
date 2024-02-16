@@ -1,0 +1,229 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+html {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.35rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8rem;
+  text-indent: 0;
+}
+
+a {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+  }
+  h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0 0.2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 0.75rem;
+  }
+  h6 {
+    font-size: 0.5rem;
+  }
+  p {
+    font-size: 1rem;
+    text-indent: 0;
+  }
+  a {
+    font-size: 1rem;
+  }
+}
+.intro-contato {
+  margin-top: 1.5rem;
+  padding: 0 1.5rem;
+  font-family: "Roboto", sans-serif;
+}
+.intro-contato p {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.entre-em-contato {
+  font-family: "Roboto", sans-serif;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  color: antiquewhite;
+  gap: 2rem;
+  margin-bottom: 20vh;
+}
+.entre-em-contato .dados-pessoais,
+.entre-em-contato .dados-mensagem {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+.entre-em-contato .dados-pessoais input,
+.entre-em-contato .dados-pessoais select,
+.entre-em-contato .dados-mensagem input,
+.entre-em-contato .dados-mensagem select {
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  height: 2.2rem;
+  font-size: 1rem;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+.entre-em-contato .dados-pessoais .data-nascimento,
+.entre-em-contato .dados-mensagem .data-nascimento {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: "Roboto", sans-serif;
+}
+.entre-em-contato .dados-pessoais select,
+.entre-em-contato .dados-mensagem select {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+.entre-em-contato .dados-pessoais textarea,
+.entre-em-contato .dados-mensagem textarea {
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+.entre-em-contato button {
+  width: 50%;
+  align-self: center;
+  background-color: rgb(137, 144, 247);
+  color: rgb(252, 248, 244);
+  border-radius: 5px;
+  height: 2rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  text-shadow: 0.5px 0px 1px red;
+  box-shadow: 1px 1px 5px silver;
+  margin-top: 1.5rem;
+}
+.entre-em-contato button:hover {
+  text-shadow: 0.5px 0px 1px red;
+}
+.entre-em-contato button:active {
+  box-shadow: inset 2px 2px 5px black;
+  background-color: rgb(208, 210, 245);
+  color: rgb(137, 213, 238);
+}
+
+@media screen and (max-width: 880px) {
+  .intro-contato {
+    margin-top: 1.5rem;
+    padding: 0 1.5rem;
+  }
+  .intro-contato p {
+    text-align: center;
+  }
+  .entre-em-contato {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    color: antiquewhite;
+    gap: 2rem;
+    margin-bottom: 20vh;
+  }
+  .entre-em-contato .dados-pessoais,
+  .entre-em-contato .dados-mensagem {
+    display: flex;
+    flex-direction: column;
+  }
+  .entre-em-contato .dados-pessoais input,
+  .entre-em-contato .dados-pessoais select,
+  .entre-em-contato .dados-mensagem input,
+  .entre-em-contato .dados-mensagem select {
+    margin: 0.8rem 0;
+    border-radius: 5px;
+    height: -moz-fit-content;
+    height: fit-content;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  .entre-em-contato .dados-pessoais .data-nascimento,
+  .entre-em-contato .dados-mensagem .data-nascimento {
+    width: 45vw;
+  }
+  .entre-em-contato .dados-pessoais select,
+  .entre-em-contato .dados-mensagem select {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-bottom: 1.5rem;
+  }
+  .entre-em-contato .dados-pessoais textarea,
+  .entre-em-contato .dados-mensagem textarea {
+    height: 16rem;
+  }
+  .entre-em-contato button {
+    width: 99%;
+    align-self: center;
+    background-color: rgb(137, 144, 247);
+    color: rgb(252, 248, 244);
+    border-radius: 5px;
+    height: 2rem;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    text-shadow: 0.5px 0px 1px red;
+    box-shadow: 1px 1px 5px silver;
+  }
+  .entre-em-contato button:hover {
+    text-shadow: 0.5px 0px 1px red;
+  }
+  .entre-em-contato button:active {
+    box-shadow: inset 2px 2px 5px black;
+    background-color: rgb(208, 210, 245);
+    color: rgb(137, 213, 238);
+  }
+}/*# sourceMappingURL=contato.css.map */

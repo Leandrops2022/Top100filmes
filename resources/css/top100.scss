@@ -1,0 +1,198 @@
+@import './_fonts';
+@import './_variables';
+// @import './cardFilme.scss';
+
+#container-paginacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    margin-top: 2rem;
+    color: white;
+}
+
+#container-paginacao-responsivo {
+    display: none;
+}
+
+.propaganda {
+    display: none;
+}
+
+.area-inicial {
+    width: auto;
+    margin-bottom: 10vh;
+
+    .grid-top-100 {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        gap: 0;
+        margin-top: 2rem;
+        width: 100%;
+
+        .conteudo-top-100 {
+            width: 70%;
+            margin: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+
+            .textos-intro-top-100 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: left;
+                padding: 0.8rem;
+                box-sizing: border-box;
+                text-align: left;
+                margin-bottom: 6rem;
+                color: white;
+
+                p,
+                h1,
+                h2,
+                h3 {
+                    text-align: left;
+
+                }
+
+                h1 {
+                    font-weight: bold;
+                }
+            }
+
+            .card-salvar-alterações {
+                display: none;
+                font-size: 0.8rem;
+                flex-direction: column;
+                width: fit-content;
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                align-items: center;
+                position: fixed;
+                bottom: 2%;
+                left: 22%;
+                z-index: 999;
+                padding: 1rem;
+
+                .sucesso {
+                    color: rgb(22, 158, 22);
+                }
+
+                .erro {
+                    color: red;
+                }
+
+                .disabled {
+                    background-color: gray;
+                    color: silver;
+                    box-shadow: inset 2px 2px 5px black;
+
+                    &:hover {
+                        cursor: not-allowed;
+                    }
+
+                    &:active {
+                        box-shadow: inset 2px 2px 5px black;
+                    }
+                }
+
+                p {
+                    font-size: 0.8rem;
+                    text-align: center;
+                    margin-bottom: 0;
+
+                }
+
+                button {
+                    background-color: $primaryTextColor;
+                    border-radius: 5px;
+                    color: black;
+                    width: 80%;
+                    height: 1.8rem;
+                    margin: 0;
+
+                    &:active {
+                        box-shadow: inset 5px 5px 10px black;
+                    }
+                }
+            }
+
+            .item-visible {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+
+
+// *****************************************Responsivo*****************************************************
+
+// *****************************************Começa abaixo*****************************************************
+
+// *****************************************Responsivo*****************************************************
+
+
+@media screen and (max-width: 900px) {
+
+    #container-paginacao {
+        display: none;
+    }
+
+    #container-paginacao-responsivo {
+        display: flex;
+        align-self: center;
+        margin-top: 2rem;
+    }
+
+    .area-inicial {
+
+        .grid-top-100 {
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .propaganda-telas-grandes {
+                display: none;
+            }
+
+            .conteudo-top-100 {
+                width: 99%;
+                padding: 0 0.3rem;
+
+                .textos-intro-top-100 {
+                    box-sizing: border-box;
+                    text-align: left;
+                    width: 99%;
+
+                    h1,
+                    h2,
+                    p {
+                        text-align: left;
+                    }
+
+                    p {
+                        text-indent: 0;
+                    }
+                }
+
+                .item-visible {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                p {
+                    padding: 0.7rem;
+                    text-align: left;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+    }
+
+}

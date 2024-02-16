@@ -1,0 +1,195 @@
+@import "./_fonts";
+@import "./_special-classes";
+@import "./_variables";
+
+
+.container-noticias {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo-tcf {
+        width: 20vw;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .apresentacao-tcf {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        margin: 1rem auto 2rem auto;
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            padding: 0.8rem;
+        }
+
+        .confira-tcf {
+            background-color: black;
+            padding: 1rem;
+            border-radius: 8px;
+            width: 40vw;
+            text-align: center;
+            margin-top: 2rem;
+            color: $primaryTextColor;
+
+
+            &:hover {
+                color: white;
+                text-shadow: none;
+
+            }
+        }
+
+        .grid-noticias {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background-color: black;
+            border: 2px double whitesmoke;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem;
+            align-items: center;
+            gap: 0.5rem;
+
+
+            .card-noticia {
+                height: 170px;
+                width: 280px;
+                border-radius: 5px;
+                background-color: gray;
+                border: 1px solid silver;
+                display: flex;
+                position: relative;
+                margin: auto;
+
+                img {
+                    width: 100%;
+                }
+
+                .legenda-noticia {
+                    position: absolute;
+                    bottom: 0;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: rgba($color: #000000, $alpha: 0.5);
+                    width: 100%;
+                    padding: 0.8rem;
+
+                    span {
+                        color: white;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        .container-paginacao {
+            background-color: #000000;
+            border-radius: 8px;
+            color: $primaryTextColor;
+            margin-top: 1rem;
+        }
+    }
+}
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivo
+
+@media screen and (max-width: 580px) {
+    .container-noticias {
+        display: flex;
+        flex-direction: column;
+
+        .logo-tcf {
+            width: 60vw;
+        }
+
+        .apresentacao-tcf {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto 2rem auto;
+            width: 97%;
+
+            p {
+                padding: 1rem 2rem;
+            }
+
+            .confira-tcf {
+                background-color: black;
+                padding: 1rem;
+                border-radius: 8px;
+                width: 50%;
+                text-align: center;
+                margin-top: 2rem;
+                color: $primaryTextColor;
+
+
+                &:hover {
+                    color: white;
+                    text-shadow: none;
+                }
+            }
+
+            .grid-noticias {
+                display: grid;
+                grid-template-columns: 1fr;
+                background-color: black;
+                border: 2px double whitesmoke;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5rem;
+                align-items: center;
+                gap: 2rem;
+
+
+                .card-noticia {
+                    height: 25vh;
+                    width: 90%;
+                    border-radius: 5px;
+                    background-color: gray;
+                    border: 1px solid silver;
+                    display: flex;
+                    position: relative;
+                    margin: auto;
+
+                    img {
+                        width: 100%;
+                    }
+
+                    .legenda-noticia {
+                        position: absolute;
+                        bottom: 0;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: rgba($color: #000000, $alpha: 0.5);
+                        width: 100%;
+                        padding: 0.8rem;
+
+                        span {
+                            color: white;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+
+            .container-paginacao {
+                margin-top: 2rem;
+            }
+        }
+    }
+}

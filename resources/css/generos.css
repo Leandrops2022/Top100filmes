@@ -1,0 +1,317 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+html {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.35rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8rem;
+  text-indent: 0;
+}
+
+a {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+  }
+  h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0 0.2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 0.75rem;
+  }
+  h6 {
+    font-size: 0.5rem;
+  }
+  p {
+    font-size: 1rem;
+    text-indent: 0;
+  }
+  a {
+    font-size: 1rem;
+  }
+}
+@keyframes boing {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.08;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes neon {
+  0% {
+    color: #AD2C2B;
+    border: 3px solid #AD2C2B;
+    box-shadow: inset 0 0 1.5em 0 #AD2C2B, 0 0 1.5em 0 #AD2C2B;
+    text-shadow: 0 0 1.5em 0 #AD2C2B;
+  }
+  5% {
+    color: rgba(50, 13, 13, 0.5);
+    border: 3px solid rgba(50, 13, 13, 0.5);
+    box-shadow: inset 0 0 1em 0 rgba(50, 13, 13, 0.5), 0 0 1em 0 rgba(50, 13, 13, 0.5);
+    text-shadow: 0 0 1em 0 rgba(50, 13, 13, 0.5);
+  }
+  7% {
+    color: #cf3e3c;
+    border: 3px solid #cf3e3c;
+    box-shadow: inset 0 0 1.5em 0 #cf3e3c, 0 0 1.5em 0 #cf3e3c;
+    text-shadow: 0 0 1.5em 0 #cf3e3c;
+  }
+  100% {
+    color: #cf3e3c;
+    border: 3px solid #cf3e3c;
+    box-shadow: inset 0 0 1em 0 #cf3e3c, 0 0 1em 0 #cf3e3c;
+    text-shadow: 0 0 1em 0 #cf3e3c;
+  }
+}
+.ad-box {
+  display: none;
+  margin: auto;
+  width: 99%;
+  height: 29vh;
+}
+
+.apresentacao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-bottom: 0;
+}
+.apresentacao h1,
+.apresentacao h2,
+.apresentacao p {
+  text-align: center;
+}
+.apresentacao p {
+  line-height: 1.5rem;
+  color: #faebd7;
+  text-indent: 0;
+}
+
+.neon-animation {
+  animation: neon 3s infinite alternate;
+}
+
+.grid-filmes {
+  margin-top: 0;
+  align-items: center;
+  min-height: 100vh;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  padding: 2rem;
+}
+.grid-filmes .grid-wrapper-propaganda,
+.grid-filmes .grid-wrapper {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+.grid-filmes .grid-wrapper-propaganda .propaganda,
+.grid-filmes .grid-wrapper .propaganda {
+  height: 30vh;
+  margin-top: 25%;
+}
+.grid-filmes .grid-wrapper-propaganda .grid-item,
+.grid-filmes .grid-wrapper .grid-item {
+  border: 1px solid #EED63B;
+  border-radius: 5px;
+  height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.grid-filmes .grid-wrapper-propaganda .grid-item .card-img,
+.grid-filmes .grid-wrapper .grid-item .card-img {
+  width: 100%;
+  height: 100%;
+}
+.grid-filmes .grid-wrapper-propaganda .grid-item:hover,
+.grid-filmes .grid-wrapper .grid-item:hover {
+  cursor: pointer;
+  animation: boing 0.4s linear;
+}
+.grid-filmes .grid-wrapper-propaganda h2,
+.grid-filmes .grid-wrapper h2 {
+  flex-shrink: 1;
+  border: 3px solid #1e0807;
+  box-sizing: border-box;
+  padding: 0.2rem;
+  border-radius: 8px;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #1e0807;
+  align-self: center;
+  font-size: 1.6em;
+}
+.grid-filmes .grid-wrapper-propaganda h2:hover,
+.grid-filmes .grid-wrapper h2:hover {
+  cursor: pointer;
+}
+.grid-filmes .grid-wrapper-propaganda a,
+.grid-filmes .grid-wrapper a {
+  align-self: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1rem 0;
+}
+.grid-filmes button {
+  margin-top: 5rem;
+  grid-column: 1/-1;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 2px 2px 2px black;
+  align-self: center;
+  justify-self: center;
+  width: 50%;
+  font-size: 1.4rem;
+  border: #EED63B;
+  border-radius: 10px;
+  color: #EED63B;
+  text-shadow: 0 1px 1px #AD2C2B;
+}
+.grid-filmes button:hover {
+  animation: boing 0.4s linear;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: white;
+}
+
+@media screen and (min-width: 815px) and (max-width: 1044px) {
+  .grid-filmes {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-filmes .grid-wrapper h2 {
+    animation: neon 3s infinite alternate;
+  }
+  .grid-filmes .grid-wrapper a {
+    margin-top: 1rem;
+  }
+}
+@media screen and (min-width: 581px) and (max-width: 814px) {
+  .grid-filmes {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-filmes .grid-wrapper h2 {
+    animation: neon 3s infinite alternate;
+  }
+  .grid-filmes .grid-wrapper a {
+    margin-top: 1rem;
+  }
+}
+@media screen and (max-width: 580px) {
+  .apresentacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+  }
+  .grid-filmes {
+    margin-top: 2rem;
+    align-items: center;
+    min-height: 100vh;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    font-family: "Roboto", sans-serif;
+    padding: 0.8rem;
+  }
+  .grid-filmes .grid-wrapper .grid-item {
+    border: 1px solid #EED63B;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  .grid-filmes .grid-wrapper h2 {
+    font-size: 2rem;
+    animation: neon 3s infinite alternate;
+  }
+  .grid-filmes .grid-wrapper a {
+    margin-top: 2.2rem;
+  }
+  .grid-filmes button {
+    margin-top: 1rem;
+    color: white;
+    grid-column: 1fr;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 2px 2px black;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    font-size: 1.4rem;
+    border: #EED63B;
+    border-radius: 10px;
+    color: #EED63B;
+    text-shadow: 0 1px 1px #AD2C2B;
+  }
+  .grid-filmes button:hover {
+    animation: boing 0.4s linear;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: white;
+  }
+}/*# sourceMappingURL=generos.css.map */

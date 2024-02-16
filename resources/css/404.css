@@ -1,0 +1,160 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+html {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.35rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8rem;
+  text-indent: 0;
+}
+
+a {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+  }
+  h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0 0.2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 0.75rem;
+  }
+  h6 {
+    font-size: 0.5rem;
+  }
+  p {
+    font-size: 1rem;
+    text-indent: 0;
+  }
+  a {
+    font-size: 1rem;
+  }
+}
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+}
+
+.div-centralizada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #0f1819;
+  height: 100%;
+}
+.div-centralizada .imagem-perdido {
+  width: 300px;
+}
+.div-centralizada .imagem-perdido img {
+  width: 100%;
+  height: 100%;
+}
+.div-centralizada h1,
+.div-centralizada h2,
+.div-centralizada h3,
+.div-centralizada h4,
+.div-centralizada p {
+  color: #EED63B;
+  text-align: center;
+}
+.div-centralizada h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 4rem;
+  color: #EED63B;
+}
+.div-centralizada a {
+  text-decoration: none;
+}
+.div-centralizada a h2 {
+  color: rgb(126, 17, 17);
+}
+
+@media screen and (max-width: 900px) {
+  .div-centralizada {
+    padding: 5rem 2rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background-color: #0f1819;
+  }
+  .div-centralizada .imagem-perdido {
+    width: 80vw;
+  }
+  .div-centralizada .imagem-perdido img {
+    width: 100%;
+    height: 100%;
+  }
+  .div-centralizada h1,
+  .div-centralizada h2,
+  .div-centralizada h3,
+  .div-centralizada h4,
+  .div-centralizada p {
+    color: #EED63B;
+    text-align: center;
+  }
+  .div-centralizada h1 {
+    padding: 0;
+    margin: 2rem;
+    font-size: 2rem;
+    color: #EED63B;
+  }
+  .div-centralizada a {
+    text-decoration: none;
+  }
+  .div-centralizada a h2 {
+    margin: 2rem 0;
+    color: rgb(126, 17, 17);
+    font-size: 1.8rem;
+  }
+}/*# sourceMappingURL=404.css.map */

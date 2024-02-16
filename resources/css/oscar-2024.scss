@@ -1,0 +1,71 @@
+@import "./_fonts";
+@import "./_special-classes";
+@import "./_variables";
+
+.container-principal {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .capa {
+    width: 40vw;
+    margin-bottom: 3rem;
+
+    span {
+      color: white;
+      font-size: 0.7rem;
+      text-align: left;
+    }
+  }
+
+  .textos {
+    span {
+      color: white;
+      margin: 0.5rem 0;
+      font-size: 0.8rem;
+      text-align: left;
+
+
+    }
+
+    h1 {
+      color: $primaryTextColor;
+      margin: 0.5rem 0;
+      text-align: left;
+    }
+
+    h2 {
+      color: $primaryTextColor;
+      font-size: 1.3rem;
+      margin: 0.5rem 0;
+      text-align: left;
+
+
+    }
+
+    .indicados {
+      color: white;
+      display: flex;
+      flex-direction: column;
+
+      .filmes-indicados {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+// ***********************************Responsivo***********************************
+// ***********************************Responsivo***********************************
+@media screen and (max-width:1150px) {
+  .container-principal {
+
+
+    .capa {
+      width: 97vw;
+    }
+  }
+}

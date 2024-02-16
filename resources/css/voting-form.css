@@ -1,0 +1,190 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+html {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.35rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8rem;
+  text-indent: 0;
+}
+
+a {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+  }
+  h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0 0.2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 0.75rem;
+  }
+  h6 {
+    font-size: 0.5rem;
+  }
+  p {
+    font-size: 1rem;
+    text-indent: 0;
+  }
+  a {
+    font-size: 1rem;
+  }
+}
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#formulario-votacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4rem;
+  background-color: #0f1819;
+}
+#formulario-votacao .nota-usuario-atual {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 0.5rem;
+  box-sizing: border-box;
+  margin-left: 0.3rem;
+  color: antiquewhite;
+}
+#formulario-votacao .nota-usuario-atual span {
+  align-self: center;
+  font-size: 1.3rem;
+  color: white;
+}
+#formulario-votacao .botao-desativado {
+  background-color: rgb(80, 80, 80);
+  color: silver;
+}
+#formulario-votacao .botao-desativado:hover {
+  cursor: help;
+  color: silver;
+  background-color: rgb(80, 80, 80);
+}
+#formulario-votacao button {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  width: 50%;
+  background-color: rgb(86, 86, 245);
+  color: white;
+  margin-top: 2rem;
+  margin-bottom: rem;
+  border-radius: 5px;
+  height: 1.6rem;
+  border: 1px;
+}
+#formulario-votacao button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #8686f8;
+}
+#formulario-votacao .star-rating {
+  display: flex;
+  flex-direction: row;
+}
+#formulario-votacao .star-rating input[type=radio] {
+  display: none;
+}
+#formulario-votacao .star-rating label:hover {
+  cursor: pointer;
+}
+#formulario-votacao .star-rating .estrela {
+  color: silver;
+  font-size: 2rem;
+}
+#formulario-votacao .star-rating .estrela-amarela {
+  color: yellow;
+}
+
+#formulario-votacao-deslogado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4rem;
+}
+#formulario-votacao-deslogado .star-rating-deslogado {
+  display: flex;
+  flex-direction: row;
+}
+#formulario-votacao-deslogado .star-rating-deslogado input[type=radio] {
+  display: none;
+}
+#formulario-votacao-deslogado .star-rating-deslogado label:hover {
+  cursor: not-allowed;
+}
+#formulario-votacao-deslogado .star-rating-deslogado .estrela-deslogado {
+  color: silver;
+  font-size: 2rem;
+}
+#formulario-votacao-deslogado .star-rating-deslogado .estrela-amarela {
+  color: yellow;
+}
+#formulario-votacao-deslogado #div-mensagem-deslogado {
+  font-weight: bold;
+  font-size: 1rem;
+  width: 70%;
+  height: 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  color: silver;
+}/*# sourceMappingURL=voting-form.css.map */

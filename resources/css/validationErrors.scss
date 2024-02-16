@@ -1,0 +1,23 @@
+@import "./_fonts";
+@import "./_variables";
+
+.erros {
+    font-family: 'Roboo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $defaultError;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}

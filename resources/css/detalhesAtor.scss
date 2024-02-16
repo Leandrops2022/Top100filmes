@@ -1,0 +1,333 @@
+@import './_fonts';
+@import './_variables';
+@import './_special-classes';
+
+
+.card-ator {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 70%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin: auto;
+    min-height: 100vh;
+    height: auto;
+    align-self: center;
+
+    .aviso-conteudo-em-ingles {
+        display: none;
+        flex-direction: column;
+        background-color: rgba($color: #FFFFFF, $alpha: 0.3);
+        padding: 1rem;
+        border-radius: 5px;
+
+        p {
+            color: rgb(245, 152, 152);
+        }
+    }
+
+    .informacoes-iniciais {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+
+
+        .foto-ator {
+            width: 120px;
+            height: 100%;
+            align-self: center;
+
+            img {
+                border-radius: 8px 0 0 8px;
+            }
+        }
+
+        .textos-iniciais {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex: 1;
+            box-sizing: border-box;
+            padding: 0 2rem;
+
+            .nome-ator {
+                width: 100%;
+                height: 3rem;
+                text-align: left;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                box-sizing: border-box;
+
+                h2 {
+                    padding: 0;
+                    margin: 0;
+                    text-align: left;
+                }
+            }
+
+            .nascimento,
+            .local-nascimento,
+            .outras-info {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: fit-content;
+                align-items: first baseline;
+
+                span {
+                    margin-right: 0.5rem;
+                    font-size: 1.3rem;
+                }
+
+                p {
+                    padding: 0;
+                    margin: 0;
+                    font-size: 1rem;
+                }
+            }
+
+        }
+    }
+
+    .biografia {
+        width: 100%;
+        height: auto;
+        margin-top: 2rem;
+        padding: 0 0.5rem 2rem 0.5rem;
+        color: white;
+
+
+        h3 {
+
+            text-align: left;
+        }
+
+        p {
+            font-size: 1rem;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+    }
+
+    .filmes-em-que-atuou {
+        width: 100%;
+        padding: 1rem 0;
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        flex-direction: column;
+        color: $tertiaryTextColor;
+        margin-bottom: 20vh;
+
+
+        h4 {
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        ul {
+
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+
+            li {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                margin: 0.4rem 0;
+
+                a {
+                    &:hover {
+
+                        text-shadow: none;
+                    }
+                }
+
+                .dados-filme {
+                    display: flex;
+                    flex-direction: row;
+
+
+                    .div-poster {
+                        width: 90px;
+                        height: 100%;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 8px 0 0 8px;
+                        }
+                    }
+
+                    .div-nome-filme {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 1rem;
+                        font-family: 'Roboto', sans-serif;
+                        align-items: left;
+                        font-size: 1.1rem;
+                        text-align: left;
+                        box-sizing: border-box;
+                        padding: 1.5rem 0;
+                        justify-content: space-around;
+                        color: $tertiaryTextColor;
+
+                        .nome-nota {
+
+                            .nota-filme {
+                                width: fit-content;
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+
+@media screen and (min-width: 1600px) and (max-width: 1920px) {}
+
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+    .card-ator {
+
+        .informacoes-iniciais {
+
+
+            .foto-ator {
+                width: 110px;
+                height: 155px;
+
+                &-img {
+                    width: 110px;
+                    height: 155px;
+
+                    img {
+                        width: 110px;
+                        height: 155px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .card-ator {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+        height: auto;
+        margin: 2rem auto 0 auto;
+        padding: 1.3rem 1.3rem 10rem 1.3rem;
+        box-sizing: border-box;
+
+        .aviso-conteudo-em-ingles {
+            padding: 0;
+        }
+
+        .informacoes-iniciais {
+            width: 100%;
+            display: flex;
+
+            .foto-ator {
+                width: 150px;
+                height: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+            }
+
+            .textos-iniciais {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 1rem 0.3rem 0 0.8rem;
+
+                .nome-ator {
+                    flex: 1;
+                    height: auto;
+                    padding: 0;
+                }
+
+                .nascimento,
+                .local-nascimento {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+
+                    span {
+                        color: $tertiaryTextColor;
+                        margin-right: 0.1rem;
+                        font-size: 1.1rem;
+                    }
+
+                    p {
+                        text-align: left;
+                        padding: 0;
+                        margin: 0;
+                        font-size: 1rem;
+                        text-align: start;
+                    }
+                }
+
+                .outras-info {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: first baseline;
+
+                    span {
+                        font-size: 1.1rem;
+
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        align-self: flex-end;
+                    }
+                }
+            }
+        }
+
+        .biografia {
+            width: 100%;
+            height: auto;
+            text-align: left;
+
+            p {
+                text-align: left;
+                line-height: 1.4rem;
+
+            }
+        }
+
+        .filmes-em-que-atuou {
+            margin-bottom: 20vh;
+
+            h4 {
+                font-size: 1.5rem;
+                padding: 1rem 0 0 0;
+            }
+
+
+        }
+    }
+}

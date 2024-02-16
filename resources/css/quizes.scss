@@ -1,0 +1,63 @@
+@import './_variables';
+
+.container-quizes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2rem;
+  gap: 2rem;
+
+  .card-quiz {
+    border: 1px solid $primaryTextColor;
+    border-radius: 5px;
+    width: 480px;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    span {
+      box-sizing: border-box;
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      padding: 0.5rem;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+}
+
+
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivo
+
+
+@media screen and (max-width: 900px) {
+  .container-quizes {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(1fr);
+    margin: 2rem auto;
+    gap: 1rem;
+
+    .card-quiz {
+      border: 1px solid $primaryTextColor;
+      border-radius: 5px;
+      width: 98%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      span {
+        display: flex;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+      }
+    }
+
+  }
+
+}

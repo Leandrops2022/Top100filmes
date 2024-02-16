@@ -1,0 +1,350 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+html {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.35rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8rem;
+  text-indent: 0;
+}
+
+a {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+  }
+  h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0 0.2rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 0.75rem;
+  }
+  h6 {
+    font-size: 0.5rem;
+  }
+  p {
+    font-size: 1rem;
+    text-indent: 0;
+  }
+  a {
+    font-size: 1rem;
+  }
+}
+.efeito-card {
+  border-bottom: 1px solid silver;
+  border-right: 2px solid black;
+  border-top: 1px solid black;
+  border-radius: 8px 8px 8px 8px;
+}
+.efeito-card:hover, .efeito-card:active {
+  background-color: rgb(51, 50, 50);
+  border-radius: 8px 8px 8px 8px;
+}
+
+.card-ator {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 70%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: auto;
+  min-height: 100vh;
+  height: auto;
+  align-self: center;
+}
+.card-ator .aviso-conteudo-em-ingles {
+  display: none;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  border-radius: 5px;
+}
+.card-ator .aviso-conteudo-em-ingles p {
+  color: rgb(245, 152, 152);
+}
+.card-ator .informacoes-iniciais {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+.card-ator .informacoes-iniciais .foto-ator {
+  width: 120px;
+  height: 100%;
+  align-self: center;
+}
+.card-ator .informacoes-iniciais .foto-ator img {
+  border-radius: 8px 0 0 8px;
+}
+.card-ator .informacoes-iniciais .textos-iniciais {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 2rem;
+}
+.card-ator .informacoes-iniciais .textos-iniciais .nome-ator {
+  width: 100%;
+  height: 3rem;
+  text-align: left;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.card-ator .informacoes-iniciais .textos-iniciais .nome-ator h2 {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.card-ator .informacoes-iniciais .textos-iniciais .nascimento,
+.card-ator .informacoes-iniciais .textos-iniciais .local-nascimento,
+.card-ator .informacoes-iniciais .textos-iniciais .outras-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  align-items: first baseline;
+}
+.card-ator .informacoes-iniciais .textos-iniciais .nascimento span,
+.card-ator .informacoes-iniciais .textos-iniciais .local-nascimento span,
+.card-ator .informacoes-iniciais .textos-iniciais .outras-info span {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}
+.card-ator .informacoes-iniciais .textos-iniciais .nascimento p,
+.card-ator .informacoes-iniciais .textos-iniciais .local-nascimento p,
+.card-ator .informacoes-iniciais .textos-iniciais .outras-info p {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+.card-ator .biografia {
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  padding: 0 0.5rem 2rem 0.5rem;
+}
+.card-ator .biografia h3 {
+  text-align: left;
+}
+.card-ator .biografia p {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.card-ator .filmes-em-que-atuou {
+  width: 100%;
+  padding: 1rem 0;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #faebd7;
+  margin-bottom: 20vh;
+}
+.card-ator .filmes-em-que-atuou h4 {
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+.card-ator .filmes-em-que-atuou ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+.card-ator .filmes-em-que-atuou ul li {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin: 0.4rem 0;
+}
+.card-ator .filmes-em-que-atuou ul li a:hover {
+  text-shadow: none;
+}
+.card-ator .filmes-em-que-atuou ul li .dados-filme {
+  display: flex;
+  flex-direction: row;
+}
+.card-ator .filmes-em-que-atuou ul li .dados-filme .div-poster {
+  width: 90px;
+  height: 100%;
+}
+.card-ator .filmes-em-que-atuou ul li .dados-filme .div-poster img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+}
+.card-ator .filmes-em-que-atuou ul li .dados-filme .div-nome-filme {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  font-family: "Roboto", sans-serif;
+  align-items: left;
+  font-size: 1.1rem;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 1.5rem 0;
+  justify-content: space-around;
+  color: #faebd7;
+}
+.card-ator .filmes-em-que-atuou ul li .dados-filme .div-nome-filme .nome-nota .nota-filme {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+}
+
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .card-ator .informacoes-iniciais .foto-ator {
+    width: 110px;
+    height: 155px;
+  }
+  .card-ator .informacoes-iniciais .foto-ator-img {
+    width: 110px;
+    height: 155px;
+  }
+  .card-ator .informacoes-iniciais .foto-ator-img img {
+    width: 110px;
+    height: 155px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .card-ator {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    height: auto;
+    margin: 2rem auto 0 auto;
+    padding: 1.3rem 1.3rem 10rem 1.3rem;
+    box-sizing: border-box;
+  }
+  .card-ator .aviso-conteudo-em-ingles {
+    padding: 0;
+  }
+  .card-ator .informacoes-iniciais {
+    width: 100%;
+    display: flex;
+  }
+  .card-ator .informacoes-iniciais .foto-ator {
+    width: 150px;
+    height: 100%;
+  }
+  .card-ator .informacoes-iniciais .foto-ator img {
+    width: 100%;
+    height: 100%;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 0.3rem 0 0.8rem;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .nome-ator {
+    flex: 1;
+    height: auto;
+    padding: 0;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .nascimento,
+  .card-ator .informacoes-iniciais .textos-iniciais .local-nascimento {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .nascimento span,
+  .card-ator .informacoes-iniciais .textos-iniciais .local-nascimento span {
+    color: #faebd7;
+    margin-right: 0.1rem;
+    font-size: 1.1rem;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .nascimento p,
+  .card-ator .informacoes-iniciais .textos-iniciais .local-nascimento p {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    text-align: start;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .outras-info {
+    display: flex;
+    flex-direction: row;
+    align-items: first baseline;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .outras-info span {
+    font-size: 1.1rem;
+  }
+  .card-ator .informacoes-iniciais .textos-iniciais .outras-info p {
+    font-size: 1rem;
+    align-self: flex-end;
+  }
+  .card-ator .biografia {
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+  .card-ator .biografia p {
+    text-align: left;
+    line-height: 1.4rem;
+  }
+  .card-ator .filmes-em-que-atuou {
+    margin-bottom: 20vh;
+  }
+  .card-ator .filmes-em-que-atuou h4 {
+    font-size: 1.5rem;
+    padding: 1rem 0 0 0;
+  }
+}/*# sourceMappingURL=detalhesAtor.css.map */

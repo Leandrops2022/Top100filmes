@@ -1,0 +1,34 @@
+@import "./_fonts";
+@import "./_special-classes";
+@import "./_variables";
+
+.container-destaques {
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container-paginacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    margin-top: 2rem;
+    color: white;
+}
+
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+@media screen and (max-width: 580px) {
+    .container-destaques {
+        display: flex;
+    }
+
+    .container-paginacao {
+        display: flex;
+        flex-direction: row;
+        height: 5vh;
+    }
+}

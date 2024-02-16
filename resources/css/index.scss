@@ -1,0 +1,782 @@
+@import './_fonts';
+@import './_variables';
+
+@keyframes boing {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.08;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+@keyframes neon {
+    0% {
+        color: $defaultRed;
+        border: 3px solid $defaultRed;
+        box-shadow: inset 0 0 1.5em 0 $defaultRed, 0 0 1.5em 0 $defaultRed;
+        text-shadow: 0 0 1.5em 0 $defaultRed;
+    }
+
+    5% {
+        color: darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+        border: 3px solid darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+        box-shadow: inset 0 0 1em 0 darken($color: rgba(173, 44, 43, 0.5), $amount: 30), 0 0 1em 0 darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+        text-shadow: 0 0 1em 0 darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+    }
+
+    7% {
+        color: lighten($color: $defaultRed, $amount: 10);
+        border: 3px solid lighten($color: $defaultRed, $amount: 10);
+        box-shadow: inset 0 0 1.5em 0 lighten($color: $defaultRed, $amount: 10), 0 0 1.5em 0 lighten($color: $defaultRed, $amount: 10);
+        text-shadow: 0 0 1.5em 0 lighten($color: $defaultRed, $amount: 10);
+    }
+
+    100% {
+        color: lighten($color: $defaultRed, $amount: 10);
+        border: 3px solid lighten($color: $defaultRed, $amount: 10);
+        box-shadow: inset 0 0 1em 0 lighten($color: $defaultRed, $amount: 10), 0 0 1em 0 lighten($color: $defaultRed, $amount: 10);
+        text-shadow: 0 0 1em 0 lighten($color: $defaultRed, $amount: 10);
+    }
+}
+
+
+
+.apresentacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+
+    h1 {
+        padding: 4rem 8rem;
+    }
+
+    .ultimas-noticias {
+        display: grid;
+        align-items: center;
+        border-radius: 5px;
+        grid-template-columns: repeat(4, 1fr);
+        width: 90vw;
+        height: fit-content;
+        background-color: black;
+        border: 2px solid silver;
+        margin: 2rem;
+        gap: 0.8rem;
+        padding: 0.5rem;
+
+        .card-noticia {
+            background-color: gray;
+            border-radius: 8px;
+            border: 1px solid white;
+            height: 28vh;
+            width: 20.8vw;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            span {
+                background-color: #000000;
+                color: $primaryTextColor;
+                font-size: 16px;
+                font-family: 'Roboto', sans-serif;
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0.3rem;
+                border-radius: 5px 0 5px 0;
+            }
+
+            img {
+                width: 100%;
+
+            }
+
+            .titulo-noticia {
+                background-color: rgba($color: #000000, $alpha: 0.5);
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                p {
+                    color: white;
+                    padding: 0.5rem;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .container {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 6rem;
+        margin-bottom: 6rem;
+        height: 38.5vh;
+
+        #link-melhores {
+            align-self: center;
+            overflow: hidden;
+            width: fit-content;
+
+            #melhores-filmes-2023,
+            #indicados-oscar-2024 {
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                width: 100%;
+                height: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                &:hover {
+                    background-color: rgb(2, 37, 68);
+
+                }
+
+                .legenda-melhores {
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    background-color: rgba(0, 0, 0, 0.5);
+
+                    h5 {
+                        color: white;
+                        font-size: 1rem;
+
+                        &:hover {
+                            color: rgb(243, 250, 150);
+                            border-radius: 8px;
+
+
+                        }
+                    }
+                }
+            }
+        }
+
+        // .listas {
+        //     width: fit-content;
+        //     padding: 1rem;
+        //     height: 100%;
+        //     background-color: rgb(32, 32, 32);
+        //     border-radius: 8px;
+        //     overflow-y: scroll;
+        //     -ms-overflow-style: none;
+        //     /* IE and Edge */
+        //     scrollbar-width: none;
+
+        //     /* Firefox */
+        //     &::-webkit-scrollbar {
+        //         display: none;
+        //     }
+
+        //     .listas-wrapper {
+        //         border-radius: 8px;
+
+        //         ul {
+        //             display: flex;
+        //             flex-direction: column;
+        //             gap: 1rem;
+        //             justify-content: center;
+
+        //             li {
+        //                 text-align: left;
+
+        //                 .lista-item {
+        //                     display: flex;
+        //                     align-items: center;
+        //                     gap: 1rem;
+
+        //                     .miniatura-lista {
+        //                         width: 96px;
+        //                         height: 54px;
+        //                     }
+
+        //                     a {
+        //                         color: white;
+        //                     }
+        //                 }
+
+        //             }
+        //         }
+        //     }
+
+        // }
+
+    }
+
+
+    // .link-leia-mais {
+    //     background-color: #6387CF;
+    //     margin-top: 4rem;
+    //     text-align: center;
+    //     align-self: center;
+    //     color: white;
+    //     padding: 0.7rem;
+    //     width: 10rem;
+    //     border-radius: 8px;
+
+    //     &:hover {
+    //         text-shadow: none;
+    //         color: $primaryTextColor;
+    //     }
+    // }
+
+}
+
+#secao-tops {
+    margin-top: 1rem;
+}
+
+.neon-animation {
+    animation: neon 3s infinite alternate;
+}
+
+.intro-secao {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+
+    p {
+        text-align: center;
+    }
+
+    h3 {
+        color: $primaryTextColor;
+    }
+}
+
+.grid-filmes {
+    margin-top: 1rem;
+    align-items: center;
+    min-height: 100vh;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    padding: 2rem;
+
+    .grid-wrapper {
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: column;
+
+        .grid-item {
+            border: 1px solid $primaryTextColor;
+            border-radius: 5px;
+            height: 18rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            margin: 1rem 0;
+            position: relative;
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+
+            .titulo-lista {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                color: white;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.5);
+                width: 100%;
+                padding: 0.5rem;
+
+                span {
+                    display: flex;
+                    text-align: center;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            .card-img {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                animation: boing 0.4s linear;
+
+            }
+
+        }
+
+        h2 {
+            border: 3px solid darken($color: $defaultRed, $amount: 35);
+            box-sizing: border-box;
+            padding: 0.2rem;
+            border-radius: 8px;
+            width: fit-content;
+            color: darken($color: $defaultRed, $amount: 35);
+            align-self: center;
+
+            &:hover {
+                cursor: pointer;
+                //animation: neon 3s infinite alternate;
+            }
+        }
+
+        a {
+            align-self: center;
+            width: fit-content;
+
+            h2 {
+                border: 3px solid darken($color: $defaultRed, $amount: 35);
+                box-sizing: border-box;
+                padding: 0.2rem;
+                border-radius: 8px;
+                width: fit-content;
+                color: darken($color: $defaultRed, $amount: 35);
+
+                &:hover {
+                    cursor: pointer;
+                    //animation: neon 3s infinite alternate;
+                }
+            }
+
+        }
+    }
+
+
+}
+
+#botao-explorar,
+#link-todas-noticias,
+#link-leia-mais {
+    margin-top: 3rem;
+    grid-column: 1 / -1;
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    box-shadow: 2px 2px 2px black;
+    align-self: center;
+    justify-self: center;
+    width: 50%;
+    padding: 0.7rem;
+    font-size: 1.4rem;
+    border: $primaryTextColor;
+    text-align: center;
+    border-radius: 10px;
+    color: $linksPrimaryColor;
+    text-shadow: 0 1px 1px $defaultRed;
+
+
+    &:hover {
+        animation: boing 0.4s linear;
+        background-color: rgba($color: #ffffff, $alpha: 0.6);
+        color: white;
+    }
+}
+
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+@media screen and (max-width: 1000px) {
+
+
+    .apresentacao {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+
+        .introducao {
+            width: 99%;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            .textos-introducao {
+                box-sizing: border-box;
+                padding: 0.5rem;
+                width: 90%;
+                margin: 3rem auto;
+                text-align: center;
+                height: 100%;
+                color: white;
+
+                p {
+                    text-align: center;
+                    text-indent: 0;
+                    color: $tertiaryTextColor;
+                }
+            }
+        }
+
+        h1 {
+            padding: 2rem 1rem 0 1rem;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            background-color: rgba(15, 24, 25, 0);
+            overflow: hidden;
+
+            #link-melhores {
+                align-self: center;
+                width: 98%;
+                overflow: hidden;
+
+                #melhores-filmes-2023 {
+                    width: 100%;
+                    margin-top: 0;
+                }
+            }
+
+            .listas {
+                width: 99.9vw;
+                height: 30vh;
+
+                .listas-wrapper {
+                    ul {
+                        li {
+                            a {
+                                width: 100%;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    .intro-secao {
+        width: 80%;
+        margin: auto;
+
+        p {
+            color: $tertiaryTextColor;
+            text-indent: 0;
+            text-align: center;
+        }
+
+        h3 {
+            color: $primaryTextColor;
+        }
+    }
+
+    .grid-filmes {
+        margin-top: 2rem;
+        align-items: center;
+        min-height: 100vh;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        font-family: 'Roboto', sans-serif;
+        padding: 0.8rem;
+
+        .grid-wrapper {
+            .grid-item {
+                border: 1px solid $primaryTextColor;
+                border-radius: 5px;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                margin: 0.8rem 0;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            h2 {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+    }
+
+    #botao-explorar,
+    #link-todas-noticias,
+    #link-leia-mais {
+        margin-top: 2rem;
+        color: white;
+        grid-column: 1fr;
+        background-color: rgba($color: #ffffff, $alpha: 0.1);
+        box-shadow: 2px 2px 2px black;
+        align-self: center;
+        justify-self: center;
+        width: 95%;
+        font-size: 1.4rem;
+        border: $primaryTextColor;
+        border-radius: 10px;
+        color: $primaryTextColor;
+        text-shadow: 0 1px 1px $defaultRed;
+
+
+        &:hover {
+            animation: boing 0.4s linear;
+            background-color: rgba($color: #ffffff, $alpha: 0.6);
+            color: white;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+
+
+
+    .apresentacao {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+
+        .introducao {
+            width: 99%;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            .textos-introducao {
+                box-sizing: border-box;
+                padding: 0.5rem;
+                width: 90%;
+                margin: 3rem auto;
+                text-align: center;
+                height: 100%;
+                color: $tertiaryTextColor;
+
+                p {
+                    text-align: center;
+                    text-indent: 0;
+                    color: $tertiaryTextColor;
+                }
+            }
+        }
+
+        h1 {
+            padding: 2rem 1rem 0 1rem;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            background-color: rgba(15, 24, 25, 0);
+            overflow: hidden;
+
+            #link-melhores {
+                align-self: center;
+                width: 98%;
+                overflow: hidden;
+
+                #melhores-filmes-2023 {
+                    width: 100%;
+                    height: fit-content;
+                    margin-top: 0;
+                }
+            }
+
+            .listas {
+                width: 99.9vw;
+                height: fit-content;
+
+                .listas-wrapper {
+                    ul {
+
+                        li {
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    .intro-secao {
+        width: 80%;
+        margin: auto;
+
+        p {
+            color: $tertiaryTextColor;
+            text-indent: 0;
+            text-align: center;
+        }
+
+        h3 {
+            color: $primaryTextColor;
+        }
+    }
+
+    .grid-filmes {
+        margin-top: 2rem;
+        align-items: center;
+        min-height: 100vh;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        font-family: 'Roboto', sans-serif;
+        padding: 0.8rem;
+
+        .grid-wrapper {
+            .grid-item {
+                border: 1px solid $primaryTextColor;
+                border-radius: 5px;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                margin: 0.8rem 0;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            h2 {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+    }
+
+    #botao-explorar,
+    #link-todas-noticias,
+    #link-leia-mais {
+        margin-top: 2rem;
+        color: white;
+        grid-column: 1fr;
+        background-color: rgba($color: #ffffff, $alpha: 0.1);
+        box-shadow: 2px 2px 2px black;
+        align-self: center;
+        justify-self: center;
+        width: 95%;
+        font-size: 1.4rem;
+        border: $primaryTextColor;
+        border-radius: 10px;
+        color: $primaryTextColor;
+        text-shadow: 0 1px 1px $defaultRed;
+
+
+        &:hover {
+            animation: boing 0.4s linear;
+            background-color: rgba($color: #ffffff, $alpha: 0.6);
+            color: white;
+        }
+    }
+}
+
+// @media screen and (min-width: 681px) and (max-width: 1025px) {
+
+//     #link-melhores {
+//         margin: 3rem;
+//         align-self: center;
+//         margin: 3rem auto;
+//         width: 98%;
+//         overflow: hidden;
+
+//     }
+
+//     .apresentacao {
+
+//         .container {
+//             width: 100%;
+//             height: 33rem;
+//             background-color: rgba(15, 24, 25, 0);
+//             overflow: hidden;
+
+//             .listas {
+//                 width: 99.9vw;
+//                 height: 100%;
+
+//                 .listas-wrapper {
+//                     .listas-slide {
+//                         background: rgba(0, 0, 0, 1);
+
+//                         a {
+//                             width: 100%;
+
+//                             .container-link {
+//                                 width: 100%;
+
+//                                 img {
+//                                     width: 100%;
+//                                 }
+
+//                                 .legenda-listas {
+//                                     display: flex;
+//                                     position: absolute;
+//                                     min-height: 5vh;
+//                                     width: 100%;
+//                                     box-sizing: border-box;
+
+//                                     h4 {
+//                                         text-align: left;
+//                                         box-sizing: border-box;
+//                                         padding: 0.5rem;
+//                                         font-family: $defaultFont;
+//                                         color: white;
+//                                         width: 100%;
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+
+//         }
+
+
+//     }
+// }

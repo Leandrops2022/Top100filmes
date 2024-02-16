@@ -1,0 +1,46 @@
+@import './reset.css';
+@import './_variables';
+@import './_fonts';
+@import './_special-classes';
+
+.container-listas {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 70%;
+    margin: 2rem auto;
+
+    h1 {
+        color: $tertiaryTextColor;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .quantidade-filmes {
+        color: $tertiaryTextColor;
+        text-align: center;
+    }
+
+    .miniaturas-filmes {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+
+    .container-listas {
+        width: 100%;
+        margin-bottom: 20vh;
+
+        .miniaturas-filmes {
+            width: 100%;
+        }
+
+    }
+}

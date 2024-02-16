@@ -1,0 +1,1590 @@
+@import './_fonts';
+@import './_variables';
+
+.barra-navegacao {
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    grid-template-columns: 1fr 5fr 10fr;
+    height: 25vh;
+    background: $navbarColor;
+    color: $primaryTextColor;
+    border-bottom: 1px solid silver;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    justify-content: space-between;
+
+    .area-logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 25vw;
+        min-height: 100%;
+        box-sizing: border-box;
+        padding: 0 1rem 2rem 1rem;
+        position: relative;
+
+
+
+        a {
+            width: fit-content;
+            display: flex;
+
+            img {
+                width: 25vw;
+                height: 20vh;
+            }
+
+            span {
+                align-self: center;
+            }
+        }
+    }
+
+    .div-busca {
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+        height: fit-content;
+        padding: 0;
+        margin-left: auto;
+        align-items: center;
+        justify-content: flex-end;
+        align-self: center;
+        position: relative;
+
+        .div-form {
+            top: 0;
+            width: 25vw;
+            height: 100%;
+            display: none;
+            flex-direction: row;
+            position: absolute;
+            align-items: center;
+            background-color: #202020;
+
+            form {
+                width: 90%;
+                align-self: center;
+                display: flex;
+
+                input[type="search"] {
+                    border-radius: 5px 0 0 5px;
+                    border: none;
+                    width: 100%;
+                    height: 40px;
+                    color: rgb(134, 134, 134);
+                    box-sizing: border-box;
+                    padding: 0 0.4rem;
+                    font-family: 'Roboto', sans-serif;
+                    background-color: #202020;
+
+                    &::-webkit-search-cancel-button {
+                        display: none;
+                    }
+
+                    &::-webkit-search-clear-button {
+                        display: none;
+                    }
+
+                    &::placeholder {
+                        color: rgb(134, 134, 134);
+                        text-align: center;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                select {
+                    color: rgb(134, 134, 134);
+                    background-color: #202020;
+
+                    option {
+                        color: rgb(134, 134, 134);
+                        background-color: #202020;
+
+                    }
+                }
+
+            }
+
+            #botao-fechar-busca {
+                display: flex;
+                border-radius: 0 5px 5px 0;
+                height: 40px;
+                padding: 0.3rem;
+                width: 2rem;
+                background-color: #202020;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Roboto', sans-serif;
+                font-size: 10px;
+                font-weight: bolder;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        #botao-buscar {
+            width: 30px;
+            font-family: 'Roboto', sans-serif;
+        }
+    }
+
+    .area-links {
+        display: grid;
+        box-sizing: border-box;
+        align-content: center;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                a {
+                    display: block;
+
+                    p {
+                        padding: 0;
+                        color: white;
+
+                        img {
+                            display: none;
+                        }
+                    }
+                }
+
+                button {
+                    padding: 0;
+                    width: fit-content;
+                    height: fit-content;
+                    border-radius: 50%;
+                    color: $primaryTextColor;
+
+                    p {
+                        text-indent: 0;
+                        display: none;
+                        padding: 0;
+
+                        .icone-entrar {
+                            margin: 0;
+                            padding: 0;
+                            width: 20px;
+
+                        }
+                    }
+
+                    .foto-usuario {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+
+                        img {
+                            border-radius: 50%;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+
+                    span {
+                        display: none;
+                    }
+
+
+                }
+            }
+        }
+
+    }
+
+    .div-botao-menu {
+        width: fit-content;
+        align-self: center;
+        justify-self: flex-end;
+        display: none;
+    }
+
+}
+
+// *****************************************Responsivo*****************************************************
+
+// *****************************************Começa abaixo*****************************************************
+
+// *****************************************Responsivo*****************************************************
+
+@media screen and (min-width: 220px) and (max-width: 320px) {
+    .barra-navegacao {
+        box-sizing: border-box;
+        padding: 0;
+        gap: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 90px;
+        border-bottom: 1px solid silver;
+
+        .area-logo {
+            padding: 0.5rem 1rem;
+            width: 70%;
+            height: 100%;
+            box-sizing: border-box;
+
+
+
+            a {
+                width: fit-content;
+                height: fit-content;
+
+                img {
+                    width: 78%;
+                    height: 78%;
+                }
+            }
+
+        }
+
+        .div-busca {
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            position: relative;
+            height: 100%;
+            padding: 0;
+            margin: auto 0 1rem 0.7rem;
+            overflow-x: visible;
+            align-items: flex-end;
+
+            .div-form {
+                display: none;
+                position: absolute;
+                top: 15px;
+                right: 0;
+                z-index: 999;
+                background-color: #202020;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 79vw;
+                height: 62px;
+                border-radius: 8px;
+                padding: 0;
+                box-sizing: border-box;
+
+
+                form {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+
+                    input[type="search"] {
+                        display: flex;
+                        height: 20px;
+                        width: 100%;
+                        border: none;
+                        padding: 1rem;
+                        font-size: 16px;
+                        line-height: 20px;
+                        border: none;
+                        background-color: rgba($color: #000000, $alpha: 0);
+
+                        &::-webkit-search-cancel-button {
+                            display: none;
+                        }
+
+                        &::-webkit-search-clear-button {
+                            display: none;
+                        }
+
+                    }
+                }
+
+                #botao-fechar-busca {
+                    color: $buttonBackgroundColor;
+                    display: flex;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 0.7rem;
+                    font-weight: bolder;
+                    padding: 0;
+                    align-self: center;
+                    height: 100%;
+                    margin: 0;
+                    box-sizing: border-box;
+                    padding: 0;
+                    background-color: rgba($color: #000000, $alpha: 0);
+                    border: none;
+
+                }
+            }
+
+            #botao-buscar {
+                height: fit-content;
+                width: fit-content;
+                border: none;
+                display: flex;
+                align-self: flex-end;
+                background-color: rgba($color: #000000, $alpha: 0);
+                margin-bottom: 0.2rem;
+                margin-bottom: 15px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        .area-links {
+            display: none;
+            box-sizing: border-box;
+            padding: 1.5rem;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 10vh;
+            border-radius: 0px;
+            flex-direction: column;
+            font-weight: 200;
+            z-index: 9999;
+
+            .botao-fechar-menu {
+                display: none;
+            }
+
+            ul {
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+
+                li {
+                    text-shadow: $textShadowblack;
+                    display: flex;
+                    align-items: left;
+                    justify-content: left;
+                    margin: 0;
+                    padding: 0 0 0 0;
+                    line-height: 1.8rem;
+                    width: 99%;
+
+                    // aqui fica os links do menu
+
+                    a {
+                        display: flex;
+                        width: 100%;
+                        height: fit-content;
+                        display: flex;
+                        align-items: left;
+                        justify-content: left;
+
+                        p {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: left;
+                            text-wrap: nowrap;
+                            text-indent: 0;
+                            padding: 0;
+                            color: white;
+                            font-size: 16px;
+                            line-height: 32px;
+                            width: 100%;
+
+                            img {
+                                display: flex;
+                                width: 30px;
+                                height: 30px;
+                                margin: 0 0.5rem;
+                            }
+                        }
+                    }
+
+                    button {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 0;
+                        align-self: left;
+                        margin: auto;
+                        color: white;
+                        width: 10rem;
+                        height: 2rem;
+                        display: flex;
+                        justify-content: left;
+                        box-sizing: border-box;
+                        padding: 0 0.5rem;
+
+
+                        .foto-usuario {
+                            display: flex;
+                            width: 27px;
+                            height: 27px;
+                        }
+
+                        p {
+                            display: flex;
+                            line-height: 1.8rem;
+                            gap: 0.4rem;
+                            text-indent: 0;
+                            font-family: 'Roboto', sans-serif;
+                            color: white;
+
+                            .icone-entrar {
+                                margin: 0;
+                                width: 20px;
+                                padding: 0;
+                            }
+
+                        }
+
+                        svg {
+                            display: none;
+                        }
+                    }
+
+                    .botao-login {
+                        margin: auto 0;
+                    }
+                }
+
+            }
+        }
+
+        .div-botao-menu {
+            width: fit-content;
+            height: 100%;
+            margin-right: 0.7rem;
+            align-self: center;
+            justify-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.8rem;
+
+                img {
+                    width: 70%;
+                    height: 70%;
+                }
+            }
+
+        }
+    }
+
+}
+
+@media screen and (min-width: 321px) and (max-width: 520px) {
+    .barra-navegacao {
+        box-sizing: border-box;
+        padding: 0;
+        gap: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 90px;
+        border-bottom: 1px solid silver;
+
+        .area-logo {
+            padding: 0.5rem 1rem;
+            width: 70%;
+            height: 100%;
+            box-sizing: border-box;
+
+            a {
+                width: fit-content;
+                height: fit-content;
+
+                img {
+                    width: 78%;
+                    height: 78%;
+                }
+            }
+
+        }
+
+        .div-busca {
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            position: relative;
+            height: 100%;
+            padding: 0;
+            margin: auto 0 1rem 0.7rem;
+            overflow-x: visible;
+            align-items: flex-end;
+
+            .div-form {
+                display: none;
+                position: absolute;
+                top: 15px;
+                right: 0;
+                z-index: 999;
+                background-color: #202020;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 79vw;
+                height: 62px;
+                border-radius: 8px;
+                padding: 0;
+                box-sizing: border-box;
+
+
+                form {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+
+                    input[type="search"] {
+                        display: flex;
+                        height: 20px;
+                        width: 100%;
+                        border: none;
+                        padding: 1rem;
+                        font-size: 16px;
+                        line-height: 20px;
+                        border: none;
+                        background-color: rgba($color: #000000, $alpha: 0);
+
+                        &::-webkit-search-cancel-button {
+                            display: none;
+                        }
+
+                        &::-webkit-search-clear-button {
+                            display: none;
+                        }
+
+                    }
+                }
+
+                #botao-fechar-busca {
+                    color: $buttonBackgroundColor;
+                    display: flex;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 0.7rem;
+                    font-weight: bolder;
+                    padding: 0;
+                    align-self: center;
+                    height: 100%;
+                    margin: 0;
+                    box-sizing: border-box;
+                    padding: 0;
+                    background-color: rgba($color: #000000, $alpha: 0);
+                    border: none;
+
+                }
+            }
+
+            #botao-buscar {
+                height: fit-content;
+                width: fit-content;
+                border: none;
+                display: flex;
+                align-self: flex-end;
+                background-color: rgba($color: #000000, $alpha: 0);
+                margin-bottom: 0.2rem;
+                margin-bottom: 15px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        .area-links {
+            display: none;
+            box-sizing: border-box;
+            padding: 1.5rem;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 10vh;
+            border-radius: 0px;
+            flex-direction: column;
+            font-weight: 200;
+            z-index: 9999;
+
+            .botao-fechar-menu {
+                display: none;
+            }
+
+            ul {
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+
+                li {
+                    text-shadow: $textShadowblack;
+                    display: flex;
+                    align-items: left;
+                    justify-content: left;
+                    margin: 0;
+                    padding: 0 0 0 0;
+                    line-height: 1.8rem;
+                    width: 99%;
+
+                    // aqui fica os links do menu
+
+                    a {
+                        display: flex;
+                        width: 100%;
+                        height: fit-content;
+                        display: flex;
+                        align-items: left;
+                        justify-content: left;
+
+                        p {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: left;
+                            text-wrap: nowrap;
+                            text-indent: 0;
+                            padding: 0;
+                            color: white;
+                            font-size: 16px;
+                            line-height: 32px;
+                            width: 100%;
+
+                            img {
+                                display: flex;
+                                width: 30px;
+                                height: 30px;
+                                margin: 0 0.5rem;
+                            }
+                        }
+                    }
+
+                    button {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 0;
+                        align-self: left;
+                        margin: auto;
+                        color: white;
+                        width: 10rem;
+                        height: 2rem;
+                        display: flex;
+                        justify-content: left;
+                        box-sizing: border-box;
+                        padding: 0 0.5rem;
+
+
+                        .foto-usuario {
+                            display: flex;
+                            width: 27px;
+                            height: 27px;
+                        }
+
+                        p {
+                            display: flex;
+                            line-height: 1.8rem;
+                            gap: 0.4rem;
+                            text-indent: 0;
+                            font-family: 'Roboto', sans-serif;
+                            color: white;
+
+                            .icone-entrar {
+                                margin: 0;
+                                width: 20px;
+                                padding: 0;
+                            }
+
+                        }
+
+                        svg {
+                            display: none;
+                        }
+                    }
+
+                    .botao-login {
+                        margin: auto 0;
+                    }
+                }
+
+            }
+        }
+
+        .div-botao-menu {
+            width: fit-content;
+            height: 100%;
+            margin-right: 0.7rem;
+            align-self: center;
+            justify-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.8rem;
+
+                img {
+                    width: 70%;
+                    height: 70%;
+                }
+            }
+
+        }
+    }
+
+}
+
+@media screen and (min-width: 521px) and (max-width: 700px) {
+    .barra-navegacao {
+        box-sizing: border-box;
+        padding: 0;
+        gap: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 90px;
+        border-bottom: 1px solid silver;
+
+        .area-logo {
+            padding: 0.5rem 1rem;
+            width: 70%;
+            height: 100%;
+            box-sizing: border-box;
+
+
+
+            a {
+                width: fit-content;
+                height: fit-content;
+
+                img {
+                    width: 78%;
+                    height: 78%;
+                }
+            }
+
+        }
+
+        .div-busca {
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            position: relative;
+            height: 100%;
+            padding: 0;
+            margin: auto 0 1rem 0.7rem;
+            overflow-x: visible;
+            align-items: flex-end;
+
+            .div-form {
+                display: none;
+                position: absolute;
+                top: 15px;
+                right: 0;
+                z-index: 999;
+                background-color: #202020;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 79vw;
+                height: 62px;
+                border-radius: 8px;
+                padding: 0;
+                box-sizing: border-box;
+
+
+                form {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+
+                    input[type="search"] {
+                        display: flex;
+                        height: 20px;
+                        width: 100%;
+                        border: none;
+                        padding: 1rem;
+                        font-size: 16px;
+                        line-height: 20px;
+                        border: none;
+                        background-color: rgba($color: #000000, $alpha: 0);
+
+                        &::-webkit-search-cancel-button {
+                            display: none;
+                        }
+
+                        &::-webkit-search-clear-button {
+                            display: none;
+                        }
+
+                    }
+                }
+
+                #botao-fechar-busca {
+                    color: $buttonBackgroundColor;
+                    display: flex;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 0.7rem;
+                    font-weight: bolder;
+                    padding: 0;
+                    align-self: center;
+                    height: 100%;
+                    margin: 0;
+                    box-sizing: border-box;
+                    padding: 0;
+                    background-color: rgba($color: #000000, $alpha: 0);
+                    border: none;
+
+                }
+            }
+
+            #botao-buscar {
+                height: fit-content;
+                width: fit-content;
+                border: none;
+                display: flex;
+                align-self: flex-end;
+                background-color: rgba($color: #000000, $alpha: 0);
+                margin-bottom: 0.2rem;
+                margin-bottom: 15px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        .area-links {
+            display: none;
+            box-sizing: border-box;
+            padding: 1.5rem;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 12.5vh;
+            border-radius: 0px;
+            flex-direction: column;
+            font-weight: 200;
+            z-index: 9999;
+
+            .botao-fechar-menu {
+                display: none;
+            }
+
+            ul {
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+
+                li {
+                    text-shadow: $textShadowblack;
+                    display: flex;
+                    align-items: left;
+                    justify-content: left;
+                    margin: 0;
+                    padding: 0 0 0 0;
+                    line-height: 1.8rem;
+                    width: 99%;
+
+                    // aqui fica os links do menu
+
+                    a {
+                        display: flex;
+                        width: 100%;
+                        height: fit-content;
+                        display: flex;
+                        align-items: left;
+                        justify-content: left;
+
+                        p {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: left;
+                            text-wrap: nowrap;
+                            text-indent: 0;
+                            padding: 0;
+                            color: white;
+                            font-size: 16px;
+                            line-height: 32px;
+                            width: 100%;
+
+                            img {
+                                display: flex;
+                                width: 30px;
+                                height: 30px;
+                                margin: 0 0.5rem;
+                            }
+                        }
+                    }
+
+                    button {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 0;
+                        align-self: left;
+                        margin: auto;
+                        color: white;
+                        width: 10rem;
+                        height: 2rem;
+                        display: flex;
+                        justify-content: left;
+                        box-sizing: border-box;
+                        padding: 0 0.5rem;
+
+
+                        .foto-usuario {
+                            display: flex;
+                            width: 27px;
+                            height: 27px;
+                        }
+
+                        p {
+                            display: flex;
+                            line-height: 1.8rem;
+                            gap: 0.4rem;
+                            text-indent: 0;
+                            font-family: 'Roboto', sans-serif;
+                            color: white;
+
+                            .icone-entrar {
+                                margin: 0;
+                                width: 20px;
+                                padding: 0;
+                            }
+
+                        }
+
+                        svg {
+                            display: none;
+                        }
+                    }
+
+                    .botao-login {
+                        margin: auto 0;
+                    }
+                }
+
+            }
+        }
+
+        .div-botao-menu {
+            width: fit-content;
+            height: 100%;
+            margin-right: 0.7rem;
+            align-self: center;
+            justify-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.8rem;
+
+                img {
+                    width: 70%;
+                    height: 70%;
+                }
+            }
+
+        }
+    }
+
+}
+
+@media screen and (min-width: 701px) and (max-width: 8960px) {
+    .barra-navegacao {
+        box-sizing: border-box;
+        padding: 0;
+        gap: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 90px;
+        border-bottom: 1px solid silver;
+
+        .area-logo {
+            padding: 0.5rem 1rem;
+            width: fit-content;
+            height: 100%;
+            box-sizing: border-box;
+
+
+
+            a {
+                width: fit-content;
+                height: fit-content;
+
+                img {
+                    width: 78%;
+                    height: 78%;
+                }
+            }
+
+        }
+
+        .div-busca {
+            display: flex;
+            flex-direction: row;
+            width: fit-content;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: auto;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+
+            .div-form {
+                display: flex;
+                right: 0;
+                // background-color: #202020;
+                background-color: black;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 99%;
+                border-radius: 8px;
+                padding: 0;
+                box-sizing: border-box;
+
+
+                form {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+
+                    .seletor-busca {
+                        border-radius: 8px;
+                        height: 50%;
+                    }
+
+                    input[type="search"] {
+                        display: flex;
+                        height: 50%;
+                        width: 80%;
+                        border: none;
+                        padding: 1rem;
+                        font-size: 16px;
+                        line-height: 20px;
+                        border: none;
+                        // background-color: rgba($color: #000000, $alpha: 0);
+
+                        &::-webkit-search-cancel-button {
+                            display: none;
+                        }
+
+                        &::-webkit-search-clear-button {
+                            display: none;
+                        }
+
+                    }
+                }
+
+                #botao-fechar-busca {
+                    color: $buttonBackgroundColor;
+                    display: none;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 0.7rem;
+                    font-weight: bolder;
+                    padding: 0;
+                    align-self: center;
+                    height: 100%;
+                    margin: 0;
+                    box-sizing: border-box;
+                    padding: 0;
+                    background-color: rgba($color: #000000, $alpha: 0);
+                    border: none;
+
+                }
+            }
+
+            #botao-buscar {
+                height: fit-content;
+                width: fit-content;
+                border: none;
+                display: none;
+                align-self: flex-end;
+                background-color: rgba($color: #000000, $alpha: 0);
+                margin-bottom: 0.2rem;
+                margin-bottom: 15px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        .area-links {
+            display: none;
+            box-sizing: border-box;
+            padding: 1.5rem;
+            width: 25vw;
+            background-color: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 0px;
+            flex-direction: column;
+            font-weight: 200;
+            z-index: 9999;
+
+            .botao-fechar-menu {
+                align-self: flex-end;
+                color: $primaryTextColor;
+            }
+
+            ul {
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+
+                li {
+                    text-shadow: $textShadowblack;
+                    display: flex;
+                    align-items: left;
+                    justify-content: left;
+                    margin: 0;
+                    padding: 0 0 0 0;
+                    line-height: 1.8rem;
+                    width: 99%;
+
+                    // aqui fica os links do menu
+
+                    a {
+                        display: flex;
+                        width: 100%;
+                        height: fit-content;
+                        display: flex;
+                        align-items: left;
+                        justify-content: left;
+
+                        p {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: left;
+                            text-wrap: nowrap;
+                            text-indent: 0;
+                            padding: 0;
+                            color: white;
+                            font-size: 16px;
+                            line-height: 32px;
+                            width: 100%;
+
+                            img {
+                                display: flex;
+                                width: 30px;
+                                height: 30px;
+                                margin: 0 0.5rem;
+                            }
+                        }
+                    }
+
+                    button {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 0;
+                        align-self: left;
+                        margin: auto;
+                        color: white;
+                        width: 10rem;
+                        height: 2rem;
+                        display: flex;
+                        justify-content: left;
+                        box-sizing: border-box;
+                        padding: 0 0.5rem;
+
+
+                        .foto-usuario {
+                            display: flex;
+                            width: 27px;
+                            height: 27px;
+                        }
+
+                        p {
+                            display: flex;
+                            line-height: 1.8rem;
+                            gap: 0.4rem;
+                            text-indent: 0;
+                            font-family: 'Roboto', sans-serif;
+                            color: white;
+
+                            .icone-entrar {
+                                margin: 0;
+                                width: 20px;
+                                padding: 0;
+                            }
+
+                        }
+
+                        svg {
+                            display: none;
+                        }
+                    }
+
+                    .botao-login {
+                        margin: auto 0;
+                    }
+                }
+
+            }
+        }
+
+        .div-botao-menu {
+            width: fit-content;
+            height: 100%;
+            margin-right: 0.7rem;
+            align-self: center;
+            justify-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.8rem;
+
+                img {
+                    width: 70%;
+                    height: 70%;
+                }
+            }
+
+        }
+    }
+
+}
+
+// @media screen and (min-width: 961px) and (max-width: 1022px) {
+//     .barra-navegacao {
+//         box-sizing: border-box;
+//         padding: 0;
+//         gap: 0;
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: space-between;
+//         width: 100%;
+//         height: 90px;
+//         border-bottom: 1px solid silver;
+
+//         .area-logo {
+//             padding: 0.5rem 1rem;
+//             width: 70%;
+//             height: 100%;
+//             box-sizing: border-box;
+
+
+//             a {
+//                 width: fit-content;
+//                 height: fit-content;
+
+//                 img {
+//                     width: 78%;
+//                     height: 78%;
+//                 }
+//             }
+
+//         }
+
+//         .div-busca {
+//             display: flex;
+//             flex-direction: row;
+//             width: fit-content;
+//             position: relative;
+//             height: 100%;
+//             padding: 0;
+//             margin: auto 0 1rem 0.7rem;
+//             overflow-x: visible;
+//             align-items: flex-end;
+
+//             .div-form {
+//                 display: none;
+//                 position: absolute;
+//                 top: 15px;
+//                 right: 0;
+//                 z-index: 999;
+//                 background-color: #202020;
+//                 flex-direction: row;
+//                 align-items: center;
+//                 justify-content: center;
+//                 width: 79vw;
+//                 height: 62px;
+//                 border-radius: 8px;
+//                 padding: 0;
+//                 box-sizing: border-box;
+
+
+//                 form {
+//                     height: 100%;
+//                     width: 100%;
+//                     border-radius: 8px;
+//                     display: flex;
+//                     align-items: center;
+
+//                     input[type="search"] {
+//                         display: flex;
+//                         height: 20px;
+//                         width: 100%;
+//                         border: none;
+//                         padding: 1rem;
+//                         font-size: 16px;
+//                         line-height: 20px;
+//                         border: none;
+//                         background-color: rgba($color: #000000, $alpha: 0);
+
+//                         &::-webkit-search-cancel-button {
+//                             display: none;
+//                         }
+
+//                         &::-webkit-search-clear-button {
+//                             display: none;
+//                         }
+
+//                     }
+//                 }
+
+//                 #botao-fechar-busca {
+//                     color: $buttonBackgroundColor;
+//                     display: flex;
+//                     font-family: 'Roboto', sans-serif;
+//                     font-size: 0.7rem;
+//                     font-weight: bolder;
+//                     padding: 0;
+//                     align-self: center;
+//                     height: 100%;
+//                     margin: 0;
+//                     box-sizing: border-box;
+//                     padding: 0;
+//                     background-color: rgba($color: #000000, $alpha: 0);
+//                     border: none;
+
+//                 }
+//             }
+
+//             #botao-buscar {
+//                 height: fit-content;
+//                 width: fit-content;
+//                 border: none;
+//                 display: flex;
+//                 align-self: flex-end;
+//                 background-color: rgba($color: #000000, $alpha: 0);
+//                 margin-bottom: 0.2rem;
+//                 margin-bottom: 15px;
+
+//                 img {
+//                     width: 30px;
+//                     height: 30px;
+//                 }
+//             }
+//         }
+
+//         .area-links {
+//             display: none;
+//             box-sizing: border-box;
+//             padding: 1.5rem;
+//             width: 100vw;
+//             background-color: rgba(0, 0, 0, 1);
+//             position: absolute;
+//             top: 15vh;
+//             border-radius: 0px;
+//             flex-direction: column;
+//             font-weight: 200;
+//             z-index: 9999;
+
+
+//             ul {
+//                 padding: 0;
+//                 list-style: none;
+//                 display: flex;
+//                 flex-direction: column;
+//                 gap: 1rem;
+//                 flex-wrap: wrap;
+//                 justify-content: center;
+//                 align-items: center;
+//                 margin: 0;
+
+//                 li {
+//                     text-shadow: $textShadowblack;
+//                     display: flex;
+//                     align-items: left;
+//                     justify-content: left;
+//                     margin: 0;
+//                     padding: 0 0 0 0;
+//                     line-height: 1.8rem;
+//                     width: 99%;
+
+//                     // aqui fica os links do menu
+
+//                     a {
+//                         display: flex;
+//                         width: 100%;
+//                         height: fit-content;
+//                         display: flex;
+//                         align-items: left;
+//                         justify-content: left;
+
+//                         p {
+//                             display: flex;
+//                             flex-direction: row;
+//                             align-items: left;
+//                             text-wrap: nowrap;
+//                             text-indent: 0;
+//                             padding: 0;
+//                             color: white;
+//                             font-size: 16px;
+//                             line-height: 32px;
+//                             width: 100%;
+
+//                             img {
+//                                 display: flex;
+//                                 width: 30px;
+//                                 height: 30px;
+//                                 margin: 0 0.5rem;
+//                             }
+//                         }
+//                     }
+
+//                     button {
+//                         display: flex;
+//                         flex-direction: row;
+//                         align-items: center;
+//                         border-radius: 0;
+//                         align-self: left;
+//                         margin: auto;
+//                         color: white;
+//                         width: 10rem;
+//                         height: 2rem;
+//                         display: flex;
+//                         justify-content: left;
+//                         box-sizing: border-box;
+//                         padding: 0 0.5rem;
+
+
+//                         .foto-usuario {
+//                             display: flex;
+//                             width: 27px;
+//                             height: 27px;
+//                         }
+
+//                         p {
+//                             display: flex;
+//                             line-height: 1.8rem;
+//                             gap: 0.4rem;
+//                             text-indent: 0;
+//                             font-family: 'Roboto', sans-serif;
+//                             color: white;
+
+//                             .icone-entrar {
+//                                 margin: 0;
+//                                 width: 20px;
+//                                 padding: 0;
+//                             }
+
+//                         }
+
+//                         svg {
+//                             display: none;
+//                         }
+//                     }
+
+//                     .botao-login {
+//                         margin: auto 0;
+//                     }
+//                 }
+
+//             }
+//         }
+
+//         .div-botao-menu {
+//             width: fit-content;
+//             height: 100%;
+//             margin-right: 0.7rem;
+//             align-self: center;
+//             justify-self: flex-end;
+//             display: flex;
+//             flex-direction: column;
+//             align-items: flex-end;
+//             justify-content: flex-end;
+
+//             button {
+//                 display: flex;
+//                 flex-direction: column;
+//                 align-items: center;
+//                 justify-content: center;
+//                 margin-bottom: 0.8rem;
+
+//                 img {
+//                     width: 70%;
+//                     height: 70%;
+//                 }
+//             }
+
+//         }
+//     }
+
+// }

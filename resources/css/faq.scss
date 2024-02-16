@@ -1,0 +1,66 @@
+@import './_fonts';
+@import './_variables';
+
+
+.faq {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20vh;
+    width: 70%;
+    margin: auto;
+    align-items: center;
+    margin-bottom: 20vh;
+
+
+    h1 {
+        margin: 0.8rem;
+    }
+
+    .lista-faq {
+        font-family: 'Roboto', sans-serif;
+
+
+        ol {
+            list-style: decimal;
+            font-size: 1.5rem;
+            padding: 1rem;
+            color: $tertiaryTextColor;
+
+            li {
+                margin: 1.5rem;
+            }
+
+        }
+
+        h4 {
+            text-align: left;
+            color: $tertiaryTextColor;
+            margin: 0.8rem;
+            width: fit-content;
+            padding: 0.2rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        p {
+            display: none;
+            flex-direction: row;
+            gap: 0;
+
+        }
+    }
+}
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxResponsivoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+@media screen and (max-width: 980px) {
+    .faq {
+        width: 100%;
+    }
+
+}

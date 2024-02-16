@@ -1,0 +1,170 @@
+@import './_fonts';
+@import './_variables';
+
+.intro-contato {
+    margin-top: 1.5rem;
+    padding: 0 1.5rem;
+    font-family: 'Roboto', sans-serif;
+
+    p {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+    }
+}
+
+.entre-em-contato {
+    font-family: 'Roboto', sans-serif;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    color: antiquewhite;
+    gap: 2rem;
+    margin-bottom: 20vh;
+
+
+    .dados-pessoais,
+    .dados-mensagem {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Roboto', sans-serif;
+
+        input,
+        select {
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            height: 2.2rem;
+            font-size: 1rem;
+            color: black;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .data-nascimento {
+            width: fit-content;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        select {
+            width: fit-content;
+            margin-bottom: 1rem;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        textarea {
+            color: black;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+    }
+
+    button {
+        width: 50%;
+        align-self: center;
+        background-color: rgb(137, 144, 247);
+        color: rgb(252, 248, 244);
+        border-radius: 5px;
+        height: 2rem;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2rem;
+        letter-spacing: 0.1rem;
+        font-weight: bold;
+        text-shadow: 0.5px 0px 1px red;
+        box-shadow: 1px 1px 5px silver;
+        margin-top: 1.5rem;
+
+        &:hover {
+            text-shadow: 0.5px 0px 1px red;
+        }
+
+        &:active {
+            box-shadow: inset 2px 2px 5px black;
+            background-color: rgb(208, 210, 245);
+            color: rgb(137, 213, 238);
+
+        }
+    }
+}
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX RESPONSIVO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX RESPONSIVO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX RESPONSIVO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+@media screen and (max-width: 880px) {
+    .intro-contato {
+        margin-top: 1.5rem;
+        padding: 0 1.5rem;
+
+        p {
+            text-align: center;
+        }
+    }
+
+    .entre-em-contato {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        color: antiquewhite;
+        gap: 2rem;
+        margin-bottom: 20vh;
+
+
+        .dados-pessoais,
+        .dados-mensagem {
+            display: flex;
+            flex-direction: column;
+
+            input,
+            select {
+                margin: 0.8rem 0;
+                border-radius: 5px;
+                height: fit-content;
+                font-size: 1rem;
+                line-height: 2rem;
+            }
+
+            .data-nascimento {
+                width: 45vw;
+            }
+
+            select {
+                width: fit-content;
+                margin-bottom: 1.5rem;
+            }
+
+            textarea {
+                height: 16rem;
+            }
+        }
+
+        button {
+            width: 99%;
+            align-self: center;
+            background-color: rgb(137, 144, 247);
+            color: rgb(252, 248, 244);
+            border-radius: 5px;
+            height: 2rem;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.1rem;
+            font-weight: bold;
+            text-shadow: 0.5px 0px 1px red;
+            box-shadow: 1px 1px 5px silver;
+
+            &:hover {
+                text-shadow: 0.5px 0px 1px red;
+            }
+
+            &:active {
+                box-shadow: inset 2px 2px 5px black;
+                background-color: rgb(208, 210, 245);
+                color: rgb(137, 213, 238);
+
+            }
+        }
+    }
+}

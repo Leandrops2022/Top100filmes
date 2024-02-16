@@ -1,0 +1,44 @@
+.inicio-quiz {
+  border: 2px solid red;
+}
+
+form {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+form ul {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid blue;
+  width: 70vw;
+  margin: auto;
+}
+form ul li {
+  display: flex;
+  flex-direction: column;
+}
+form ul li .container-perguntas-e-respostas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 2rem auto;
+}
+form ul li .container-perguntas-e-respostas .resposta {
+  color: white;
+}
+form button {
+  padding: 1rem;
+  width: 30vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  align-self: center;
+  background-color: rgb(90, 116, 231);
+  color: white;
+  margin-top: 2rem;
+  border-radius: 8px;
+}
+form button:hover {
+  color: #EED63B;
+}/*# sourceMappingURL=quiz.css.map */

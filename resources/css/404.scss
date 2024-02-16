@@ -1,0 +1,101 @@
+@import "./_variables";
+@import './_fonts';
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+.div-centralizada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: $backgroundColor;
+    height: 100%;
+
+    .imagem-perdido {
+        width: 300px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+        color: $primaryTextColor;
+        text-align: center;
+
+    }
+
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 4rem;
+        color: $primaryTextColor;
+    }
+
+    a {
+        text-decoration: none;
+
+        h2 {
+            color: $secondaryTextColor;
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 900px) {
+    .div-centralizada {
+
+        padding: 5rem 2rem;
+        box-sizing: border-box;
+        margin: 0 auto;
+        background-color: $backgroundColor;
+
+        .imagem-perdido {
+            width: 80vw;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            color: $primaryTextColor;
+            text-align: center;
+
+        }
+
+        h1 {
+            padding: 0;
+            margin: 2rem;
+            font-size: 2rem;
+            color: $primaryTextColor;
+        }
+
+        a {
+            text-decoration: none;
+
+            h2 {
+                margin: 2rem 0;
+                color: $secondaryTextColor;
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+}

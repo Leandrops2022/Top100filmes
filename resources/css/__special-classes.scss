@@ -1,0 +1,13 @@
+.efeito-card {
+    border-bottom: 1px solid silver;
+    border-right: 2px solid black;
+    border-top: 1px solid black;
+    border-radius: 8px 8px 8px 8px;
+
+    &:hover,
+    &:active {
+        background-color: rgb(51, 50, 50);
+        border-radius: 8px 8px 8px 8px;
+    }
+
+}

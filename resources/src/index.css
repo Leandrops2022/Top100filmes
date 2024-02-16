@@ -1,0 +1,12 @@
+body {
+  min-height: 99vh;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 680px) {
+  body {
+    width: 99vw;
+  }
+}

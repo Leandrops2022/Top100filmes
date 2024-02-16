@@ -1,0 +1,131 @@
+._container_sslwx_12 {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  color: #ebebc1
+}
+
+._container_sslwx_12 ._resultado_sslwx_19 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: rgb(75, 75, 88);
+  background: linear-gradient(180deg, rgb(75, 75, 88) 0%, rgb(29, 29, 36) 35%, rgb(0, 0, 0) 100%)
+}
+
+._container_sslwx_12 ._resultado_sslwx_19 ._imagem_sslwx_30 {
+  width: 400px;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center
+}
+
+._container_sslwx_12 ._resultado_sslwx_19 ._imagem_sslwx_30 img {
+  width: 400px;
+  margin: auto;
+  border-radius: 8px
+}
+
+._container_sslwx_12 ._resultado_sslwx_19 p {
+  font-size: 1.4rem
+}
+
+._container_sslwx_12 ._quiz_sslwx_45,
+._container_sslwx_12 ._quiz_sslwx_45 ol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left
+}
+
+._container_sslwx_12 ._quiz_sslwx_45 ._desativado_sslwx_57 {
+  background-color: #a3a2a2;
+  color: #585757
+}
+
+._container_sslwx_12 ._quiz_sslwx_45 ._ativado_sslwx_61 {
+  color: #ff0;
+  background-color: #00f
+}
+
+@media screen and (max-width: 680px) {
+  ._container_sslwx_12 {
+    width: 99vw;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+  }
+
+  ._container_sslwx_12 ._resultado_sslwx_19 {
+    display: flex;
+    flex-direction: column;
+    width: 99vw;
+    min-height: 99.9vh;
+    height: fit-content;
+    align-items: center;
+    justify-content: center
+  }
+
+  ._container_sslwx_12 ._resultado_sslwx_19 h1 {
+    margin-top: 5rem;
+    text-align: center
+  }
+
+  ._container_sslwx_12 ._resultado_sslwx_19 ._imagem_sslwx_30 {
+    width: 95vw;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center
+  }
+
+  ._container_sslwx_12 ._resultado_sslwx_19 ._imagem_sslwx_30 img {
+    width: 100%
+  }
+
+  ._container_sslwx_12 ._quiz_sslwx_45 {
+    padding: 1rem
+  }
+
+  ._container_sslwx_12 ._quiz_sslwx_45 h1,
+  ._container_sslwx_12 ._quiz_sslwx_45 h2 {
+    text-align: center
+  }
+
+  ._container_sslwx_12 ._quiz_sslwx_45 label {
+    margin-left: .5rem;
+    font-size: 1.3rem
+  }
+
+  ._container_sslwx_12 ._quiz_sslwx_45 ol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left
+  }
+
+  ._container_sslwx_12 ._quiz_sslwx_45 button {
+    width: 70%;
+    height: fit-content;
+    padding: .5rem;
+    font-size: 1.3rem;
+    box-sizing: border-box;
+    border-radius: 8px;
+    align-self: center;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  body {
+    width: 99vw
+  }
+}

@@ -1,0 +1,138 @@
+@import "./_fonts";
+@import "./_variables";
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#formulario-votacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4rem;
+    background-color: #0f1819;
+
+    .nota-usuario-atual {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.7rem 0.5rem;
+        box-sizing: border-box;
+        margin-left: 0.3rem;
+        color: antiquewhite;
+
+        span {
+            align-self: center;
+            font-size: 1.3rem;
+            color: white;
+        }
+    }
+
+    .botao-desativado {
+        background-color: rgb(80, 80, 80);
+        color: silver;
+
+        &:hover {
+            cursor: help;
+            color: silver;
+            background-color: rgb(80, 80, 80);
+        }
+    }
+
+    button {
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.9rem;
+        width: 50%;
+        background-color: rgb(86, 86, 245);
+        color: white;
+        margin-top: 2rem;
+        margin-bottom: rem;
+        border-radius: 5px;
+        height: 1.6rem;
+        border: 1px;
+
+        &:hover {
+            cursor: pointer;
+            color: white;
+            background-color: lighten($color: #5656f5, $amount: 10);
+        }
+    }
+
+    .star-rating {
+        display: flex;
+        flex-direction: row;
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .estrela {
+            color: silver;
+            font-size: 2rem;
+        }
+
+        .estrela-amarela {
+            color: yellow;
+        }
+    }
+
+}
+
+
+#formulario-votacao-deslogado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4rem;
+
+    .star-rating-deslogado {
+        display: flex;
+        flex-direction: row;
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            &:hover {
+                cursor: not-allowed;
+            }
+        }
+
+        .estrela-deslogado {
+            color: silver;
+            font-size: 2rem;
+        }
+
+        .estrela-amarela {
+            color: yellow;
+        }
+    }
+
+    #div-mensagem-deslogado {
+        font-weight: bold;
+        font-size: 1rem;
+        width: 70%;
+        height: 1.5rem;
+        margin-top: 1rem;
+        text-align: center;
+        color: silver;
+    }
+}

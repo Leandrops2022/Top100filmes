@@ -1,0 +1,179 @@
+@import "./_variables";
+@import "./_special-classes";
+
+.destaques {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    margin-top: 3rem;
+
+    .area-destaques {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin: auto;
+        width: 100%;
+
+        li {
+            margin: 1rem auto;
+
+
+            a {
+                text-decoration: none;
+                text-shadow: none;
+                text-align: left;
+                border-radius: 5px;
+
+
+                .artigo-destaque {
+                    display: flex;
+                    flex-direction: column;
+                    width: 22vw;
+                    height: 30vh;
+                    overflow: hidden;
+                    border-radius: 5px;
+                    position: relative;
+
+                    .capa-artigo {
+                        width: 100%;
+                        height: 34vh;
+                        border-radius: 8px;
+                        border: 2px solid $primaryTextColor;
+                        border-radius: 5px;
+                        position: relative;
+
+                        img {
+                            height: 100%;
+                            border-radius: 5px;
+
+                        }
+
+                        .tag {
+                            position: absolute;
+                            top: 0;
+                            background-color: black;
+                            color: $primaryTextColor;
+                            padding: 0.2rem;
+                            border-radius: 0 0 3px 0;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .data-postagem {
+                        p {
+                            padding: 0;
+                        }
+                    }
+
+                    .titulo-artigo {
+                        display: flex;
+                        flex-grow: 1;
+                        position: absolute;
+                        bottom: 0;
+                        background-color: rgba($color: #000000, $alpha: 0.5);
+                        width: 100%;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0.1rem;
+
+                        .titulo-artigo-texto {
+                            font-size: 16px;
+                            color: $tertiaryTextColor;
+                            padding: 0.1rem;
+                            text-align: center;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+
+@media screen and (max-width: 1025px) {
+    .destaques {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: 34vh;
+        height: fit-content;
+        margin-top: 3rem;
+        gap: 1rem;
+
+
+        .link-leia-mais {
+            color: #6387CF;
+            margin-top: 1.5rem;
+            text-align: center;
+            align-self: center;
+
+            -webkit-tap-highlight-color: transparent !important;
+            outline: none !important;
+        }
+
+        .area-destaques {
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            width: 98%;
+            margin: auto;
+
+            li {
+                width: 99%;
+                margin: 1rem auto;
+                border-radius: 5px;
+
+                a {
+                    .artigo-destaque {
+                        width: 100%;
+                        height: fit-content;
+                        border-radius: 5px;
+
+                        .capa-artigo {
+                            width: 100%;
+                            height: fit-content;
+                            border: 2px solid $primaryTextColor;
+                            border-radius: 5px;
+
+                        }
+
+                        .data-postagem {
+                            p {
+                                font-size: 12px;
+                                padding: 0;
+                            }
+                        }
+
+                        .titulo-artigo {
+                            font-family: 'Roboto', sans-serif;
+
+                            .titulo-artigo-texto {
+                                font-size: 20px;
+                                color: white;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .paginacao-destaques {
+
+
+            ul {
+                display: flex;
+                gap: 0;
+            }
+        }
+    }
+
+}

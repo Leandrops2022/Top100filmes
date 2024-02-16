@@ -1,0 +1,281 @@
+@import './_fonts';
+@import './_variables';
+
+@keyframes boing {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.08;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+@keyframes neon {
+    0% {
+        color: $defaultRed;
+        border: 3px solid $defaultRed;
+        box-shadow: inset 0 0 1.5em 0 $defaultRed, 0 0 1.5em 0 $defaultRed;
+        text-shadow: 0 0 1.5em 0 $defaultRed;
+    }
+
+    5% {
+        color: darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+        border: 3px solid darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+        box-shadow: inset 0 0 1em 0 darken($color: rgba(173, 44, 43, 0.5), $amount: 30), 0 0 1em 0 darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+        text-shadow: 0 0 1em 0 darken($color: rgba(173, 44, 43, 0.5), $amount: 30);
+    }
+
+    7% {
+        color: lighten($color: $defaultRed, $amount: 10);
+        border: 3px solid lighten($color: $defaultRed, $amount: 10);
+        box-shadow: inset 0 0 1.5em 0 lighten($color: $defaultRed, $amount: 10), 0 0 1.5em 0 lighten($color: $defaultRed, $amount: 10);
+        text-shadow: 0 0 1.5em 0 lighten($color: $defaultRed, $amount: 10);
+    }
+
+    100% {
+        color: lighten($color: $defaultRed, $amount: 10);
+        border: 3px solid lighten($color: $defaultRed, $amount: 10);
+        box-shadow: inset 0 0 1em 0 lighten($color: $defaultRed, $amount: 10), 0 0 1em 0 lighten($color: $defaultRed, $amount: 10);
+        text-shadow: 0 0 1em 0 lighten($color: $defaultRed, $amount: 10);
+    }
+}
+
+.ad-box {
+    display: none;
+    margin: auto;
+    width: 99%;
+    height: 29vh;
+}
+
+.apresentacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-bottom: 0;
+
+    h1,
+    h2,
+    p {
+        text-align: center;
+    }
+
+    p {
+        line-height: 1.5rem;
+        color: $tertiaryTextColor;
+        text-indent: 0;
+    }
+}
+
+.neon-animation {
+    animation: neon 3s infinite alternate;
+}
+
+.grid-filmes {
+    margin-top: 0;
+    align-items: center;
+    min-height: 100vh;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    padding: 2rem;
+
+    .grid-wrapper-propaganda,
+    .grid-wrapper {
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: column;
+
+        .propaganda {
+            height: 30vh;
+            margin-top: 25%;
+        }
+
+        .grid-item {
+            border: 1px solid $primaryTextColor;
+            border-radius: 5px;
+            height: 12rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+
+            .card-img {
+                width: 100%;
+                height: 100%;
+            }
+
+            &:hover {
+                cursor: pointer;
+                animation: boing 0.4s linear;
+            }
+        }
+
+        h2 {
+            flex-shrink: 1;
+            border: 3px solid darken($color: $defaultRed, $amount: 35);
+            box-sizing: border-box;
+            padding: 0.2rem;
+            border-radius: 8px;
+            width: fit-content;
+            color: darken($color: $defaultRed, $amount: 35);
+            align-self: center;
+            font-size: 1.6em;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        a {
+            align-self: center;
+            width: fit-content;
+            margin: 1rem 0;
+        }
+    }
+
+    button {
+        margin-top: 5rem;
+        grid-column: 1 / -1;
+        background-color: rgba($color: #ffffff, $alpha: 0.1);
+        box-shadow: 2px 2px 2px black;
+        align-self: center;
+        justify-self: center;
+        width: 50%;
+        font-size: 1.4rem;
+        border: $primaryTextColor;
+        border-radius: 10px;
+        color: $primaryTextColor;
+        text-shadow: 0 1px 1px $defaultRed;
+
+
+        &:hover {
+            animation: boing 0.4s linear;
+            background-color: rgba($color: #ffffff, $alpha: 0.6);
+            color: white;
+        }
+    }
+}
+
+
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+//##############################################Responsivo#############################################################
+@media screen and (min-width: 815px) and (max-width: 1044px) {
+
+
+    .grid-filmes {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        .grid-wrapper {
+            h2 {
+                animation: neon 3s infinite alternate;
+            }
+
+            a {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 581px) and (max-width: 814px) {
+
+
+    .grid-filmes {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+
+        .grid-wrapper {
+            h2 {
+                animation: neon 3s infinite alternate;
+            }
+
+            a {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+
+    .apresentacao {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .grid-filmes {
+        margin-top: 2rem;
+        align-items: center;
+        min-height: 100vh;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        font-family: 'Roboto', sans-serif;
+        padding: 0.8rem;
+
+        .grid-wrapper {
+            .grid-item {
+                border: 1px solid $primaryTextColor;
+                border-radius: 5px;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+
+            }
+
+            h2 {
+                font-size: 2rem;
+                animation: neon 3s infinite alternate;
+            }
+
+            a {
+                margin-top: 2.2rem;
+            }
+        }
+
+        button {
+            margin-top: 1rem;
+            color: white;
+            grid-column: 1fr;
+
+            background-color: rgba($color: #ffffff, $alpha: 0.1);
+            box-shadow: 2px 2px 2px black;
+            align-self: center;
+            justify-self: center;
+            width: 100%;
+            font-size: 1.4rem;
+            border: $primaryTextColor;
+            border-radius: 10px;
+            color: $primaryTextColor;
+            text-shadow: 0 1px 1px $defaultRed;
+
+
+            &:hover {
+                animation: boing 0.4s linear;
+                background-color: rgba($color: #ffffff, $alpha: 0.6);
+                color: white;
+            }
+        }
+    }
+}

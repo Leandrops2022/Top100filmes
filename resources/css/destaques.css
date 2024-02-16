@@ -1,0 +1,148 @@
+.efeito-card {
+  border-bottom: 1px solid silver;
+  border-right: 2px solid black;
+  border-top: 1px solid black;
+  border-radius: 8px 8px 8px 8px;
+}
+.efeito-card:hover, .efeito-card:active {
+  background-color: rgb(51, 50, 50);
+  border-radius: 8px 8px 8px 8px;
+}
+
+.destaques {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 3rem;
+}
+.destaques .area-destaques {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: auto;
+  width: 100%;
+}
+.destaques .area-destaques li {
+  margin: 1rem auto;
+}
+.destaques .area-destaques li a {
+  text-decoration: none;
+  text-shadow: none;
+  text-align: left;
+  border-radius: 5px;
+}
+.destaques .area-destaques li a .artigo-destaque {
+  display: flex;
+  flex-direction: column;
+  width: 22vw;
+  height: 30vh;
+  overflow: hidden;
+  border-radius: 5px;
+  position: relative;
+}
+.destaques .area-destaques li a .artigo-destaque .capa-artigo {
+  width: 100%;
+  height: 34vh;
+  border-radius: 8px;
+  border: 2px solid #EED63B;
+  border-radius: 5px;
+  position: relative;
+}
+.destaques .area-destaques li a .artigo-destaque .capa-artigo img {
+  height: 100%;
+  border-radius: 5px;
+}
+.destaques .area-destaques li a .artigo-destaque .capa-artigo .tag {
+  position: absolute;
+  top: 0;
+  background-color: black;
+  color: #EED63B;
+  padding: 0.2rem;
+  border-radius: 0 0 3px 0;
+  font-weight: bold;
+}
+.destaques .area-destaques li a .artigo-destaque .data-postagem p {
+  padding: 0;
+}
+.destaques .area-destaques li a .artigo-destaque .titulo-artigo {
+  display: flex;
+  flex-grow: 1;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem;
+}
+.destaques .area-destaques li a .artigo-destaque .titulo-artigo .titulo-artigo-texto {
+  font-size: 16px;
+  color: #faebd7;
+  padding: 0.1rem;
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 1025px) {
+  .destaques {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 34vh;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-top: 3rem;
+    gap: 1rem;
+  }
+  .destaques .link-leia-mais {
+    color: #6387CF;
+    margin-top: 1.5rem;
+    text-align: center;
+    align-self: center;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+  }
+  .destaques .area-destaques {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 98%;
+    margin: auto;
+  }
+  .destaques .area-destaques li {
+    width: 99%;
+    margin: 1rem auto;
+    border-radius: 5px;
+  }
+  .destaques .area-destaques li a .artigo-destaque {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 5px;
+  }
+  .destaques .area-destaques li a .artigo-destaque .capa-artigo {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    border: 2px solid #EED63B;
+    border-radius: 5px;
+  }
+  .destaques .area-destaques li a .artigo-destaque .data-postagem p {
+    font-size: 12px;
+    padding: 0;
+  }
+  .destaques .area-destaques li a .artigo-destaque .titulo-artigo {
+    font-family: "Roboto", sans-serif;
+  }
+  .destaques .area-destaques li a .artigo-destaque .titulo-artigo .titulo-artigo-texto {
+    font-size: 20px;
+    color: #faebd7;
+  }
+  .destaques .paginacao-destaques ul {
+    display: flex;
+    gap: 0;
+  }
+}/*# sourceMappingURL=destaques.css.map */

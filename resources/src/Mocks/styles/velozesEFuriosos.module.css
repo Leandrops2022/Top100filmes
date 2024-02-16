@@ -1,0 +1,173 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  color: rgb(235, 235, 193);
+  margin-top: 2rem;
+  text-align: left;
+}
+.container .resultado {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: rgb(75, 75, 88);
+  background: linear-gradient(180deg, rgb(75, 75, 88) 0%, rgb(29, 29, 36) 35%, rgb(0, 0, 0) 100%);
+  border-radius: 8px;
+}
+.container .resultado button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(25, 118, 240);
+  border-radius: 5px;
+  margin-top: 2rem;
+  color: rgb(224, 203, 80);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1rem;
+}
+.container .resultado .imagem {
+  width: 400px;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+.container .resultado .imagem img {
+  width: 400px;
+  margin: auto;
+  border-radius: 8px;
+}
+.container .resultado p {
+  font-size: 1.4rem;
+}
+.container .quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+}
+.container .quiz h2 {
+  text-align: left;
+}
+.container .quiz ol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+}
+.container .quiz ol li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.container .quiz ol li div {
+  display: flex;
+  gap: 0.5rem;
+}
+.container .quiz ol li div label {
+  text-align: left;
+}
+.container .quiz ol li h3 {
+  padding: 1rem 0;
+  text-align: left;
+}
+.container .quiz button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7rem;
+  width: 40%;
+  padding: 1rem;
+  border-radius: 5px;
+}
+.container .quiz .desativado {
+  background-color: rgb(163, 162, 162);
+  color: rgb(88, 87, 87);
+}
+.container .quiz .desativado:hover {
+  cursor: not-allowed;
+}
+.container .quiz .ativado {
+  color: yellow;
+  background-color: blue;
+}
+
+@media screen and (max-width: 680px) {
+  .container {
+    width: 99vw;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .resultado {
+    display: flex;
+    flex-direction: column;
+    width: 99vw;
+    min-height: 99.9vh;
+    height: -moz-fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .resultado h1 {
+    margin-top: 5rem;
+    text-align: center;
+  }
+  .container .resultado .imagem {
+    width: 95vw;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .container .resultado .imagem img {
+    width: 100%;
+  }
+  .container .quiz {
+    padding: 1rem;
+  }
+  .container .quiz h1 {
+    text-align: center;
+  }
+  .container .quiz h2 {
+    text-align: center;
+  }
+  .container .quiz label {
+    margin-left: 0.5rem;
+    font-size: 1.3rem;
+  }
+  .container .quiz ol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+  }
+  .container .quiz button {
+    width: 70%;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    box-sizing: border-box;
+    border-radius: 8px;
+    align-self: center;
+    margin-top: 2rem;
+  }
+}/*# sourceMappingURL=velozesEFuriosos.module.css.map */
