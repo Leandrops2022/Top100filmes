@@ -59,7 +59,14 @@
                     </div>
                 </div>
             </div>
-
+            <div class="atribuicao-tmdb">
+                <div class="atribuicao-tmdb-logo">
+                    <img src="{{ asset('assets/logotmdb.svg') }}" alt="">
+                </div>
+                <div class="texto-atribuicao">
+                    Top100filmes uses the TMDb API but is not endorsed or certified by TMDb.
+                </div>
+            </div>
         </div>
 
         @vite('resources/js/app.js')

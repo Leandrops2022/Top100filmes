@@ -19,12 +19,12 @@ class AtorController extends Controller
             $this->logVisitor();
             $ator = Ator::where('slug', '=', $slug)->firstOrFail();
 
-
             if ($ator->biografia == 'Não há informações cadastradas para o ator') {
                 $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
 
-                $tmdbActorUrlPtBr = "https://api.themoviedb.org/3/person/$paddedActorId?language=pt-br&api_key=9515e4fabf8eb17337b50148ade72db8";
-                $tmdbActorUrlEnUs = "https://api.themoviedb.org/3/person/$paddedActorId?api_key=9515e4fabf8eb17337b50148ade72db8";
+                $tmdbAPIKey = env('TMDB_API_KEY');
+                $tmdbActorUrlPtBr = "https://api.themoviedb.org/3/person/$paddedActorId?language=pt-br&api_key=$tmdbAPIKey";
+                $tmdbActorUrlEnUs = "https://api.themoviedb.org/3/person/$paddedActorId?api_key=$tmdbAPIKey";
 
                 $actorData = $this->getTmdbData($tmdbActorUrlPtBr);
 
