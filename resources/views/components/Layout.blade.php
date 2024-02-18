@@ -56,6 +56,7 @@
                 <x-validation-errors class="erros" />
             </div>
             <div class="area-inicial">
+
                 <button class="arrow-button" id="arrow-button">
                     <img src="/assets/icones/circle-arrow-up-solid.svg" alt="icone-flexa-cima">
                 </button>

@@ -8,6 +8,7 @@ export default defineConfig({
         tailwindcss('./tailwind.config.js'),
         laravel({
             input: [
+                'resources/css/sugestaoConteudo.scss',
                 'resources/css/oscar-2024.scss',
                 'resources/css/melhoresDoAno.scss',
                 'resources/js/noticia.mjs',

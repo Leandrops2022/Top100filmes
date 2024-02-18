@@ -51,19 +51,26 @@
                         </p>
                     </a>
                 </li>
-                <li><a class="links" href="{{ route('mostrarQuizes') }}">
+                <li><a class="links" role="button" href="{{ route('top100', 'geral') }}">
                         <p>
-                            <img class="icone-home" src="{{ asset('assets/icones/test.svg') }}" alt="icone de uma prova"
+                            <img class="icone-home" src="{{ asset('assets/icones/top100.svg') }}" alt="ícone de troféu"
                                 loading="lazy">
-                            Quiz
+                            Top 100 melhores filmes
                         </p>
-                    </a>
-                </li>
-                <li><a class="links" href="{{ route('noticias') }}">
+                    </a></li>
+                <li><a class="links" href="{{ route('generos') }}">
                         <p>
-                            <img class="icone-noticias" src="{{ asset('assets/icones/noticias.svg') }}"
-                                alt="icone de uma casa" loading="lazy">
-                            Notícias
+                            <img class="icone-home" src="{{ asset('assets/icones/porgenero.svg') }}"
+                                alt="duas mascaras simbolizando generos de filmes" loading="lazy">
+                            Outros Top 100
+                        </p>
+                    </a></li>
+
+                <li><a class="links" href="{{ route('todasListas') }}">
+                        <p>
+                            <img class="icone-home" src="{{ asset('assets/icones/lista.svg') }}" alt="icone de lista"
+                                loading="lazy">
+                            Listas
                         </p>
                     </a>
                 </li>
@@ -73,21 +80,27 @@
                                 alt="icone de artigos de jornal" loading="lazy">
                             Artigos
                         </p>
-                    </a></li>
-                <li><a class="links" href="{{ route('generos') }}">
+                    </a>
+                </li>
+
+                <li><a class="links" href="{{ route('noticias') }}">
                         <p>
-                            <img class="icone-home" src="{{ asset('assets/icones/porgenero.svg') }}"
-                                alt="duas mascaras simbolizando generos de filmes" loading="lazy">
-                            Por categoria
+                            <img class="icone-noticias" src="{{ asset('assets/icones/noticias.svg') }}"
+                                alt="icone de uma casa" loading="lazy">
+                            Notícias
                         </p>
-                    </a></li>
-                <li><a class="links" role="button" href="{{ route('top100', 'geral') }}">
+                    </a>
+                </li>
+
+                <li><a class="links" href="{{ route('mostrarQuizes') }}">
                         <p>
-                            <img class="icone-home" src="{{ asset('assets/icones/top100.svg') }}" alt="ícone de troféu"
-                                loading="lazy">
-                            100 melhores
+                            <img class="icone-home" src="{{ asset('assets/icones/test.svg') }}"
+                                alt="icone de uma prova" loading="lazy">
+                            Quiz
                         </p>
-                    </a></li>
+                    </a>
+                </li>
+
                 <li><a class="links" href="{{ route('quemSomos') }}">
                         <p>
                             <img class="icone-home" src="{{ asset('assets/icones/quemsomos.svg') }}"

@@ -1,4 +1,5 @@
-<x-Layout :filmes="$filmes" :textos="$textos" :tap="$tap" :filmesDaLista="$filmesDaLista" :oQueAssistir="$oQueAssistir" :metaDescription="$metaDescription">
+<x-Layout :filmes="$filmes" :textos="$textos" :tap="$tap" :filmesDaLista="$filmesDaLista" :oQueAssistir="$oQueAssistir" :metaDescription="$metaDescription"
+    :sugestoes1="$sugestoes1" :sugestoes2="$sugestoes2">
     @vite('resources/css/top100.scss')
 
     @section('titulo', trim($textos->h1))
@@ -6,7 +7,7 @@
 
 
     <div class="grid-top-100">
-
+        <x-sugestao-conteudo :sugestoesconteudo="$sugestoes1" />
         <div class="conteudo-top-100">
 
             <div class="textos-intro-top-100">
@@ -34,14 +35,14 @@
             <div id="container-paginacao-responsivo">
                 {{ $filmes->links('vendor.pagination.tailwind') }}
             </div>
-
         </div>
-        <div class="propaganda-telas-grandes"></div>
+
         <script>
             const oQueAssistir = @json($oQueAssistir);
             const listaDoUsuario = @json($filmesDaLista);
             const tap = @json($tap);
         </script>
+        <x-sugestao-conteudo :sugestoesconteudo="$sugestoes2" />
 
     </div>
 

@@ -28,6 +28,11 @@ class AtorController extends Controller
 
                 $actorData = $this->getTmdbData($tmdbActorUrlPtBr);
 
+                if (!array_key_exists('biography', $actorData)) {
+                    $actorData['biography'] = "";
+                }
+
+
                 $biography = $actorData['biography'] == "" ? $this->getTmdbData($tmdbActorUrlEnUs)['biography']
                     : $actorData['biography'];
 

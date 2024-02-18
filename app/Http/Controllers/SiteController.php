@@ -120,6 +120,11 @@ class SiteController extends Controller
 
             $minilista = MiniLista::where('slug', $slug)->first();
 
+            $dados = $this->getDadosVejaTambem('sugestoes_top100', 'sugestoes_minilistas');
+
+            $sugestoes1 = $dados->splice(0, 3);
+            $sugestoes2 = $dados;
+
             $ids = json_decode($minilista->filmes_ids, true);
             $idsReversas = array_reverse($ids);
 
@@ -130,7 +135,7 @@ class SiteController extends Controller
             $metaDescription = substr($minilista->texto, 0, 150) . '...';
             $minilista->metaDescription = strip_tags($metaDescription);
 
-            return view('miniLista.index', compact(['minilista', 'filmes']));
+            return view('miniLista.index', compact(['minilista', 'filmes', 'sugestoes1', 'sugestoes2']));
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);
@@ -149,7 +154,12 @@ class SiteController extends Controller
             $metaDescription = substr($artigo->texto, 0, 150) . '...';
             $artigo->metaDescription = strip_tags($metaDescription);
 
-            return view('artigo.index', compact('artigo'));
+            $dados = $this->getDadosVejaTambem('sugestoes_minilistas', 'sugestoes_top100');
+
+            $sugestoes1 = $dados->splice(0, 3);
+            $sugestoes2 = $dados;
+
+            return view('artigo.index', compact('artigo', 'sugestoes1', 'sugestoes2'));
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);

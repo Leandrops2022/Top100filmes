@@ -1,4 +1,4 @@
-<x-Layout :filmes="$filmes" :minilista="$minilista">
+<x-Layout :filmes="$filmes" :minilista="$minilista" :sugestoes1="$sugestoes1" :sugestoes2="$sugestoes2">
     @vite('resources/css/minilista.scss')
 
     @section('titulo', $minilista->titulo)
@@ -6,6 +6,7 @@
 
 
     <div class="div-container-lista">
+        <x-sugestao-conteudo :sugestoesconteudo="$sugestoes1" />
         <div class="conteudo-lista">
             <div class="imagem-capa-minilista">
                 <img src="{{ asset($minilista->imagem) }}" alt="{{ $minilista->alt_imagem }}" width="1500px"
@@ -24,9 +25,13 @@
 
 
             <div>
+                @php
+                    $indice = count($filmes) + 1;
+                @endphp
+
                 @foreach ($filmes as $filme)
                     @php
-                        $indice = 10 - $loop->index;
+                        $indice = $indice - 1;
                         $dynamicVariableName = 'texto_' . $indice;
                     @endphp
 
@@ -43,7 +48,7 @@
             </div>
 
         </div>
-
+        <x-sugestao-conteudo :sugestoesconteudo="$sugestoes2" />
     </div>
 
     @vite('resources/js/app.js')

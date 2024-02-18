@@ -79,6 +79,11 @@ class FilmeController extends Controller
             $metaDescription = substr($textos->p, 0, 130) . '...';
             $metaDescription = strip_tags($metaDescription);
 
+            $dados = $this->getDadosVejaTambem('sugestoes_top100', 'sugestoes_artigos');
+
+            $sugestoes1 = $dados->splice(0, 3);
+            $sugestoes2 = $dados;
+
             return view('top100.index')->with([
                 'filmes' => $filmes,
                 'textos' => $textos,
@@ -86,6 +91,8 @@ class FilmeController extends Controller
                 'filmesDaLista' => $filmesDaLista,
                 'oQueAssistir' => $oQueAssistir,
                 'metaDescription' => $metaDescription,
+                'sugestoes1' => $sugestoes1,
+                'sugestoes2' => $sugestoes2,
             ]);
         } catch (Exception $e) {
             $resposta = handleException($e);
