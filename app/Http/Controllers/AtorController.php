@@ -26,14 +26,11 @@ class AtorController extends Controller
                 $tmdbActorUrlPtBr = "https://api.themoviedb.org/3/person/$paddedActorId?language=pt-br&api_key=$tmdbAPIKey";
                 $tmdbActorUrlEnUs = "https://api.themoviedb.org/3/person/$paddedActorId?api_key=$tmdbAPIKey";
 
-                $actorData = $this->getTmdbData($tmdbActorUrlPtBr);
+                $fetchedData = $this->getTmdbData($tmdbActorUrlPtBr);
 
-                if (!array_key_exists('biography', $actorData)) {
-                    $actorData['biography'] = "";
-                }
+                $actorData['biography'] = $fetchedData['biography'] ?? "";
 
-
-                $biography = $actorData['biography'] == "" ? $this->getTmdbData($tmdbActorUrlEnUs)['biography']
+                $biography = $actorData['biography'] == "" ? $this->getTmdbData($tmdbActorUrlEnUs)['biography'] ?? ""
                     : $actorData['biography'];
 
                 $ator->biografia = $biography;

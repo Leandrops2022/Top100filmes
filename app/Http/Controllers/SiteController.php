@@ -126,6 +126,7 @@ class SiteController extends Controller
             $sugestoes2 = $dados;
 
             $ids = json_decode($minilista->filmes_ids, true);
+
             $idsReversas = array_reverse($ids);
 
             $filmes = Filme::whereIn('id', $idsReversas)
