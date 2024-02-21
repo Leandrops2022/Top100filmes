@@ -11,11 +11,12 @@
         <div class="conteudo-top-100">
 
             <div class="textos-intro-top-100">
-                <div class="imagem-capa">
-                    <img src="{{ asset($textos->imagem_capa) }}" alt="">
-                </div>
-                <h1 id="nome-top-100">{{ $textos->h1 }}</h1>
                 @if ($filmes->onFirstPage())
+                    <div class="imagem-capa">
+                        <img src="{{ asset($textos->imagem_capa) }}" alt="">
+                    </div>
+                    <h1 id="nome-top-100">{{ $textos->h1 }}</h1>
+
                     {!! $textos->p !!}
                 @endif
 

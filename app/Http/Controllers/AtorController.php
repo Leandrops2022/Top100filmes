@@ -72,6 +72,10 @@ class AtorController extends Controller
         try {
             $ator = Ator::where('id', $id)->first();
 
+            if (!$ator) {
+                return view('404.index');
+            }
+
             return redirect("/ator/$ator->slug", 301);
         } catch (Exception $e) {
             $resposta = handleException($e);

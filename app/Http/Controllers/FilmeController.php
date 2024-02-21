@@ -11,6 +11,7 @@ use App\Models\RelacionamentoListaFilme;
 use App\Models\TextosDosTop100;
 use App\Models\ViewDetalhesFilmes;
 use App\Models\ViewsTop100;
+use Error;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -195,9 +196,18 @@ class FilmeController extends Controller
 
     public function oldRouteRedirect($id)
     {
-        $filme = Filme::where('id', $id)->first();
+        try {
+            $filme = Filme::where('id', $id)->first();
 
-        return redirect("/filme/$filme->slug", 301);
+            if (!$filme) {
+                return view('404.index');
+            }
+
+            return redirect("/filme/$filme->slug", 301);
+        } catch (Exception $e) {
+            $resposta = handleException($e);
+            return back()->withErrors($resposta);
+        }
     }
 
     public function showMelhoresDoAno2023(Request $request)
