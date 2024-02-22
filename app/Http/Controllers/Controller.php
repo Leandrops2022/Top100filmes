@@ -31,7 +31,7 @@ class Controller extends BaseController
     protected function getTmdbData($url)
     {
         $tmdbResponse = Http::get($url);
-        $decodedData = $tmdbResponse->json();
+        $decodedData = $tmdbResponse?->json();
 
         return $decodedData;
     }

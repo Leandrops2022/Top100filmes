@@ -11,6 +11,7 @@ class Ator extends Model
 
     protected $table = 'atores';
     protected $fillable = [
+        'id',
         'imdb_id',
         'nome',
         'biografia',

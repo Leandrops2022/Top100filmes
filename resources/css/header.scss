@@ -43,98 +43,108 @@
         }
     }
 
+    // .div-busca {
+    //     display: flex;
+    //     flex-direction: row;
+    //     width: 100%;
+    //     height: fit-content;
+    //     padding: 0;
+    //     margin-left: auto;
+    //     align-items: center;
+    //     justify-content: flex-end;
+    //     align-self: center;
+    //     position: relative;
+    //     color: #000000;
+    //     border: 1px solid red;
+
+
+
+    //     // .div-form {
+    //     //     top: 0;
+    //     //     width: 25vw;
+    //     //     height: 100%;
+    //     //     display: none;
+    //     //     flex-direction: row;
+    //     //     position: absolute;
+    //     //     align-items: center;
+    //     //     background-color: #202020;
+
+    //     //     form {
+    //     //         width: 90%;
+    //     //         align-self: center;
+    //     //         display: flex;
+
+    //     //         input[type="search"] {
+    //     //             border-radius: 5px 0 0 5px;
+    //     //             border: none;
+    //     //             width: 100%;
+    //     //             height: 40px;
+    //     //             color: rgb(134, 134, 134);
+    //     //             box-sizing: border-box;
+    //     //             padding: 0 0.4rem;
+    //     //             font-family: 'Roboto', sans-serif;
+    //     //             background-color: #202020;
+
+    //     //             &::-webkit-search-cancel-button {
+    //     //                 display: none;
+    //     //             }
+
+    //     //             &::-webkit-search-clear-button {
+    //     //                 display: none;
+    //     //             }
+
+    //     //             &::placeholder {
+    //     //                 color: rgb(134, 134, 134);
+    //     //                 text-align: center;
+    //     //             }
+
+    //     //             &:focus {
+    //     //                 outline: none;
+    //     //             }
+    //     //         }
+
+    //     //         select {
+    //     //             color: rgb(134, 134, 134);
+    //     //             background-color: #202020;
+
+    //     //             option {
+    //     //                 color: rgb(134, 134, 134);
+    //     //                 background-color: #202020;
+
+    //     //             }
+    //     //         }
+
+    //     //     }
+
+    //     //     #botao-fechar-busca {
+    //     //         display: flex;
+    //     //         border-radius: 0 5px 5px 0;
+    //     //         height: 40px;
+    //     //         padding: 0.3rem;
+    //     //         width: 2rem;
+    //     //         background-color: #202020;
+    //     //         align-items: center;
+    //     //         justify-content: center;
+    //     //         font-family: 'Roboto', sans-serif;
+    //     //         font-size: 10px;
+    //     //         font-weight: bolder;
+
+    //     //         &:hover {
+    //     //             cursor: pointer;
+    //     //         }
+    //     //     }
+    //     // }
+
+    //     // #botao-buscar {
+    //     //     width: 30px;
+    //     //     font-family: 'Roboto', sans-serif;
+    //     // }
+    // }
     .div-busca {
-        display: flex;
+        display: none;
         flex-direction: row;
-        width: fit-content;
-        height: fit-content;
-        padding: 0;
-        margin-left: auto;
-        align-items: center;
-        justify-content: flex-end;
-        align-self: center;
-        position: relative;
+        color: #000000;
 
-        .div-form {
-            top: 0;
-            width: 25vw;
-            height: 100%;
-            display: none;
-            flex-direction: row;
-            position: absolute;
-            align-items: center;
-            background-color: #202020;
-
-            form {
-                width: 90%;
-                align-self: center;
-                display: flex;
-
-                input[type="search"] {
-                    border-radius: 5px 0 0 5px;
-                    border: none;
-                    width: 100%;
-                    height: 40px;
-                    color: rgb(134, 134, 134);
-                    box-sizing: border-box;
-                    padding: 0 0.4rem;
-                    font-family: 'Roboto', sans-serif;
-                    background-color: #202020;
-
-                    &::-webkit-search-cancel-button {
-                        display: none;
-                    }
-
-                    &::-webkit-search-clear-button {
-                        display: none;
-                    }
-
-                    &::placeholder {
-                        color: rgb(134, 134, 134);
-                        text-align: center;
-                    }
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-
-                select {
-                    color: rgb(134, 134, 134);
-                    background-color: #202020;
-
-                    option {
-                        color: rgb(134, 134, 134);
-                        background-color: #202020;
-
-                    }
-                }
-
-            }
-
-            #botao-fechar-busca {
-                display: flex;
-                border-radius: 0 5px 5px 0;
-                height: 40px;
-                padding: 0.3rem;
-                width: 2rem;
-                background-color: #202020;
-                align-items: center;
-                justify-content: center;
-                font-family: 'Roboto', sans-serif;
-                font-size: 10px;
-                font-weight: bolder;
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-        }
-
-        #botao-buscar {
-            width: 30px;
-            font-family: 'Roboto', sans-serif;
-        }
     }
 
     .area-links {
@@ -256,7 +266,8 @@
         }
 
         .div-busca {
-            display: flex;
+            // display: flex;
+            display: none;
             flex-direction: row;
             width: fit-content;
             position: relative;
@@ -497,6 +508,8 @@
 }
 
 @media screen and (min-width: 321px) and (max-width: 520px) {
+
+
     .barra-navegacao {
         box-sizing: border-box;
         padding: 0;
@@ -527,95 +540,95 @@
         }
 
         .div-busca {
-            display: flex;
+            display: none;
             flex-direction: row;
             width: fit-content;
             position: relative;
             height: 100%;
             padding: 0;
             margin: auto 0 1rem 0.7rem;
-            overflow-x: visible;
+            overflow-x: hidden;
             align-items: flex-end;
 
-            .div-form {
-                display: none;
-                position: absolute;
-                top: 15px;
-                right: 0;
-                z-index: 999;
-                background-color: #202020;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                width: 79vw;
-                height: 62px;
-                border-radius: 8px;
-                padding: 0;
-                box-sizing: border-box;
+            // .div-form {
+            //     display: none;
+            //     position: absolute;
+            //     top: 15px;
+            //     right: 0;
+            //     z-index: 999;
+            //     background-color: #202020;
+            //     flex-direction: row;
+            //     align-items: center;
+            //     justify-content: center;
+            //     width: 79vw;
+            //     height: 62px;
+            //     border-radius: 8px;
+            //     padding: 0;
+            //     box-sizing: border-box;
 
 
-                form {
-                    height: 100%;
-                    width: 100%;
-                    border-radius: 8px;
-                    display: flex;
-                    align-items: center;
+            //     form {
+            //         height: 100%;
+            //         width: 100%;
+            //         border-radius: 8px;
+            //         display: flex;
+            //         align-items: center;
 
-                    input[type="search"] {
-                        display: flex;
-                        height: 20px;
-                        width: 100%;
-                        border: none;
-                        padding: 1rem;
-                        font-size: 16px;
-                        line-height: 20px;
-                        border: none;
-                        background-color: rgba($color: #000000, $alpha: 0);
+            //         input[type="search"] {
+            //             display: flex;
+            //             height: 20px;
+            //             width: 100%;
+            //             border: none;
+            //             padding: 1rem;
+            //             font-size: 16px;
+            //             line-height: 20px;
+            //             border: none;
+            //             background-color: rgba($color: #000000, $alpha: 0);
 
-                        &::-webkit-search-cancel-button {
-                            display: none;
-                        }
+            //             &::-webkit-search-cancel-button {
+            //                 display: none;
+            //             }
 
-                        &::-webkit-search-clear-button {
-                            display: none;
-                        }
+            //             &::-webkit-search-clear-button {
+            //                 display: none;
+            //             }
 
-                    }
-                }
+            //         }
+            //     }
 
-                #botao-fechar-busca {
-                    color: $buttonBackgroundColor;
-                    display: flex;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 0.7rem;
-                    font-weight: bolder;
-                    padding: 0;
-                    align-self: center;
-                    height: 100%;
-                    margin: 0;
-                    box-sizing: border-box;
-                    padding: 0;
-                    background-color: rgba($color: #000000, $alpha: 0);
-                    border: none;
+            //     #botao-fechar-busca {
+            //         color: $buttonBackgroundColor;
+            //         display: flex;
+            //         font-family: 'Roboto', sans-serif;
+            //         font-size: 0.7rem;
+            //         font-weight: bolder;
+            //         padding: 0;
+            //         align-self: center;
+            //         height: 100%;
+            //         margin: 0;
+            //         box-sizing: border-box;
+            //         padding: 0;
+            //         background-color: rgba($color: #000000, $alpha: 0);
+            //         border: none;
 
-                }
-            }
+            //     }
+            // }
 
-            #botao-buscar {
-                height: fit-content;
-                width: fit-content;
-                border: none;
-                display: flex;
-                align-self: flex-end;
-                background-color: rgba($color: #000000, $alpha: 0);
-                margin-bottom: 0.2rem;
-                margin-bottom: 15px;
+            // #botao-buscar {
+            //     height: fit-content;
+            //     width: fit-content;
+            //     border: none;
+            //     display: flex;
+            //     align-self: flex-end;
+            //     background-color: rgba($color: #000000, $alpha: 0);
+            //     margin-bottom: 0.2rem;
+            //     margin-bottom: 15px;
 
-                img {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
+            //     img {
+            //         width: 30px;
+            //         height: 30px;
+            //     }
+            // }
         }
 
         .area-links {
@@ -768,6 +781,7 @@
 }
 
 @media screen and (min-width: 521px) and (max-width: 700px) {
+
     .barra-navegacao {
         box-sizing: border-box;
         padding: 0;
@@ -800,7 +814,8 @@
         }
 
         .div-busca {
-            display: flex;
+            // display: flex;
+            display: none;
             flex-direction: row;
             width: fit-content;
             position: relative;
@@ -1073,7 +1088,8 @@
         }
 
         .div-busca {
-            display: flex;
+            // display: flex;
+            display: none;
             flex-direction: row;
             width: fit-content;
             position: relative;

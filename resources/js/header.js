@@ -1,30 +1,30 @@
-const divFormularioBusca = document.querySelector('#div-form');
-const botaoBuscar = document.querySelector('#botao-buscar');
-const barraDeBusca = document.querySelector('#barra-busca-filmes');
-const botaoFecharBusca = document.querySelector('#botao-fechar-busca');
-const formulario = document.querySelector('#form-busca');
+// const divFormularioBusca = document.querySelector('#div-form');
+// const botaoBuscar = document.querySelector('#botao-buscar');
+// const barraDeBusca = document.querySelector('#barra-busca-filmes');
+// const botaoFecharBusca = document.querySelector('#botao-fechar-busca');
+// const formulario = document.querySelector('#form-busca');
 const botaoFecharMenu = document.querySelector('#botao-fechar-menu');
 
 const botaoMenu = document.querySelector('#menu-button');
 const divMenu = document.querySelector('#menu');
 
-const mostrarBusca = () => {
-    divFormularioBusca.style.display = 'flex';
-}
+// const mostrarBusca = () => {
+//     divFormularioBusca.style.display = 'flex';
+// }
 
-const fecharBusca = () => {
-    divFormularioBusca.style.display = 'none';
-}
+// const fecharBusca = () => {
+//     divFormularioBusca.style.display = 'none';
+// }
 
-const isEmptyStr = (str) => {
-    return str.length === 0;
-}
+// const isEmptyStr = (str) => {
+//     return str.length === 0;
+// }
 
-botaoBuscar.addEventListener('click', mostrarBusca);
+// botaoBuscar.addEventListener('click', mostrarBusca);
 
-botaoFecharBusca.addEventListener('click', (event) => {
-    fecharBusca();
-});
+// botaoFecharBusca.addEventListener('click', (event) => {
+//     fecharBusca();
+// });
 
 export const mostraMenu = () => {
     divMenu.style.display = divMenu.style.display == 'flex' ? 'none' : 'flex';

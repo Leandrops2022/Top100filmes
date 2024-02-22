@@ -37,7 +37,7 @@ Route::get('/lista/{slug}', [SiteController::class, 'showMiniLista'])->name('min
 Route::get('/listas', [SiteController::class, 'showListas'])->name('todasListas');
 
 
-Route::get('/buscar', [SiteController::class, 'showSearchResults'])->name('busca');
+// Route::get('/buscar', [SiteController::class, 'showSearchResults'])->name('busca');
 
 Route::get('/quizes', [QuizController::class, 'mostrarQuizes'])->name('mostrarQuizes');
 Route::get('/quiz/{slug}', [QuizController::class, 'quiz'])->name('mostrarQuiz');
@@ -63,6 +63,7 @@ Route::get('/filmes-indicados-ao-oscar-2024', [SiteController::class, 'showIndic
 Route::get('/ator/{id}', [AtorController::class, 'detalhesAtorRotaAntiga'])
     ->where('id', '[0-9]+')
     ->name('detalhesAtorRotaAntiga');
+
 Route::get('/ator/{slug}', [AtorController::class, 'showDetalhesAtor'])->name('detalhesAtor');
 
 

@@ -48,7 +48,10 @@
     <div class="observer-botao-seta"></div>
 
     <main class="principal" id="principal">
-
+        <div id="google-search">
+            <script async src="https://cse.google.com/cse.js?cx=42aeb8a81a2324942"></script>
+            <div class="gcse-search" id="search"></div>
+        </div>
         <div class="area-inicial_div">
 
             <div class="mensagens">

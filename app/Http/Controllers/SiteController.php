@@ -246,59 +246,59 @@ class SiteController extends Controller
         }
     }
 
-    public function showSearchResults(Request $request)
-    {
-        try {
-            $this->logVisitor();
+    // public function showSearchResults(Request $request)
+    // {
+    //     try {
+    //         $this->logVisitor();
 
-            $searchQuery = $request->input('busca');
+    //         $searchQuery = $request->input('busca');
 
 
-            $tiposDeBusca = [
-                'filme' => 'informacoes_basicas_filmes',
-                'ator' => 'informacoes_basicas_atores',
-                'artigo' => 'informacoes_basicas_artigos',
-                'lista' => 'informacoes_basicas_minilistas',
-                'noticia' => 'informacoes_basicas_noticias',
-            ];
+    //         $tiposDeBusca = [
+    //             'filme' => 'informacoes_basicas_filmes',
+    //             'ator' => 'informacoes_basicas_atores',
+    //             'artigo' => 'informacoes_basicas_artigos',
+    //             'lista' => 'informacoes_basicas_minilistas',
+    //             'noticia' => 'informacoes_basicas_noticias',
+    //         ];
 
-            $charactersToReplace = [' ', '!', '@', '#', '$', '-', ':'];
+    //         $charactersToReplace = [' ', '!', '@', '#', '$', '-', ':'];
 
-            $replacement = '%';
+    //         $replacement = '%';
 
-            $likeQuery = str_replace($charactersToReplace, $replacement, $searchQuery);
+    //         $likeQuery = str_replace($charactersToReplace, $replacement, $searchQuery);
 
-            $resultados = (DB::table($tiposDeBusca[$request->input('tipo_busca')])
-                ->where('nome', '=', $searchQuery)
-                ->orWhere('nome', 'LIKE', "%$likeQuery%")
-                ->orderByRaw("CASE WHEN nome LIKE ? THEN 0 ELSE 1 END, data, nome", [$searchQuery])
-                ->limit(100)
-                ->paginate(10));
+    //         $resultados = (DB::table($tiposDeBusca[$request->input('tipo_busca')])
+    //             ->where('nome', '=', $searchQuery)
+    //             ->orWhere('nome', 'LIKE', "%$likeQuery%")
+    //             ->orderByRaw("CASE WHEN nome LIKE ? THEN 0 ELSE 1 END, data, nome", [$searchQuery])
+    //             ->limit(100)
+    //             ->paginate(10));
 
-            $idLista = session('idListaUsuario');
+    //         $idLista = session('idListaUsuario');
 
-            $resultadosFilmes = RelacionamentoListaFilme::where('id_lista', $idLista)
-                ->pluck('id_filme')
-                ->toArray();
+    //         $resultadosFilmes = RelacionamentoListaFilme::where('id_lista', $idLista)
+    //             ->pluck('id_filme')
+    //             ->toArray();
 
-            foreach ($resultados as $elemento) {
+    //         foreach ($resultados as $elemento) {
 
-                if ($elemento->tag == 'Filme') {
-                    in_array($elemento->id, $resultadosFilmes) ? $elemento->botaoAdicionar = false :  $elemento->botaoAdicionar = true;
-                }
-            }
-            $tokenApi = $request->cookie('tap');
+    //             if ($elemento->tag == 'Filme') {
+    //                 in_array($elemento->id, $resultadosFilmes) ? $elemento->botaoAdicionar = false :  $elemento->botaoAdicionar = true;
+    //             }
+    //         }
+    //         $tokenApi = $request->cookie('tap');
 
-            return view("resultados-busca.index")->with([
-                'resultados' => $resultados,
-                'tap' => $tokenApi,
-                'idLista' =>  $idLista,
-            ]);
-        } catch (Exception $e) {
-            $resposta = handleException($e);
-            return back()->withErrors($resposta);
-        }
-    }
+    //         return view("resultados-busca.index")->with([
+    //             'resultados' => $resultados,
+    //             'tap' => $tokenApi,
+    //             'idLista' =>  $idLista,
+    //         ]);
+    //     } catch (Exception $e) {
+    //         $resposta = handleException($e);
+    //         return back()->withErrors($resposta);
+    //     }
+    // }
 
     public function showListasUsuario(Request $request)
     {

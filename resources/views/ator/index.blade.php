@@ -29,11 +29,11 @@
         <div class="informacoes-iniciais efeito-card">
 
             <div class="foto-ator">
-                <picture alt="foto do ator {{ $ator->nome }}" id="foto-ator" class="foto-ator-img"
-                    alt="foto do ator {{ $ator->nome }}">
-                    <source type="image/webp" srcset="{{ asset($ator->imagem) }}">
-                    <source type="image/jpeg" srcset="{{ asset($ator->imagem_fallback) }}">
-                    <img src="{{ asset($ator->imagem_fallback) }}">
+                <picture alt="foto do ator {{ $ator->nome }}" id="foto-ator" class="foto-ator-img">
+                    <source type="image/webp" srcset="{{ asset($ator->poster) }}" alt="foto do ator {{ $ator->nome }}">
+                    <source type="image/jpeg" srcset="{{ asset($ator->imagem) }}"
+                        alt="foto do ator {{ $ator->nome }}">
+                    <img src="{{ asset($ator->imagem_fallback) }}" alt="foto do ator {{ $ator->nome }}">
                 </picture>
             </div>
 

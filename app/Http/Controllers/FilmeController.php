@@ -3,23 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+
 use App\Http\Requests\MovieVotingRequest;
+
 use App\Models\Filme;
+use App\Models\Ator;
 use App\Models\ListaDoUsuario;
 use App\Models\Movie_votes;
 use App\Models\RelacionamentoListaFilme;
 use App\Models\TextosDosTop100;
 use App\Models\ViewDetalhesFilmes;
 use App\Models\ViewsTop100;
-use Error;
+
 use Exception;
+
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\ValidationException;
-use function App\HelperFunctions\handleException;
 
+use Illuminate\Validation\ValidationException;
+
+use function App\HelperFunctions\handleException;
 
 class FilmeController extends Controller
 {
@@ -108,9 +113,49 @@ class FilmeController extends Controller
 
             $filme = ViewDetalhesFilmes::where('slug', $slug)->first();
 
+            $apiKey = env('API_KEY');
 
             if ($filme) {
+
                 $elenco = json_decode($filme->elenco);
+
+                if (empty($filme->resumo_portugues)) {
+                    $urlPtBR = "https://api.themoviedb.org/3/movie/$filme->tmdb_id?language=pt-BR&api_key=$apiKey";
+                    $urlEnUS = "https://api.themoviedb.org/3/movie/$filme->tmdb_id?language=en-US&api_key=$apiKey";
+
+                    $response = $this->getTmdbData($urlPtBR) ?? "";
+
+                    // here I'm accepting english responses aswell, so that the movie doesn't go without an overview
+                    $resumo = empty($response['overview']) ? $this->getTmdbData($urlEnUS)['overview'] ?? "" : $response['overview'];
+                    $filme->resumo_portugues = $resumo;
+
+                    $elencoUrl = "https://api.themoviedb.org/3/movie/$filme->tmdb_id/credits?api_key=$apiKey";
+
+                    $dadosElenco = $this->getTmdbData($elencoUrl);
+                    $elenco = [];
+
+                    foreach ($dadosElenco['cast'] ?? [] as $atorElenco) {
+                        if (!isset($atorElenco['profile_path'], $atorElenco['name'], $atorElenco['id'], $atorElenco['character'])) {
+                            continue;
+                        }
+
+                        $path = $atorElenco['profile_path'];
+                        $imagem = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/$path";
+
+                        $ator = new Ator();
+
+                        $ator->foto = $imagem;
+                        $ator->foto_fallback = $imagem;
+                        $ator->nome = $atorElenco['name'];
+                        $ator->id_ator = $atorElenco['id'];
+                        $ator->personagem = $atorElenco['character'];
+                        $ator->slug = $atorElenco['name'] . '-' . $atorElenco['id'];
+                        $ator->rota = "detalhesAtor";
+                        $ator->tag = "Ator/Atriz";
+
+                        $elenco[] = $ator;
+                    }
+                }
 
                 $movieVote = 1;
                 $idUsuario = auth()->id();

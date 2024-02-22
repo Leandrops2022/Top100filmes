@@ -12,6 +12,7 @@ body {
     flex-direction: column;
 }
 
+
 @keyframes slide-from-right {
     0% {
         transform: translateX(100%)
@@ -143,6 +144,19 @@ button {
 
 
 //*******************************************XXXXXXXXXXXXXXXXXXXXX************************************************
+
+#google-search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+}
+
+#search {
+    width: 60%;
+}
+
 .observer-botao-seta {
     display: unset;
     position: absolute;
@@ -635,6 +649,19 @@ button {
 
 
 @media screen and (max-width: 819px) {
+
+    #google-search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000000;
+    }
+
+    #search {
+        width: 100%;
+    }
+
     p {
         text-indent: 0.8cm;
         padding: 0 1.9rem;
@@ -942,6 +969,17 @@ button {
 }
 
 @media screen and (min-width: 820px) and (max-width: 1025px) {
+    #google-search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000000;
+    }
+
+    #search {
+        width: 100%;
+    }
 
     .principal {
         width: 100%;

@@ -7,9 +7,10 @@ use App\Models\Ator;
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 
 use function App\HelperFunctions\handleException;
+use function App\HelperFunctions\fetchActorData;
+
 
 class AtorController extends Controller
 {
@@ -17,7 +18,14 @@ class AtorController extends Controller
     {
         try {
             $this->logVisitor();
-            $ator = Ator::where('slug', '=', $slug)->firstOrFail();
+            $ator = Ator::where('slug', '=', $slug)->first();
+
+            if (!$ator) {
+                $ator = new Ator();
+                $dados = fetchActorData($slug);
+
+                $ator->fill($dados);
+            }
 
             if ($ator->biografia == 'Não há informações cadastradas para o ator') {
                 $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
@@ -36,7 +44,7 @@ class AtorController extends Controller
                 $ator->biografia = $biography;
             }
 
-            $ator->nascimento = $ator->nascimento ?? 'sem informações cadastradas';
+            $ator->nascimento = $ator->nascimento ?? '';
             $ator->morte = $ator->morte ?? '';
 
 
@@ -53,7 +61,7 @@ class AtorController extends Controller
             $ator->imagem = $ator->imagem ?? 'assets/no-photo.png';
             $ator->imagem_fallback = $ator->imagem_fallback ?? 'assets/no-photo.png';
 
-            $filmesEmQueAtuou = DB::table('filmes_em_que_atuou')->where('id_ator', $ator->id)->orderBy('ano_lancamento', 'desc')->get();
+            $filmesEmQueAtuou = DB::table('filmes_em_que_atuou')->where('id_ator', $ator->id)->orderBy('ano_lancamento', 'desc')->get() ?? [];
 
             foreach ($filmesEmQueAtuou as $filme) {
                 $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';
