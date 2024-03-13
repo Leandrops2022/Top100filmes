@@ -2,6 +2,65 @@
 @import './_variables';
 
 
+@keyframes boing {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.08;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display: flex;
+}
+
+[data-content-frame] {
+    display: none;
+}
+
+
+.avançar,
+.voltar {
+    display: none;
+    color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    width: fit-content;
+    padding: 0 0.5rem;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.showing {
+    display: flex;
+}
+
+.avançar {
+    right: 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.voltar {
+    left: 0;
+    border-radius: 8px 0 0 8px;
+}
+
 #container {
     height: fit-content;
     text-align: left;
@@ -58,9 +117,139 @@
             border-radius: 5px;
 
             .div-trailer {
+
+                width: 98vw;
                 display: flex;
+                flex-direction: column;
+                height: 65vh;
                 align-items: center;
-                justify-content: center;
+                gap: 2rem;
+
+                .tabs {
+                    display: flex;
+                    flex-direction: row;
+                    // color: rgb(244, 245, 240);
+                    border-radius: 0 0 8px 8px;
+                    height: 10vh;
+                    width: fit-content;
+                    align-self: center;
+                    border-bottom: 1px solid silver;
+                    // background: rgb(223, 223, 230);
+                    // background: linear-gradient(41deg, rgba(223, 223, 230, 1) 0%, rgba(183, 186, 187, 1) 15%, rgba(87, 85, 85, 1) 100%);
+
+                    background-color: rgb(63, 62, 62);
+                    box-shadow: 2px 2px 2px black;
+
+                    color: white;
+                    text-shadow: 0 1px 1px $defaultRed;
+
+                    .active {
+                        // color: $primaryTextColor;
+                        font-size: 1rem;
+                        // text-shadow: 1px 1px 1px red;
+
+                        // background-color: rgb(255, 255, 255);
+                        // border-right: 3px solid gray;
+                        border-right: 3px solid black;
+
+                        border-radius: 0 0 8px 8px;
+
+
+                        animation: boing 0.4s linear;
+                        background-color: rgba($color: #ffffff, $alpha: 0.6);
+                        // color: white;
+                        color: $primaryTextColor;
+
+
+                    }
+
+                    li {
+                        display: flex;
+                        // border-right: 3px solid gray;
+                        width: 12rem;
+                        border-radius: 0 0 8px 0px;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        padding: 0;
+                        margin: 0;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        span {
+                            padding: 0.5rem;
+                            // text-shadow: 1px -2px 1px black;
+
+                        }
+                    }
+                }
+
+                .tab-content {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    .frame-video {
+                        display: none;
+                        border: 5px solid silver;
+                        border-radius: 8px;
+                        box-shadow: 2px 2px 10px black;
+                        width: 27vw;
+                        height: 15vw;
+                    }
+
+                    #trailers,
+                    #outros-videos,
+                    #onde-assistir {
+
+                        position: relative;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        gap: 1rem;
+
+
+                    }
+
+                    #onde-assistir {
+                        flex-direction: column;
+
+                        .providers {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 1rem;
+                            flex-wrap: wrap;
+
+                            .provider-container {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                width: 5vw;
+                                text-wrap: wrap;
+
+                                img {
+                                    width: 5vw;
+                                    height: 5vw;
+                                    overflow: hidden;
+                                }
+
+                                span {
+                                    color: white;
+                                    font-size: 0.8rem;
+                                }
+                            }
+                        }
+
+                        span {
+                            color: white;
+                            font-size: 0.8rem;
+                        }
+                    }
+
+                }
             }
 
             h2 {
@@ -98,12 +287,17 @@
 
             .div-resumo {
                 padding: 0.8rem;
-                text-align: center;
+                text-align: left;
                 margin-bottom: 5rem;
+
+                span {
+                    color: white;
+                }
 
                 .resumo {
                     color: white;
                     text-align: left;
+                    margin-top: 1rem;
 
                     p {
                         text-align: left;
@@ -136,7 +330,9 @@
     align-self: center;
     margin: auto;
     margin-top: 0;
-    background-color: rgba(63, 62, 62, 0.7);
+    // background-color: rgba(63, 62, 62, 0.7);
+    background-color: rgba(63, 62, 62, 1);
+
     display: grid;
     width: 99.9%;
     height: 100%;
@@ -247,10 +443,66 @@
                 }
 
                 .div-trailer {
-                    padding: 0.3rem 0.8rem;
-                    width: 90%;
+                    padding: 0;
+                    width: 100%;
+                    height: 50vh;
                     margin: 1.7rem auto;
+
+                    .tabs {
+                        width: 100%;
+                        height: 8vh;
+
+                    }
+
+                    .tab-content {
+                        height: fit-content;
+
+                        #trailers,
+                        #outros-videos {
+                            margin-top: 2rem;
+                            width: 100%;
+                        }
+
+                        #onde-assistir {
+
+                            .providers {
+
+                                .provider-container {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    width: 12vw;
+                                    text-wrap: wrap;
+
+                                    img {
+                                        width: 12vw;
+                                        height: 12vw;
+                                        overflow: hidden;
+                                    }
+
+                                    span {
+                                        color: white;
+                                        font-size: 0.8rem;
+                                    }
+                                }
+                            }
+
+                            span {
+                                color: white;
+                                font-size: 0.8rem;
+                            }
+                        }
+
+                        .frame-video {
+                            width: 99vw;
+                            height: 30vh;
+                        }
+
+                    }
+
+
                 }
+
             }
         }
 

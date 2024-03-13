@@ -10,10 +10,12 @@ use App\Models\Filme;
 use App\Models\Ator;
 use App\Models\ListaDoUsuario;
 use App\Models\Movie_votes;
+use App\Models\MovieVideo;
 use App\Models\RelacionamentoListaFilme;
 use App\Models\TextosDosTop100;
 use App\Models\ViewDetalhesFilmes;
 use App\Models\ViewsTop100;
+use App\Models\ViewElenco;
 
 use Exception;
 
@@ -21,10 +23,18 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+
 
 use Illuminate\Validation\ValidationException;
 
 use function App\HelperFunctions\handleException;
+use function App\HelperFunctions\fetchTmdbMovieData;
+use function App\HelperFunctions\fetchMovieVideos;
+use function App\HelperFunctions\fetchElenco;
+use function App\HelperFunctions\getWhereToWatchData;
+use function App\HelperFunctions\movieNeedsTmdbData;
+
 
 class FilmeController extends Controller
 {
@@ -41,31 +51,59 @@ class FilmeController extends Controller
             $votes = [];
             $filmes = ViewsTop100::query()
                 ->from($top100)
-                ->select('id', 'slug', 'rank', 'nota', 'titulo_portugues', 'ano_lancamento', 'duracao', 'tagline', 'poster_mobile', 'poster_fallback')
+                ->select(
+                    'id',
+                    'slug',
+                    'rank',
+                    'nota',
+                    'titulo_portugues',
+                    'ano_lancamento',
+                    'duracao',
+                    'tagline',
+                    'poster_mobile',
+                    'poster_fallback',
+                    'poster'
+                )
                 ->orderBy('rank', 'desc')
                 ->paginate(10);
-            $textosArray = TextosDosTop100::query()->where('nome', $top100)->get();
+            $textosArray = TextosDosTop100::query()->where('nome', $top100)
+                ->get();
             $textos = $textosArray[0];
             $tokenApi = null;
 
             $userId = auth()->id();
             if ($userId) {
 
-                $listasDoUsuario = ListaDoUsuario::where('id_usuario', $userId)->get();
+                $listasDoUsuario = ListaDoUsuario::where('id_usuario', $userId)
+                    ->get();
+
                 $oQueAssistir = $listasDoUsuario[0]->id;
-                $filmesDaLista = RelacionamentoListaFilme::where('id_lista', $oQueAssistir)
+                $filmesDaLista = RelacionamentoListaFilme::where(
+                    'id_lista',
+                    $oQueAssistir
+                )
                     ->pluck('id_filme')
                     ->toArray();
 
-                $votes = Movie_votes::join($top100, 'movie_votes.filme_id', '=', $top100 . '.id')
+                $votes = Movie_votes::join(
+                    $top100,
+                    'movie_votes.filme_id',
+                    '=',
+                    $top100 . '.id'
+                )
                     ->where('user_id', $userId)
                     ->select('movie_votes.filme_id', 'movie_votes.nota')
                     ->get();
 
                 $notasPorFilmeId = $votes->keyBy('filme_id');
-                $filmes->each(function ($filme) use ($notasPorFilmeId, $filmesDaLista) {
+
+                $filmes->each(function ($filme) use (
+                    $notasPorFilmeId,
+                    $filmesDaLista
+                ) {
                     $filmeId = $filme->id;
-                    $notaUsuario = $notasPorFilmeId->get($filmeId)['nota'] ?? null;
+                    $notaUsuario = $notasPorFilmeId->get($filmeId)['nota']
+                        ?? null;
 
                     $filme->notaUsuario = $notaUsuario ?? null;
                     if (in_array($filme->id, $filmesDaLista)) {
@@ -85,10 +123,13 @@ class FilmeController extends Controller
             $metaDescription = substr($textos->p, 0, 130) . '...';
             $metaDescription = strip_tags($metaDescription);
 
-            $dados = $this->getDadosVejaTambem('sugestoes_top100', 'sugestoes_artigos');
+            $dados = $this->getDadosVejaTambem(
+                'sugestoes_top100',
+                'sugestoes_artigos'
+            );
 
-            $sugestoes1 = $dados->splice(0, 3);
-            $sugestoes2 = $dados;
+            $sugestoes1 = $dados[0];
+            $sugestoes2 = $dados[1];
 
             return view('top100.index')->with([
                 'filmes' => $filmes,
@@ -111,92 +152,99 @@ class FilmeController extends Controller
         try {
             $this->logVisitor();
 
-            $filme = ViewDetalhesFilmes::where('slug', $slug)->first();
-
             $apiKey = env('API_KEY');
 
-            if ($filme) {
+            $filme = ViewDetalhesFilmes::where('slug', $slug)->first();
 
-                $elenco = json_decode($filme->elenco);
 
-                if (empty($filme->resumo_portugues)) {
-                    $urlPtBR = "https://api.themoviedb.org/3/movie/$filme->tmdb_id?language=pt-BR&api_key=$apiKey";
-                    $urlEnUS = "https://api.themoviedb.org/3/movie/$filme->tmdb_id?language=en-US&api_key=$apiKey";
 
-                    $response = $this->getTmdbData($urlPtBR) ?? "";
+            if (!$filme) {
+                // this part of the code is due to a modification in the slug generation, that caused old registered 
+                // movies in the database to have the previous slug pattern to return as not found
 
-                    // here I'm accepting english responses aswell, so that the movie doesn't go without an overview
-                    $resumo = empty($response['overview']) ? $this->getTmdbData($urlEnUS)['overview'] ?? "" : $response['overview'];
-                    $filme->resumo_portugues = $resumo;
+                $title = str_replace('-', ' ', $slug);
+                $titleWithoutYear = preg_replace('/\s+\d{4}$/', '', $title);
 
-                    $elencoUrl = "https://api.themoviedb.org/3/movie/$filme->tmdb_id/credits?api_key=$apiKey";
+                $filme = ViewDetalhesFilmes::where('titulo_portugues', 'like', '%' . $titleWithoutYear . '%')
+                    ->first();
 
-                    $dadosElenco = $this->getTmdbData($elencoUrl);
-                    $elenco = [];
-
-                    foreach ($dadosElenco['cast'] ?? [] as $atorElenco) {
-                        if (!isset($atorElenco['profile_path'], $atorElenco['name'], $atorElenco['id'], $atorElenco['character'])) {
-                            continue;
-                        }
-
-                        $path = $atorElenco['profile_path'];
-                        $imagem = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/$path";
-
-                        $ator = new Ator();
-
-                        $ator->foto = $imagem;
-                        $ator->foto_fallback = $imagem;
-                        $ator->nome = $atorElenco['name'];
-                        $ator->id_ator = $atorElenco['id'];
-                        $ator->personagem = $atorElenco['character'];
-                        $ator->slug = $atorElenco['name'] . '-' . $atorElenco['id'];
-                        $ator->rota = "detalhesAtor";
-                        $ator->tag = "Ator/Atriz";
-
-                        $elenco[] = $ator;
-                    }
+                if ($filme == [] || $filme == "") {
+                    return view('404.index');
                 }
-
-                $movieVote = 1;
-                $idUsuario = auth()->id();
-
-                $idUsuario
-                    ? $movieVote = DB::select('SELECT * FROM movie_votes WHERE user_id = ? AND filme_id = ?', [$idUsuario, $filme->id])
-                    : $movieVote = 1;
-
-                $idLista = null;
-                $tap = null;
-                if ($idUsuario) {
-                    $idLista = session('idListaUsuario');
-                    $tap = $request->cookie('tap');
-                }
-
-                $resultadosFilmes = RelacionamentoListaFilme::where('id_lista', $idLista)
-                    ->pluck('id_filme')
-                    ->toArray();
-
-
-                $filme->botaoAdicionar = true;
-                if (in_array($filme->id, $resultadosFilmes)) {
-                    $filme->botaoAdicionar = false;
-                }
-
-
-                $metaDescription = substr($filme->texto, 0, 150) . '...';
-                $filme->metaDescription = strip_tags($metaDescription);
-
-                return view('filme.index', compact('movieVote', 'filme', 'elenco', 'tap', 'idLista'));
-            } else {
-                return view('404.index');
             }
+
+            if (movieNeedsTmdbData($filme)) {
+
+                $filme = fetchTmdbMovieData($filme->tmdb_id, true);
+            }
+
+            $whereToWatch = getWhereToWatchData($filme) ?? [];
+
+            $movieVideos = fetchMovieVideos($filme->tmdb_id, $filme->id);
+
+            $elenco = ViewElenco::where('id_filme', $filme->id)
+                ->orderBy('ordem_importancia', 'asc')->limit(15)->get();
+
+            if (count($elenco) == 0) {
+
+                $elenco = fetchElenco($filme);
+            }
+
+            $movieVote = 1;
+            $idUsuario = auth()->id();
+
+            $idUsuario
+                ? $movieVote = DB::select('SELECT * FROM movie_votes WHERE 
+                user_id = ? AND filme_id = ?', [$idUsuario, $filme->id])
+                : $movieVote = 1;
+
+            $idLista = null;
+            $tap = null;
+            if ($idUsuario) {
+                $idLista = session('idListaUsuario');
+                $tap = $request->cookie('tap');
+            }
+
+            $resultadosFilmes = RelacionamentoListaFilme::where(
+                'id_lista',
+                $idLista
+            )
+                ->pluck('id_filme')
+                ->toArray();
+
+
+            $filme->botaoAdicionar = true;
+            if (in_array($filme->id, $resultadosFilmes)) {
+                $filme->botaoAdicionar = false;
+            }
+
+
+            $data = Carbon::parse($filme->data_lancamento);
+            $filme->data_lancamento = $data->format('d/m/Y');
+
+            $metaDescription = substr($filme->texto, 0, 150) . '...';
+            $filme->metaDescription = strip_tags($metaDescription);
+
+            return view('filme.index', compact(
+                'movieVote',
+                'filme',
+                'elenco',
+                'tap',
+                'idLista',
+                'movieVideos',
+                'whereToWatch'
+            ));
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);
         }
     }
 
-    public function storeVote($id, MovieVotingRequest $request, Movie_votes $vote)
-    {
+    public function storeVote(
+        $id,
+        MovieVotingRequest $request,
+        Movie_votes $vote
+    ) {
 
         try {
             $idUsuario = auth()->id();
@@ -242,11 +290,20 @@ class FilmeController extends Controller
     public function oldRouteRedirect($id)
     {
         try {
-            $filme = Filme::where('id', $id)->first();
-
+            $filme = Filme::where('tmdb_id', $id)->first();
             if (!$filme) {
-                return view('404.index');
+                $filme = fetchTmdbMovieData($id);
+                if (!$filme) {
+                    return view('404.index');
+                }
             }
+
+            if (movieNeedsTmdbData($filme)) {
+                $filme = fetchTmdbMovieData($id, true);
+            }
+
+            $data = Carbon::parse($filme->data_lancamento);
+            $filme->data_lancamento = $data->format('d/m/Y');
 
             return redirect("/filme/$filme->slug", 301);
         } catch (Exception $e) {
@@ -266,7 +323,18 @@ class FilmeController extends Controller
             $votes = [];
             $filmes = ViewsTop100::query()
                 ->from('melhoresfilmes2023')
-                ->select('id', 'slug', 'rank', 'nota', 'titulo_portugues', 'ano_lancamento', 'duracao', 'tagline', 'poster_mobile', 'poster_fallback')
+                ->select(
+                    'id',
+                    'slug',
+                    'rank',
+                    'nota',
+                    'titulo_portugues',
+                    'ano_lancamento',
+                    'duracao',
+                    'tagline',
+                    'poster_mobile',
+                    'poster_fallback'
+                )
                 ->orderBy('rank', 'desc')
                 ->paginate(10);
             $tokenApi = null;
@@ -274,21 +342,34 @@ class FilmeController extends Controller
             $userId = auth()->id();
             if ($userId) {
 
-                $listasDoUsuario = ListaDoUsuario::where('id_usuario', $userId)->get();
+                $listasDoUsuario = ListaDoUsuario::where('id_usuario', $userId)
+                    ->get();
                 $oQueAssistir = $listasDoUsuario[0]->id;
-                $filmesDaLista = RelacionamentoListaFilme::where('id_lista', $oQueAssistir)
+                $filmesDaLista = RelacionamentoListaFilme::where(
+                    'id_lista',
+                    $oQueAssistir
+                )
                     ->pluck('id_filme')
                     ->toArray();
 
-                $votes = Movie_votes::join('melhoresfilmes2023', 'movie_votes.filme_id', '=', 'melhoresfilmes2023' . '.id')
+                $votes = Movie_votes::join(
+                    'melhoresfilmes2023',
+                    'movie_votes.filme_id',
+                    '=',
+                    'melhoresfilmes2023' . '.id'
+                )
                     ->where('user_id', $userId)
                     ->select('movie_votes.filme_id', 'movie_votes.nota')
                     ->get();
 
                 $notasPorFilmeId = $votes->keyBy('filme_id');
-                $filmes->each(function ($filme) use ($notasPorFilmeId, $filmesDaLista) {
+                $filmes->each(function ($filme) use (
+                    $notasPorFilmeId,
+                    $filmesDaLista
+                ) {
                     $filmeId = $filme->id;
-                    $notaUsuario = $notasPorFilmeId->get($filmeId)['nota'] ?? null;
+                    $notaUsuario = $notasPorFilmeId->get($filmeId)['nota']
+                        ?? null;
 
                     $filme->notaUsuario = $notaUsuario ?? null;
                     if (in_array($filme->id, $filmesDaLista)) {
@@ -304,12 +385,6 @@ class FilmeController extends Controller
                     $filme->notaUsuario =  null;
                 });
             }
-
-            // $message = "Melhores filmes de 2023!";
-            // $websiteUrl = url('https://www.top100filmes.com.br');
-            // $imageUrl = url('https://top100filmes.com.br/assets/imagens_minilistas/denzel.webp');
-
-            // $twitterUrl = 'https://twitter.com/intent/tweet?text=' . urlencode($message) . '&url=' . urlencode($websiteUrl) . '&media=' . urlencode($imageUrl);
 
             return view('melhoresFilmesDoAno.index')->with([
                 'filmes' => $filmes,

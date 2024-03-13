@@ -4,6 +4,9 @@ namespace App\HelperFunctions;
 
 use Illuminate\Support\Facades\Http;
 
+use App\Models\Ator;
+
+
 function fetchActorData($slug)
 {
   $parts = explode("-", $slug);
@@ -16,24 +19,35 @@ function fetchActorData($slug)
 
   $actorData = $tmdbResponse?->json();
 
+  if (!$actorData) {
+    return;
+  }
+
   $profilePath = $actorData['profile_path'] ?? "";
 
-  $urlFoto = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2$profilePath";
+  $urlFoto = empty($profilePath) ? "assets/no-photo.png" : "https://image.tmdb.org/t/p/w300$profilePath";
 
   $arrayAtor = [
-    'id' => $tmdb_id,
+    'tmdb_id' => $tmdb_id,
     'biografia' => $actorData['biography'] ?? "Não há informações cadastradas para o ator",
-    'imdb_id'  => $actorData['imdb_id'] ?? "",
+    'imdb_id'  => $actorData['imdb_id'] ?? "nulo$tmdb_id",
     'nome'  => $actorData['name'] ?? "",
-    'nascimento'  => $actorData['birthday'] ?? "Não há informações cadastradas para o ator",
-    'morte'  => $actorData['deathday'] ?? "",
-    'genero_sexo'  => $actorData['gender'] ?? "",
+    'nascimento'  => $actorData['birthday'] ?? "0001-01-01",
+    'morte'  => $actorData['deathday'] ?? "0001-01-01",
+    'genero_sexo'  => $actorData['gender'] ?? "M",
     'local_nascimento'  => $actorData['place_of_birth'] ?? "Não há informações cadastradas para o ator",
-    'popularidade'  => $actorData['popularity'] ?? "",
-    'poster'  => $urlFoto ?? "",
-    'imagem'  => $urlFoto ?? "",
-    'imagem_fallback'  => $urlFoto ?? "",
+    'popularidade'  => $actorData['popularity'] ?? 0.0,
+    'poster'  => $urlFoto,
+    'imagem'  => $urlFoto,
+    'imagem_fallback'  => $urlFoto,
   ];
+  $ator = new Ator();
+
+  $ator->fill($arrayAtor);
+  Ator::updateOrCreate(
+    ['tmdb_id' => $ator->tmdb_id],
+    $arrayAtor
+  );
 
   return $arrayAtor;
 }

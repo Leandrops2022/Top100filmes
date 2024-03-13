@@ -23,7 +23,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 70%;
+        width: 100%;
         margin: 1rem auto 2rem auto;
 
         h1 {
@@ -55,7 +55,7 @@
 
         .grid-noticias {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             background-color: black;
             border: 2px double whitesmoke;
             width: 100%;
@@ -64,33 +64,37 @@
             align-items: center;
             gap: 0.5rem;
 
+            a {
+                width: fit-content;
 
-            .card-noticia {
-                height: 170px;
-                width: 280px;
-                border-radius: 5px;
-                background-color: gray;
-                border: 1px solid silver;
-                display: flex;
-                position: relative;
-                margin: auto;
+                .card-noticia {
 
-                img {
-                    width: 100%;
-                }
-
-                .legenda-noticia {
-                    position: absolute;
-                    bottom: 0;
+                    height: 170px;
+                    width: 280px;
+                    border-radius: 5px;
+                    background-color: gray;
+                    border: 1px solid silver;
                     display: flex;
-                    flex-direction: column;
-                    background-color: rgba($color: #000000, $alpha: 0.5);
-                    width: 100%;
-                    padding: 0.8rem;
+                    position: relative;
+                    margin: auto;
 
-                    span {
-                        color: white;
-                        font-size: 16px;
+                    img {
+                        width: 100%;
+                    }
+
+                    .legenda-noticia {
+                        position: absolute;
+                        bottom: 0;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: rgba($color: #000000, $alpha: 0.5);
+                        width: 100%;
+                        padding: 0.8rem;
+
+                        span {
+                            color: white;
+                            font-size: 16px;
+                        }
                     }
                 }
             }
@@ -156,32 +160,34 @@
                 gap: 2rem;
 
 
-                .card-noticia {
-                    height: 25vh;
-                    width: 90%;
-                    border-radius: 5px;
-                    background-color: gray;
-                    border: 1px solid silver;
-                    display: flex;
-                    position: relative;
-                    margin: auto;
-
-                    img {
-                        width: 100%;
-                    }
-
-                    .legenda-noticia {
-                        position: absolute;
-                        bottom: 0;
+                a {
+                    .card-noticia {
+                        height: 25vh;
+                        width: 90%;
+                        border-radius: 5px;
+                        background-color: gray;
+                        border: 1px solid silver;
                         display: flex;
-                        flex-direction: column;
-                        background-color: rgba($color: #000000, $alpha: 0.5);
-                        width: 100%;
-                        padding: 0.8rem;
+                        position: relative;
+                        margin: auto;
 
-                        span {
-                            color: white;
-                            font-size: 16px;
+                        img {
+                            width: 100%;
+                        }
+
+                        .legenda-noticia {
+                            position: absolute;
+                            bottom: 0;
+                            display: flex;
+                            flex-direction: column;
+                            background-color: rgba($color: #000000, $alpha: 0.5);
+                            width: 100%;
+                            padding: 0.8rem;
+
+                            span {
+                                color: white;
+                                font-size: 16px;
+                            }
                         }
                     }
                 }

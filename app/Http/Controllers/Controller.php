@@ -38,19 +38,32 @@ class Controller extends BaseController
 
     protected function getDadosVejaTambem($tabelaSugestao1, $tabelaSugestao2)
     {
-        $dados = DB::table($tabelaSugestao1)
+        $suggestionLimit = 4;
+
+        $data = DB::table($tabelaSugestao1)
             ->select('*')
             ->inRandomOrder()
-            ->limit(3)
+            ->limit($suggestionLimit)
             ->unionAll(
                 DB::table($tabelaSugestao2)
                     ->select('*')
                     ->inRandomOrder()
-                    ->limit(3)
+                    ->limit($suggestionLimit)
             )
             ->get();
 
 
-        return $dados;
+        $data1 = $data->splice(0, $suggestionLimit);
+
+        $maxLength = 80;
+        for ($i = 0; $i < $suggestionLimit; $i++) {
+            $data[$i]->titulo =  strlen($data[$i]->titulo) > $maxLength ? substr($data[$i]->titulo, 0, $maxLength) . "..."
+                : $data[$i]->titulo;
+            $data1[$i]->titulo =  strlen($data1[$i]->titulo) > $maxLength ? substr($data1[$i]->titulo, 0, $maxLength) . "..."
+                : $data1[$i]->titulo;
+        }
+
+        $youMayAlsoLikeArray = [$data, $data1];
+        return $youMayAlsoLikeArray;
     }
 }

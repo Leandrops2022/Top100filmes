@@ -1,0 +1,31 @@
+.swiper {
+  .swiper-wrapper {
+    .swiper-slide {
+      text-align: center;
+    }
+  }
+}
+
+// ====================Responsivo====================
+@media screen and (max-width: 900px) {
+  .swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        a {
+
+          width: fit-content;
+
+          img {
+            width: 70vw;
+          }
+        }
+      }
+    }
+  }
+}

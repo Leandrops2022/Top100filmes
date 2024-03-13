@@ -65,7 +65,7 @@
             <span>
                 2024, Dominionlps
             </span>
-            <span class="versionamento">versão atual 2.1</span>
+            <span class="versionamento">versão atual 2.2</span>
         </div>
 
     </div>

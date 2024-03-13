@@ -1,6 +1,7 @@
 import axios from "axios";
-const botaoAdicionar = document.querySelector('.botao-adiciona-filme-na-lista');
+import './filme-tabs.js';
 
+const botaoAdicionar = document.querySelector('.botao-adiciona-filme-na-lista');
 
 const adicionarFilme = () => {
     const idFilme = parseInt(botaoAdicionar.dataset.filme);
@@ -8,7 +9,7 @@ const adicionarFilme = () => {
 
     const config = {
         headers: {
-            'Authorization': `Bearer ${tap}`
+            'Authorization': `Bearer ${ tap }`
         }
     };
 

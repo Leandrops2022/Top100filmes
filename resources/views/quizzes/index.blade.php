@@ -12,5 +12,11 @@
                 <span>Quem você seria no universo de Velozes e Furiosos? Faça o teste e descubra</span>
             </div>
         </a>
+        <a href="{{ route('mostrarQuiz', ['slug' => 'conhecimentosSobreCinema']) }}">
+            <div class="card-quiz">
+                <img h-270 w-480 src="{{ asset('assets/capas-quizes/velozesEFuriosos.webp') }}" alt="">
+                <span>Você sabe de quais filmes são essas frases?</span>
+            </div>
+        </a>
     </div>
 </x-Layout>

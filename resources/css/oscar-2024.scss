@@ -21,6 +21,11 @@
   }
 
   .textos {
+    .frame-video {
+      border: 2px solid silver;
+      border-radius: 8px;
+    }
+
     span {
       color: white;
       margin: 0.5rem 0;
@@ -63,6 +68,12 @@
 @media screen and (max-width:1150px) {
   .container-principal {
 
+    .textos {
+      .frame-video {
+        height: 30vh;
+        width: 95%;
+      }
+    }
 
     .capa {
       width: 97vw;

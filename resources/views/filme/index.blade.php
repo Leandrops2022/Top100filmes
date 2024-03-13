@@ -1,13 +1,12 @@
-<x-Layout :movieVote="$movieVote" :filme="$filme" :elenco="$elenco" :tap="$tap" :idLista="$idLista">
+<x-Layout :movieVote="$movieVote" :filme="$filme" :elenco="$elenco" :tap="$tap" :idLista="$idLista" :movieVideos="$movieVideos"
+    :whereToWatch="$whereToWatch">
 
     @section('titulo', trim($filme->titulo_portugues))
     @section('description', $filme->metaDescription)
 
-
     @vite('resources/css/filme.scss')
 
-    <div id="container"
-        style="background-image: url({{ asset($filme->poster_mobile) }}); background-image: url({{ asset($filme->poster_fallback) }});">
+    <div id="container" style="background-image: url({{ $filme->poster }}); ">
         <div class="informacoes-filme">
             <div class="div-poster-filme">
                 <div class="div-fundo-preto">
@@ -19,7 +18,6 @@
                         <h3 class="texto-generos-filme">
                             {{ $filme->ano_lancamento }} - {{ $filme->duracao }}min
                         </h3>
-
                         @auth
                             @if ($filme->botaoAdicionar)
                                 <button class="botao-adiciona-filme-na-lista" data-filme="{{ $filme->id }}">
@@ -45,16 +43,68 @@
                     </div>
 
                     <div class="div-resumo">
+                        <span>Data de Lançamento: {{ $filme->data_lancamento }}</span>
+
                         <div class="resumo">{!! $filme->resumo_portugues !!}</div>
                     </div>
-                    <div class="div-trailer">
-                        @isset($filme->trailer)
-                            <iframe width="560" height="315" src="{{ $filme->trailer }}" title="YouTube video player"
-                                frameborder="0" allow="web-share" allowfullscreen></iframe>
-                        @else
-                            <h1>Sem trailer disponível</h1>
-                        @endisset
 
+                    <div class="div-trailer">
+
+                        <ul class="tabs">
+                            <li data-tab-target="#trailers" class="active"><span>Trailers</span></li>
+                            <li data-tab-target="#outros-videos"><span>Outros Videos</span></li>
+                            <li data-tab-target="#onde-assistir"><span>Onde Assistir</span></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="trailers" data-tab-content class="active">
+
+                                <div id="voltar-trailers" data-botao-voltar data-button-type="voltar"
+                                    class="voltar showing">
+                                    &lt;
+                                </div>
+                                @foreach ($movieVideos['trailers'] as $video)
+                                    <iframe class="frame-video " width="560" height="315" data-content-frame
+                                        src="{{ $video->embeded }}" title="{{ $video->name }}" frameborder="0"
+                                        allow="web-share" allowfullscreen loading="lazy"></iframe>
+                                @endforeach
+                                <div id="avançar-trailers" data-botao-avancar data-button-type="avancar"
+                                    class="avançar showing">&gt;</div>
+
+
+                            </div>
+
+                            <div id="outros-videos" data-tab-content>
+                                <div id="voltar-outros-videos" data-botao-voltar data-button-type="voltar"
+                                    class="voltar showing">
+                                    &lt;
+                                </div>
+
+                                @foreach ($movieVideos['otherVideos'] as $video)
+                                    <iframe class="frame-video " width="560" height="315" data-content-frame
+                                        src="{{ $video->embeded }}" title="{{ $video->name }}" frameborder="0"
+                                        allow="web-share" allowfullscreen loading="lazy"></iframe>
+                                @endforeach
+
+                                <div id="avançar-outros-videos" data-botao-avancar data-button-type="avancar"
+                                    class="avançar showing">&gt;</div>
+                            </div>
+
+                            <div id="onde-assistir" data-tab-content>
+                                <div class="providers">
+                                    @foreach ($whereToWatch as $provider)
+                                        <a href="https://www.google.com.br/search?q={{ $provider['provider_name'] }}"
+                                            target="blank">
+                                            <div class="provider-container">
+                                                <img src="https://image.tmdb.org/t/p/original{{ $provider['logo_path'] }}"
+                                                    alt="logo {{ $provider['provider_name'] }}">
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                                <span>Dados obtidos pelo justwatch</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,7 +116,6 @@
 
         <h3 class="titulo-elenco">Elenco: </h3>
         <div class="elenco">
-
             {{-- elenco is an array here --}}
             @isset($elenco)
                 @if (count($elenco) > 0)
@@ -79,7 +128,7 @@
                                         <picture>
                                             <source type="image/webp" srcset="{{ asset($ator->foto) }}" class="foto-ator"
                                                 id="foto-ator" alt="foto-ator-{{ $ator->nome }}">
-                                            <source type="image/jpeg" srcset="{{ asset($ator->foto_fallback) }}"
+                                            <source type="image/png" srcset="{{ asset('assets/no-photo.png') }}"
                                                 class="foto-ator" id="foto-ator" alt="foto-ator-{{ $ator->nome }}">
                                             <img src="{{ asset($ator->foto_fallback) }}"
                                                 alt="foto-ator-{{ $ator->nome }}" class="foto-ator" id="foto-ator">

@@ -8,11 +8,15 @@ export default defineConfig({
         tailwindcss('./tailwind.config.js'),
         laravel({
             input: [
+                'resources/js/filme-tabs.js',
+                'resources/css/slider.scss',
+                'resources/js/slider.mjs',
                 'resources/css/sugestaoConteudo.scss',
                 'resources/css/oscar-2024.scss',
                 'resources/css/melhoresDoAno.scss',
                 'resources/js/noticia.mjs',
                 'resources/src/App.tsx',
+                'resources/src/ConhecimentosCinema.tsx',
                 'resources/css/quizes.scss',
                 'resources/css/minilista.scss',
                 'resources/css/artigo.scss',

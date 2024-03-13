@@ -45,10 +45,11 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 0.8rem;
+        padding: 1rem;
         box-sizing: border-box;
         text-align: left;
         margin-bottom: 6rem;
+
 
         h1,
         h2,
@@ -59,11 +60,19 @@
 
         p {
           text-align: left;
+          padding: 1rem;
         }
 
         h1 {
           font-weight: bold;
         }
+      }
+
+      .div-mini-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       .card-salvar-alterações {

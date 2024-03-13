@@ -46,7 +46,12 @@
                 <div class="nascimento">
                     <span class="text-yellow-50">Data de nascimento:</span>
                     <p class="texto-nascimento">
-                        {{ $ator->nascimento }}
+                        @if ($ator->nascimento != '' && $ator->nascimento != '01/01/0001')
+                            {{ $ator->nascimento }}
+                        @else
+                            Não há dados cadastrados
+                        @endif
+
                     </p>
 
                 </div>
@@ -56,7 +61,7 @@
                     <p class="texto-local-nascimento">{{ $ator->local_nascimento }}</p>
                 </div>
 
-                @if ($ator->morte != '')
+                @if ($ator->morte != '' && $ator->morte != '01/01/0001')
                     <div class="outras-info">
                         <span class="text-yellow-50">Data de falecimento:</span>
                         <p class="data-morte">
@@ -73,20 +78,22 @@
         </div>
         <div class="filmes-em-que-atuou">
             <h4 class="text-yellow-50">Filmes em que atuou</h4>
-            @if ($filmesEmQueAtuou->count() > 0)
+            @if (is_countable($filmesEmQueAtuou) && count($filmesEmQueAtuou) > 0)
                 <ul>
                     @foreach ($filmesEmQueAtuou as $filme)
                         <li class="efeito-card">
-                            <a href=" {{ route('detalhesFilme', ['slug' => $filme->slug]) }}">
+                            <a href=" {{ route('oldRouteRedirect', ['id' => $filme->id_filme]) }}">
                                 <div class="dados-filme">
                                     <div class="div-poster">
 
                                         <picture>
-                                            <source type="image/webp" srcset=" {{ asset($filme->poster_mobile) }} "
+                                            <source loading="lazy" type="image/webp"
+                                                srcset=" {{ asset($filme->poster_mobile) }} "
                                                 alt="poster-do-filme-{{ $filme->titulo_portugues }} ">
-                                            <source type="image/jpeg" srcset=" {{ asset($filme->poster_fallback) }} "
+                                            <source loading="lazy" type="image/jpeg"
+                                                srcset=" {{ asset($filme->poster_fallback) }} "
                                                 alt="poster-do-filme-{{ $filme->titulo_portugues }} ">
-                                            <img src=" {{ asset($filme->poster_fallback) }} "
+                                            <img loading="lazy" src=" {{ asset($filme->poster_fallback) }} "
                                                 alt="poster-do-filme-{{ $filme->titulo_portugues }} ">
                                         </picture>
 

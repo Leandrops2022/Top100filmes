@@ -37,14 +37,15 @@ class SiteController extends Controller
     {
         try {
             $this->logVisitor();
+            $apiKey = env('API_KEY');
 
-            // $destaques = Artigo::select('slug', 'titulo', 'created_at', 'imagem_capa', 'alt_capa', 'fonte_capa', 'tag')->orderBy('created_at', 'desc')->limit(12)->get();
+            $nosCinemas = $this->getTmdbData("https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&api_key=$apiKey")['results'];
+
             $minilistas = MiniLista::orderBy('created_at', 'desc')->limit(4)->get();
-            // $ultimasNoticias = Noticia::orderBy('created_at', 'desc')->limit(8)->get();
 
             $destaques = Destaques::get();
 
-            return view('home.index')->with(['destaques' => $destaques, 'minilistas' => $minilistas]);
+            return view('home.index')->with(['nosCinemas' => $nosCinemas, 'destaques' => $destaques, 'minilistas' => $minilistas]);
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);
@@ -64,6 +65,7 @@ class SiteController extends Controller
                 $criado_em = $criado_em->format('d-m-Y H:i:s');
                 $noticia->criado_em = $criado_em;
             }
+
 
             return view('noticias.index', compact('noticias'));
         } catch (Exception $e) {
@@ -122,8 +124,10 @@ class SiteController extends Controller
 
             $dados = $this->getDadosVejaTambem('sugestoes_top100', 'sugestoes_minilistas');
 
-            $sugestoes1 = $dados->splice(0, 3);
-            $sugestoes2 = $dados;
+            $sugestoes1 = $dados[0];
+            $sugestoes2 = $dados[1];
+            // $sugestoes1 = $dados->splice(0, 3);
+            // $sugestoes2 = $dados;
 
             $ids = json_decode($minilista->filmes_ids, true);
 
@@ -156,9 +160,10 @@ class SiteController extends Controller
             $artigo->metaDescription = strip_tags($metaDescription);
 
             $dados = $this->getDadosVejaTambem('sugestoes_minilistas', 'sugestoes_top100');
-
-            $sugestoes1 = $dados->splice(0, 3);
-            $sugestoes2 = $dados;
+            $sugestoes1 = $dados[0];
+            $sugestoes2 = $dados[1];
+            // $sugestoes1 = $dados->splice(0, 3);
+            // $sugestoes2 = $dados;
 
             return view('artigo.index', compact('artigo', 'sugestoes1', 'sugestoes2'));
         } catch (Exception $e) {
@@ -348,8 +353,11 @@ class SiteController extends Controller
             $metaDescription = substr($noticia->texto, 0, 150) . '...';
             $noticia->metaDescription = strip_tags($metaDescription);
 
+            $dados = $this->getDadosVejaTambem('sugestoes_artigos', 'sugestoes_top100');
+            $sugestoes1 = $dados[0];
+            $sugestoes2 = $dados[1];
 
-            return view('noticia.index', compact('noticia'));
+            return view('noticia.index', compact('noticia', 'sugestoes1', 'sugestoes2'));
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);

@@ -1,5 +1,6 @@
 @vite('resources/css/sugestaoConteudo.scss')
 <div class="container" :sugestoesconteudo="$sugestoesconteudo">
+
     <h4>Veja também:</h4>
     <div class="lista-sugestoes">
         @foreach ($sugestoesconteudo as $sugestao)
@@ -12,8 +13,10 @@
                     <div class="titulo-sugestao">
                         <span>{{ $sugestao->titulo }}</span>
                     </div>
+
                 </div>
             </a>
         @endforeach
     </div>
+
 </div>

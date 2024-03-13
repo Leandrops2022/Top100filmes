@@ -5,6 +5,11 @@ import Roman from "../../assets/images/Roman.jpg";
 import hobbs from "../../assets/images/hobbs.jpg";
 import brian from "../../assets/images/brian.jpg";
 
+export const tituloESubtitulo = {
+   "titulo": "Quem você seria no universo de velozes e furiosos?",
+   "subtitulo": "Faça o teste e descubra!"
+};
+
 const velozesEFuriosos: Question[] = [
    {
       "question": "Qual é a sua abordagem ao lidar com desafios?",
@@ -224,19 +229,21 @@ const personality = [
    "Você é conhecido por sua calma e serenidade, mesmo em situações desafiadoras. Sua capacidade de manter a compostura é uma força fundamental em sua personalidade, valoriza a liberdade, a independência e não se deixa prender por convenções sociais e possui gosto refinado por diferentes formas de expressão artística. Você é misterioso e reservado, revelando apenas o necessário aos outros."
 ]
 
-const calculateResult = (answers: Array<string>) => {
-   const counts: {[key: string]: number} = {a: 0, b: 0, c: 0, d: 0, e: 0};
-   answers.forEach(element => {
-      counts[element] += 1;
-   });
-   const Ocurrences = [...Object.values(counts)];
-   const mostOccurences = Math.max(...Object.values(counts));
-   const index = Ocurrences.indexOf(mostOccurences);
+const imagens = [toreto, brian, Roman, hobbs, han];
 
-   const images = [toreto, brian, Roman, hobbs, han];
+// const calculateResult = (answers: Array<string>) => {
+//    const counts: {[key: string]: number} = {a: 0, b: 0, c: 0, d: 0, e: 0};
+//    answers.forEach(element => {
+//       counts[element] += 1;
+//    });
+//    const Ocurrences = [...Object.values(counts)];
+//    const mostOccurences = Math.max(...Object.values(counts));
+//    const index = Ocurrences.indexOf(mostOccurences);
 
-   const testResult = {text: results[index], image: images[index], description: personality[index]}
-   return (testResult)
-}
+//    const images = [...imagens];
 
-export {velozesEFuriosos, results, calculateResult};
+//    const testResult = {text: results[index], image: images[index], description: personality[index]}
+//    return (testResult)
+// }
+
+export {velozesEFuriosos, personality, results, imagens};

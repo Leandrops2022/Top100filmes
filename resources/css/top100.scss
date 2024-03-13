@@ -29,23 +29,21 @@
         flex-direction: row;
         position: relative;
         gap: 0;
-        margin-top: 2rem;
         width: 100%;
 
         .conteudo-top-100 {
             width: 70%;
-            margin: 0;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: auto;
+            margin: 2rem auto;
 
             .textos-intro-top-100 {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: left;
-                padding: 0.8rem;
+                padding: 0 1rem 1rem 1rem;
                 box-sizing: border-box;
                 text-align: left;
                 margin-bottom: 6rem;
@@ -60,7 +58,7 @@
                 h2,
                 h3 {
                     text-align: left;
-
+                    padding: 1rem;
                 }
 
                 h1 {

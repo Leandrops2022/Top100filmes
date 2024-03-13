@@ -1,10 +1,9 @@
 <x-Layout>
     @vite('resources/css/oscar-2024.scss')
 
-    @section('titulo', trim('Saiu a lista oficial dos indicados ao Oscar!!!'))
-    @section('description',
-        " A temporada de premiações está em pleno andamento, e a Academia de Artes e Ciências Cinematográficas de
-        Hollywood acaba de anunciar os indicados para o aguardado Oscar 2024...")
+    @section('titulo', trim('Confira quem foram os ganhadores do Oscar 2024!'))
+    @section('description', 'A noite de premiações aconteceu neste domingo, 10/03/2024.Confira quem foram os ganhadores
+        do Oscar 2024...')
 
         <div class="container-principal">
             <div class="capa">
@@ -14,311 +13,106 @@
             </div>
 
             <div class="textos">
-                <h1>Saiu a lista oficial dos indicados ao Oscar!!!</h1>
-                <span>(postado em 23/01/2024 por Leandro Soares)</span>
+                <h1>Confira quem foram os ganhadores do Oscar 2024!</h1>
+                <span>(atualizado em 11/03/2024 por Leandro Soares)</span>
                 <br>
 
-                <h2>E para a surpresa de ninguém, todos os indicados já eram conhecidos</h2>
+                <h2>E (novamente) para a surpresa de ninguém, já "sabíamos" quem provavelmente iria ganhar</h2>
                 <br>
                 <p>
-                    A temporada de premiações está em pleno andamento, e a Academia de Artes e Ciências Cinematográficas de
-                    Hollywood acaba de anunciar os indicados para o aguardado Oscar 2024. A transmissão ao vivo, comandada
-                    pelos carismáticos Zazie Beetz e Jack Quaid, revelou uma lista repleta de surpresas, emoções e muita
-                    competição.
+                    Quando escrevi sobre os indicados ao Oscar 2024 há cerca de dois meses, até brinquei que não houve
+                    surpresa
+                    nenhuma nos nomes indicados, pois teve todo o hype em torno desses filmes, e agora, após a noite da
+                    premiação
+                    tivemos novamente a confirmação de que todos já sabiam quais seriam os ganhadores.
                 </p>
                 <br>
-                <h2>"Oppenheimer" - Líder em Indicações</h2>
-                <br>
-                <p>Em um feito impressionante, "Oppenheimer" conquistou o título de líder supremo, arrebatando 13
-                    indicações. O filme nos leva de volta à Segunda Guerra Mundial, explorando a história da criação da
-                    bomba atômica e destacando J. Robert Oppenheimer como peça central dessa narrativa impactante. </p>
-                <br>
-
-                <h2>Nolan e Sua Grande Produção Cinematográfica</h2>
-                <br>
-                <img src="{{ asset('assets/indicados-oscar-2024/oppenheimer.webp') }}"
-                    alt="ator cyllian murphy com cachimbo na mão olhando para frente">
-                <span style="text-align: left">Divulgação</span>
-                <br>
-                <p>
-                    O renomado diretor Christopher Nolan não ficou para trás, com sua grande produção cinematográfica
-                    acumulando indicações em várias categorias. Sua mais recente criação recebeu reconhecimento nas
-                    categorias de melhor filme, direção, roteiro, trilha sonora original e atuações estelares de Cillian
-                    Murphy, Robert Downey Jr. e Emily Blunt. Será que Nolan levará para casa a estatueta dourada este ano?
-                </p>
-
-                <br>
-
-                <h2>Greta Gerwig e o Surpreendente "Barbie"</h2>
-                <img src="{{ asset('assets/indicados-oscar-2024/barbie.webp') }}" alt="barbie e ken em um carro rosa">
-                <span style="text-align: left">Divulgação</span>
-                <p>A diretora Greta Gerwig não apenas trouxe vida à icônica boneca, mas também conquistou o coração da
-                    Academia, acumulando oito indicações para "Barbie". O filme não só disputa na categoria de melhor filme,
-                    mas também traz nomes de peso como Ryan Gosling e America Ferreira, concorrendo como melhor ator
-                    coadjuvante e melhor atriz coadjuvante, respectivamente. A trilha sonora, peça fundamental, também
-                    recebeu indicações: What Was I Made For?, de Billie Eilish, e I’m Just Ken, interpretada por Ryan
-                    Gosling, concorrem a melhor canção.</p>
-                <br>
-
-                <h2>Martin Scorsese com o excelente “Assassinos da Lua das Flores"</h2>
-                <img src="{{ asset('assets/indicados-oscar-2024/assassinos.webp') }}"
-                    alt="poster do filme assassinos das luas das flores">
-                <span style="text-align: left">Divulgação</span>
-                <p>
-                    Os "Assassinos da Lua das Flores" de Martin Scorsese não ficaram para trás, acumulando 10 indicações e
-                    consolidando ainda mais a reputação do renomado diretor. Destaque especial para Lily Gladstone, que se
-                    tornou a primeira indígena norte-americana a ser indicada como melhor atriz, marcando um momento
-                    histórico na premiação.
-                </p>
-                <br>
-
-                <h2>Yorgos Lanthimos surpreende com "Pobres Criaturas"</h2>
-                <p>Surpreendendo ao desbancar o sucesso de bilheteria "Barbie", "Pobres Criaturas" de Yorgos Lanthimos
-                    recebeu 11 indicações. Estrelado por Emma Stone, o filme não apenas brilhou no Oscar, mas também
-                    conquistou o Globo de Ouro. Uma jornada única que mistura humor negro, drama e uma pitada de horror
-                    vitoriano.
-                </p>
-                <br>
-
-                <h2>Além da Fronteira: "A Sociedade da Neve"</h2>
-                <p>O cinema internacional também teve seu lugar ao sol, com o filme do diretor espanhol J.A. Bayona, "A
-                    Sociedade da Neve", indicado como melhor filme internacional. A história emocionante da equipe de rúgbi
-                    uruguaia, perdida nas montanhas após um acidente aéreo, promete cativar o público e os votantes da
-                    Academia.
-
-                    A contagem regressiva para a grande noite do cinema começa. Quem levará para casa a estatueta dourada? A
-                    resposta está a apenas algumas semanas de distância: a premiação acontece em 10 de março. Preparem-se
-                    para a emoção, a elegância e as surpresas que o Oscar 2024 nos reserva!
+                <p>Eu particularmente não gosto muito de assistir a esses tipos de premiações, só
+                    faço algo se realmente tiver necessidade de ser feito, e no caso de assistir a um evento onde todos já
+                    sabem
+                    qual será o resultado, para mim é perda de tempo. Eu sei, é controverso eu falar isso sobre o maior
+                    evento do
+                    planeta quando o assunto é cinema, mas, é a verdade 🤷‍♂️.
                 </p>
                 <br>
                 <p>
-                    Confira abaixo a lista dos indicados
+                    Agora, se você gosta de ver todo o glamour, e artistas em seus trajes de gala chique e caríssimos, em
+                    clima de
+                    festa,
+                    e toda aquela ambientação do Oscar, aí sim você tem um motivo para assisir ao evento, do contrário, e
+                    novamente
+                    essa é a minha opinião, você vai sempre achar um "porre" (chato) ter de assistir mais de 3 horas de algo
+                    que você já praticamente
+                    sabe o resultado.
                 </p>
+                <br>
+                <p>Claro que como sempre, o evento tem seus pontos altos, e o desse ano acredito que tenha sido
+                    John Cena ter apresentado o ganhador de melhor figurinho, sem usar um figurino 😂🤣, confira:
+                </p>
+                <br>
+                <iframe class="frame-video" width="560" height="315"
+                    src="https://www.youtube.com/embed/-MEi5V-7k7c?si=kOkIyojGOFx2Yu72" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
 
                 <br>
-                <div class="indicados">
-                    <h2>Melhor filme</h2>
-                    <div class="filmes-indicados">
-                        <p>Oppenheimer</p>
-                        <p> American Fiction</p>
-                        <p>Anatomia de uma queda</p>
-                        <p>Barbie</p>
-                        <p> Os rejeitados</p>
-                        <p>Assassinos da Lua das Flores</p>
-                        <p> Maestro</p>
-                        <p>Vidas Passadas</p>
-                        <p> Pobres Criaturas</p>
-                        <p>Zona de interesse</p>
-                    </div>
-                    <br>
-
-                    <h2> Melhor atriz</h2>
-                    <div class="filmes-indicados">
-                        <p>Lily Gladstone - Assassinos da Lua das Flores</p>
-                        <p>Sandra Hüller - Anatomia de uma queda</p>
-                        <p>Carey Mulligan - Maestro</p>
-                        <p>Emma Stone - Pobres criaturas</p>
-                        <p>Annette Bening – Nyad</p>
-
-                    </div>
-                    <br>
-                    <h2>Melhor ator</h2>
-                    <div class="filmes-indicados">
-                        <p>Bradley Cooper - Maestro</p>
-                        <p>Colman Domingo - Rustin</p>
-                        <p>Paul Giamatti - Os rejeitados</p>
-                        <p>Cillian Murphy - Oppenheimer</p>
-                        <p>Jeffrey Wright - American Fiction</p>
-                    </div>
-
-                    <br>
-                    <h2>Melhor direção</h2>
-                    <div class="filmes-indicados">
-                        <p>Yorgos Lanthimos - Pobres criaturas</p>
-                        <p>Jonathan Glazer - Zona de interesse</p>
-                        <p>Christopher Nolan - Oppenheimer</p>
-                        <p>Martin Scorsese - Assassinos da Lua das Flores</p>
-                        <p>Justine Triet - Anatomia de uma queda</p>
-                        <p>Melhor ator coadjuvante</p>
-                        <p>Sterling K. Brown - American Fiction</p>
-                        <p>Robert Downey Jr. – Oppenheimer</p>
-                        <p>Mark Ruffalo - Pobres Criaturas</p>
-                        <p>Robert De Niro – Assassinos da Lua das Flores</p>
-                        <p>Ryan Gosling – Barbie</p>
-
-                    </div>
-                    <br>
-                    <h2>Melhor atriz coadjuvante</h2>
-                    <div class="filmes-indicados">
-                        <p>Emily Blunt - Oppenheimer</p>
-                        <p>Danielle Brooks - A cor púrpura</p>
-                        <p>America Ferrera - Barbie</p>
-                        <p>Jodie Foster - Nyad</p>
-                        <p>Da'vine Joy Randolph - Os rejeitados</p>
-
-                    </div>
-                    <br>
-                    <h2>Melhor filme internacional</h2>
-                    <div class="filmes-indicados">
-                        <p>The Teachers’ Lounge - Alemanha</p>
-                        <p>Io Capitano - Itália</p>
-                        <p>Perfect Days - Japão</p>
-                        <p>Sociedade da neve - Espanha</p>
-                        <p>Zona de Interesse - Reino Unido</p>
-                    </div>
-                    <br>
-
-                    <h2>Melhor roteiro adaptado</h2>
-                    <div class="filmes-indicados">
-                        <p>American Fiction</p>
-                        <p>Barbie</p>
-                        <p>Oppenheimer</p>
-                        <p>Pobres Criaturas</p>
-                        <p>Zona de interesse</p>
-                    </div>
-
-                    <br>
-                    <h2>Melhor roteiro original</h2>
-                    <div class="filmes-indicados">
-                        <p>Anatomia de uma queda</p>
-                        <p>Os rejeitados</p>
-                        <p>Maestro</p>
-                        <p>Segredos de um escândalo</p>
-                        <p>Vidas Passadas</p>
-
-                    </div>
-                    <br>
-                    <h2>Melhor fotografia</h2>
-                    <div class="filmes-indicados">
-                        <p>Hoyte van Hoytema - Oppenheimer</p>
-                        <p>Matthew Libatique - Maestro</p>
-                        <p>Rodrigo Prieto - Assassinos da Lua das Flores</p>
-                        <p>Robbie Ryan - Pobres criaturas</p>
-                        <p>Edward Lachman - El Conde</p>
-                    </div>
-                    <br>
-
-                    <h2>Melhor canção original</h2>
-                    <div class="filmes-indicados">
-                        <p>"It Never Went Away", Jon Batiste - American Symphony</p>
-                        <p>"I’m Just Ken", Mark Ronson e Andrew Wyatt - Barbie</p>
-                        <p>"What Was I Made For?", Billie Eilish e Finneas - Barbie</p>
-                        <p>"The Fire Inside", Diane Warren - Flamin’ Hot</p>
-                        <p>"Wahzhazhe (A Song For My People)", Osage Tribal Singers - Assassinos da Lua das Flores</p>
-
-                    </div>
-                    <br>
-
-                    <h2>Melhor animação</h2>
-                    <div class="filmes-indicados">
-                        <p>O menino e a garça</p>
-                        <p>Elementa</p>
-                        <p>Nimona</p>
-                        <p>Homem-Aranha: Através do Aranhaverso</p>
-                        <p>Meu amigo robô</p>
-                    </div>
-
-                    <br>
-                    <h2>Melhor trilha sonora</h2>
-                    <div class="filmes-indicados">
-                        <p>Laura Karpman - American Fiction</p>
-                        <p>John Williams - Indiana Jones e a Relíquia do Destino</p>
-                        <p>Robbie Robertson - Assassinos da Lua das Flores</p>
-                        <p>Ludwig Göransson - Oppenheimer</p>
-                        <p>Jerskin Fendrix - Pobres criaturas</p>
-                    </div>
-
-
-                    <br>
-
-                    <h2>Melhor figurino</h2>
-                    <div class="filmes-indicados">
-                        <p>Jacqueline Durran - Barbie</p>
-                        <p>Jacqueline West - Assassinos da Lua das Flores</p>
-                        <p>Holly Waddington - Pobres criaturas</p>
-                        <p>Janty Yates e Dave Crossman - Napoleão</p>
-                        <p>Ellen Mirojnick – Oppenheimer</p>
-                    </div>
-                    <br>
-
-                    <h2>Melhor curta de animação</h2>
-                    <div class="filmes-indicados">
-                        <p>Letter to a Pig</p>
-                        <p>Ninety-Five Senses</p>
-                        <p>Our Uniform</p>
-                        <p>Pachyderme</p>
-                        <p>War Is Over! Inspired by the Music of John & Yoko</p>
-                    </div>
-
-                    <br>
-
-                    <h2>Melhor maquiagem</h2>
-                    <div class="filmes-indicados">
-                        <p>Golda</p>
-                        <p>Maestro</p>
-                        <p>Oppenheimer</p>
-                        <p>Pobres criaturas</p>
-                        <p>Sociedade da neve</p>
-
-                    </div>
-
-                    <br>
-
-                    <h2>Melhor design de produção</h2>
-                    <div class="filmes-indicados">
-                        <p>Barbie</p>
-                        <p>Assassinos da Lua das Flores</p>
-                        <p>Oppenheimer</p>
-                        <p>Pobres criaturas</p>
-                        <p>Napoleão</p>
-                    </div>
-
-
-                    <br>
-
-                    <h2>Melhores efeitos visuais</h2>
-                    <div class="filmes-indicados">
-                        <p>Resistência</p>
-                        <p>Godzilla Minus One</p>
-                        <p>Guardiões da Galáxia Vol. 3</p>
-                        <p>Missão: Impossível - Acerto de Contas Parte Um</p>
-                        <p>Napoleão</p>
-
-                    </div>
-
-                    <br>
-
-                    <h2>Melhor som</h2>
-                    <div class="filmes-indicados">
-                        <p>Resistência</p>
-                        <p>Maestro</p>
-                        <p>Missão: Impossível - Acerto de Contas Parte Um</p>
-                        <p>Oppenheimer</p>
-                        <p>Zona de interesse</p>
-                    </div>
-
-
-                    <br>
-                    <h2>Melhor documentário</h2>
-                    <div class="filmes-indicados">
-                        <p>Bobi Wine: The People’s President</p>
-                        <p>The Eternal Memory</p>
-                        <p>Four Daughters</p>
-                        <p>To Kill a Tiger</p>
-                        <p>20 Days in Mariupol</p>
-                    </div>
-
-
-                    <br>
-                    <h2>Melhor documentário curta</h2>
-                    <div class="filmes-indicados">
-                        <p>The ABCs of Book Banning</p>
-                        <p>The Barber of Little Rock</p>
-                        <p>Island in Between</p>
-                        <p>The Last Repair Shop</p>
-                        <p>Nǎi Nai & Wài Pó</p>
-                    </div>
-                </div>
+                <p>
+                    Com relação aos ganhadores, como era de se esperar, Oppenheimer foi o grande vencedor da noite
+                    conseguindo
+                    levar 7 estatuetas, acredito que ninguém acreditou que seria algo diferente, não é mesmo?
+                </p>
+                <br>
+                <h2>Confira Os ganhadores das principais categorias:</h2>
+                @php
+                    $lista = "Melhor filme: Oppenheimer;
+                    Melhor diretor: Christopher Nolan – Oppenheimer;
+                    Melhor atriz: Emma Stone – Pobres Criaturas;
+                    Melhor ator: Cillian Murphy - Oppenheimer;
+                    Melhor atriz coadjuvante: Da’Vine Joy Randolph - Os Rejeitados;
+                    Melhor ator coadjuvante: Robert Downey Jr. - Oppenheimer;
+                    Melhor roteiro original: Anatomia de Uma Queda— Justin Triet, Arthur Harari;
+                    Melhor roteiro adaptado: American Fiction - Cord Jefferson;
+                    Melhor edição: Oppenheimer;
+                    Melhor filme estrangeiro: Zona de Interesse;
+                    Melhor animação: O Menino e a Garça;
+                    Melhor curta-metragem de animação: War Is Over! Inspired by the Music of John & Yoko - Dace Mullins,
+                    Brad Booker;
+                    Melhor maquiagem e penteados: Pobres Criaturas;
+                    Melhor design de produção: Pobres Criaturas;
+                    Melhor design de figurino: Pobres Criaturas;
+                    Melhores efeitos visuais: Godzilla Minus One;
+                    Melhor documentário: 20 Dias em Mariupol;
+                    Melhor documentário de curta-metragem: The Last Repair Shop;
+                    Melhor fotografia: Oppenheimer;
+                    Melhor curta-metragem: The Wonderful Story of Henry Sugar - Wes Anderson, Steven Rales;
+                    Melhor som: Zona de Interesse;
+                    Melhor trilha sonora original: Oppenheimer;
+                    Melhor canção original: What Was I Made For? - Barbie;";
+                    $ganhadores = explode(';', $lista);
+                @endphp
+                @foreach ($ganhadores as $ganhador)
+                    <span>{{ $ganhador }}</span>
+                @endforeach
             </div>
+
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function() {
+                    this.page.url = "<?php echo URL::current(); ?>";
+                    this.page.identifier = "Oscar-2024"
+
+                };
+
+                (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document,
+                        s = d.createElement('script');
+                    s.src = 'https://top100filmes.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                    Disqus.</a></noscript>
             @vite('resources/js/app.js')
     </x-Layout>

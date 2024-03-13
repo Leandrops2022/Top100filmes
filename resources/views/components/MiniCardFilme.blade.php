@@ -11,7 +11,7 @@
     <a href="{{ route('detalhesFilme', ['slug' => $filme->slug]) }}">
         <div class="container-todo-conteudo">
             <div class="filme-item-poster">
-                <picture>
+                {{-- <picture>
 
                     <source type="image/webp" srcset="{{ asset($filme->poster_mobile) }}"
                         alt="poster-filme-{{ $filme->titulo_portugues }}" loading="lazy">
@@ -22,7 +22,8 @@
                         loading="lazy">
 
 
-                </picture>
+                </picture> --}}
+                <img src="{{ $filme->poster }}" loading="lazy" alt="poster-filme-{{ $filme->titulo_portugues }}">
             </div>
 
             <div class="filme-item-textos">

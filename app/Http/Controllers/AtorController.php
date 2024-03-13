@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use function App\HelperFunctions\handleException;
 use function App\HelperFunctions\fetchActorData;
+use function App\HelperFunctions\fetchAlsoWorkedOn;
 
 
 class AtorController extends Controller
@@ -18,19 +19,21 @@ class AtorController extends Controller
     {
         try {
             $this->logVisitor();
-            $ator = Ator::where('slug', '=', $slug)->first();
 
-            if (!$ator) {
+            $ator = Ator::where('slug', '=', $slug)->first();
+            if (!$ator || $ator->imagem == "assets/no-photo.png") {
                 $ator = new Ator();
                 $dados = fetchActorData($slug);
 
                 $ator->fill($dados);
+                $ator->id = $dados['tmdb_id'];
             }
 
-            if ($ator->biografia == 'Não há informações cadastradas para o ator') {
-                $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
+            $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
 
-                $tmdbAPIKey = env('TMDB_API_KEY');
+            if ($ator->biografia == 'Não há informações cadastradas para o ator' || $ator->biografia == "") {
+
+                $tmdbAPIKey = env('API_KEY');
                 $tmdbActorUrlPtBr = "https://api.themoviedb.org/3/person/$paddedActorId?language=pt-br&api_key=$tmdbAPIKey";
                 $tmdbActorUrlEnUs = "https://api.themoviedb.org/3/person/$paddedActorId?api_key=$tmdbAPIKey";
 
@@ -61,7 +64,8 @@ class AtorController extends Controller
             $ator->imagem = $ator->imagem ?? 'assets/no-photo.png';
             $ator->imagem_fallback = $ator->imagem_fallback ?? 'assets/no-photo.png';
 
-            $filmesEmQueAtuou = DB::table('filmes_em_que_atuou')->where('id_ator', $ator->id)->orderBy('ano_lancamento', 'desc')->get() ?? [];
+            $filmesEmQueAtuou = fetchAlsoWorkedOn($paddedActorId);
+            // $filmesEmQueAtuou = DB::table('filmes_em_que_atuou')->where('id_ator', $ator->id)->orderBy('ano_lancamento', 'desc')->get() ?? [];
 
             foreach ($filmesEmQueAtuou as $filme) {
                 $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';

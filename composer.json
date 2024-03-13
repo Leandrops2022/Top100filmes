@@ -35,7 +35,13 @@
         },
         "files": [
             "app/HelperFunctions/helpers.php",
-            "app/HelperFunctions/fetchActorData.php"
+            "app/HelperFunctions/fetchActorData.php",
+            "app/HelperFunctions/fetchTmdbMovieData.php",
+            "app/HelperFunctions/fetchMovieVideos.php",
+            "app/HelperFunctions/fetchElenco.php",
+            "app/HelperFunctions/fetchAlsoWorkedOn.php",
+            "app/HelperFunctions/movieNeedsTmdbData.php",
+            "app/HelperFunctions/getWhereToWatchData.php"
         ]
     },
     "autoload-dev": {

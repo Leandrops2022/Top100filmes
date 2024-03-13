@@ -57,6 +57,18 @@
         padding: 4rem 8rem;
     }
 
+    .container-cartazes {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: row;
+        width: 92vw;
+        gap: 1rem;
+        height: fit-content;
+        border-radius: 8px;
+
+
+    }
+
     .ultimas-noticias {
         display: grid;
         align-items: center;
@@ -391,7 +403,7 @@
     border: $primaryTextColor;
     text-align: center;
     border-radius: 10px;
-    color: $linksPrimaryColor;
+    color: $primaryTextColor;
     text-shadow: 0 1px 1px $defaultRed;
 
 
@@ -413,6 +425,12 @@
         flex-direction: column;
         align-items: center;
         font-family: 'Roboto', sans-serif;
+
+        .container-cartazes {
+            margin-top: 2rem;
+            height: 30vh;
+            border: none;
+        }
 
         .introducao {
             width: 99%;

@@ -1,6 +1,7 @@
-<x-Layout :destaques="$destaques" :minilistas="$minilistas">
+<x-Layout :nosCinemas="$nosCinemas" :destaques="$destaques" :minilistas="$minilistas">
     @vite('resources/css/index.scss')
-    @section('description', 'Confira os melhores Artigos e notícias sobre filmes, séries e tudo que diz respeito à
+    @section('description',
+        'Confira os melhores Artigos e notícias sobre filmes, séries e tudo que diz respeito à
         Hollywood')
         <div class="apresentacao">
             <h1 class="my-1 text-white">Últimas postagens</h1>
@@ -12,7 +13,7 @@
                         <img src="{{ asset('assets/indicados-oscar-2024/oscars.webp') }}"
                             alt="vários oscars enfileirados em um pedestal" width="640px" height="360px">
                         <div class="legenda-melhores">
-                            <h5>Saiu a lista oficial dos indicados ao Oscar 2024!!!</h5>
+                            <h5>Confira os ganhadores do Oscar 2024!!!</h5>
                         </div>
                     </div>
                 </a>
@@ -52,6 +53,10 @@
 
         </div>
 
+        <h2>Em Cartaz (cinemas e streaming)</h2>
+        <div class="container-cartazes">
+            <x-slider :nosCinemas="$nosCinemas" />
+        </div>
         <h2 id="secao-tops">
             Confira nossas listas!
         </h2>

@@ -13,14 +13,6 @@
                 </div>
             </div>
             <div class="apresentacao-tcf">
-                <p>Temos uma novidade! o TCF notícias agora faz parte do top100filmes!!!</p>
-                <p>Como parte do nosso novo plano de ações, decidimos que era necessário uma maior integração
-                    entre os conteúdos apresentados no TCF Notícias e o top100filmes, com isso optamos por trazer todo o
-                    conteúdo de notícias de séries e filmes para cá. Esperamos que vocês curtam essa novidade, pois estamos
-                    felizes em anunciar que de hoje em diante você poderá acompanhar as últimas notícias do mundo do cinema
-                    e de suas séries e streamings favoritos aqui mesmo no top100filmes!!
-                </p>
-                <br>
                 <h1>Confira as Últimas Notícias</h1>
                 <div class="grid-noticias">
                     @foreach ($noticias as $noticia)
