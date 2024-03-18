@@ -26,6 +26,26 @@ yellow {
         font-family: 'Roboto', sans-serif;
         margin-top: 2rem;
 
+        article {
+            padding: 0 2rem;
+
+            p {
+                margin-bottom: 0.8rem !important;
+            }
+
+            h1 {
+                padding-top: 0;
+                margin-top: 0;
+                text-align: left;
+                color: white;
+            }
+
+            h2 {
+                margin-top: 1rem;
+                text-align: left;
+            }
+        }
+
         .capa-artigo {
             margin: 0 auto;
             display: flex;

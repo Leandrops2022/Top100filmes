@@ -41,7 +41,11 @@
             "app/HelperFunctions/fetchElenco.php",
             "app/HelperFunctions/fetchAlsoWorkedOn.php",
             "app/HelperFunctions/movieNeedsTmdbData.php",
-            "app/HelperFunctions/getWhereToWatchData.php"
+            "app/HelperFunctions/getWhereToWatchData.php",
+            "app/HelperFunctions/isTmdbMovieDataOk.php",
+            "app/HelperFunctions/assembleMovieInfoArray.php",
+            "app/HelperFunctions/createActorDataArray.php",
+            "app/HelperFunctions/actorNeedsTmdbData.php"
         ]
     },
     "autoload-dev": {

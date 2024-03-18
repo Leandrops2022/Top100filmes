@@ -9,7 +9,7 @@
         <div class="container-principal">
 
             <div class="capa-artigo">
-                <img src="{{ asset($artigo->imagem_1) }}" alt="{{ $artigo->alt_imagem_1 }}" width="557px" height="405px">
+                <img src="{{ asset($artigo->imagem_1) }}" alt="{{ $artigo->alt_imagem_1 }}" width="720px" height="405px">
                 <p class="atribuicao">
                     @isset($artigo->fonte_imagem_1)
                         {{ $artigo->fonte_imagem_1 }}
@@ -40,8 +40,6 @@
                         allowfullscreen></iframe>
                 </div>
             @endisset
-
-
         </div>
 
         <x-sugestao-conteudo :sugestoesconteudo="$sugestoes2" />

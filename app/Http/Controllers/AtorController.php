@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Ator;
 use Exception;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
+use function App\HelperFunctions\actorNeedsTmdbData;
 use function App\HelperFunctions\handleException;
 use function App\HelperFunctions\fetchActorData;
 use function App\HelperFunctions\fetchAlsoWorkedOn;
@@ -21,51 +21,49 @@ class AtorController extends Controller
             $this->logVisitor();
 
             $ator = Ator::where('slug', '=', $slug)->first();
-            if (!$ator || $ator->imagem == "assets/no-photo.png") {
+
+            $parts = explode("-", $slug);
+            $tmdb_id = end($parts);
+
+            if (!$ator) {
+                // if actor is not found in the database, but came as new data from
+                // tmdb api in the now playing section, it fetches data and creates
+                // a new actor record
+                $actorDataArray = fetchActorData($tmdb_id);
+
+                if (!$actorDataArray || $actorDataArray == '') {
+                    return view('404.index');
+                }
+
                 $ator = new Ator();
-                $dados = fetchActorData($slug);
+                $ator->fill($actorDataArray);
+                $ator->id = $tmdb_id;
 
-                $ator->fill($dados);
-                $ator->id = $dados['tmdb_id'];
+                $ator->save();
+            }
+            if (actorNeedsTmdbData($ator)) {
+                // in this case actor lacks some data and need some updating
+                $actorDataArray =  fetchActorData($tmdb_id);
+                $ator->fill($actorDataArray);
+                $ator->update();
             }
 
-            $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
-
-            if ($ator->biografia == 'Não há informações cadastradas para o ator' || $ator->biografia == "") {
-
-                $tmdbAPIKey = env('API_KEY');
-                $tmdbActorUrlPtBr = "https://api.themoviedb.org/3/person/$paddedActorId?language=pt-br&api_key=$tmdbAPIKey";
-                $tmdbActorUrlEnUs = "https://api.themoviedb.org/3/person/$paddedActorId?api_key=$tmdbAPIKey";
-
-                $fetchedData = $this->getTmdbData($tmdbActorUrlPtBr);
-
-                $actorData['biography'] = $fetchedData['biography'] ?? "";
-
-                $biography = $actorData['biography'] == "" ? $this->getTmdbData($tmdbActorUrlEnUs)['biography'] ?? ""
-                    : $actorData['biography'];
-
-                $ator->biografia = $biography;
-            }
-
-            $ator->nascimento = $ator->nascimento ?? '';
-            $ator->morte = $ator->morte ?? '';
-
-
+            // formating date for exhibition in the brazillian pattern
             if ($ator->nascimento && Carbon::hasFormat($ator->nascimento, 'Y-m-d')) {
                 $nascimento = Carbon::createFromFormat('Y-m-d', $ator->nascimento);
                 $ator->nascimento = $nascimento->format('d/m/Y');
             }
 
+            // formating date for exhibition in the brazillian pattern
             if ($ator->morte && Carbon::hasFormat($ator->morte, 'Y-m-d')) {
                 $dataMorte = Carbon::createFromFormat('Y-m-d', $ator->morte);
                 $ator->morte = $dataMorte->format('d/m/Y');
             }
 
-            $ator->imagem = $ator->imagem ?? 'assets/no-photo.png';
-            $ator->imagem_fallback = $ator->imagem_fallback ?? 'assets/no-photo.png';
+            //the actor id has to be padded with 0 because the api can't find actors if id has few digits;
+            $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
 
             $filmesEmQueAtuou = fetchAlsoWorkedOn($paddedActorId);
-            // $filmesEmQueAtuou = DB::table('filmes_em_que_atuou')->where('id_ator', $ator->id)->orderBy('ano_lancamento', 'desc')->get() ?? [];
 
             foreach ($filmesEmQueAtuou as $filme) {
                 $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';
@@ -84,11 +82,53 @@ class AtorController extends Controller
         try {
             $ator = Ator::where('id', $id)->first();
 
+            $tmdb_id = $id;
+
             if (!$ator) {
-                return view('404.index');
+                // if actor is not found in the database, but came as new data from
+                // tmdb api in the now playing section, it fetches data and creates
+                // a new actor record
+                $actorDataArray = fetchActorData($tmdb_id);
+
+                if (!$actorDataArray || $actorDataArray == '') {
+                    return view('404.index');
+                }
+
+                $ator = new Ator();
+                $ator->fill($actorDataArray);
+                $ator->id = $tmdb_id;
+
+                $ator->save();
+            }
+            if (actorNeedsTmdbData($ator)) {
+
+                // in this case actor lacks some data and need some updating
+                $actorDataArray =  fetchActorData($tmdb_id);
+                $ator->fill($actorDataArray);
+                $ator->update();
             }
 
-            return redirect("/ator/$ator->slug", 301);
+
+            if ($ator->nascimento && Carbon::hasFormat($ator->nascimento, 'Y-m-d')) {
+                $nascimento = Carbon::createFromFormat('Y-m-d', $ator->nascimento);
+                $ator->nascimento = $nascimento->format('d/m/Y');
+            }
+
+            if ($ator->morte && Carbon::hasFormat($ator->morte, 'Y-m-d')) {
+                $dataMorte = Carbon::createFromFormat('Y-m-d', $ator->morte);
+                $ator->morte = $dataMorte->format('d/m/Y');
+            }
+
+            //the actor id has to be padded with 0 because the api can't find actors if id has few digits;
+            $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
+            $filmesEmQueAtuou = fetchAlsoWorkedOn($paddedActorId);
+
+            foreach ($filmesEmQueAtuou as $filme) {
+                $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';
+                $filme->poster_fallback = $filme->poster_fallback ?? 'assets/no-image.png';
+            }
+
+            return view('ator.index')->with(['ator' => $ator, 'filmesEmQueAtuou' => $filmesEmQueAtuou]);
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);

@@ -35,7 +35,6 @@ function fetchElenco($filme)
 
             $slug = $cleanStr . '-' . $atorElenco['id'];
 
-            // $ator->slug = $atorElenco['name'] . "-" . $atorElenco['id'];
             $ator->foto = $imagem;
             $ator->foto_fallback = $imagem;
             $ator->nome = $atorElenco['name'];

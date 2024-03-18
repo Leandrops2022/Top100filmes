@@ -4,50 +4,34 @@ namespace App\HelperFunctions;
 
 use Illuminate\Support\Facades\Http;
 
-use App\Models\Ator;
+use function App\HelperFunctions\createActorDataArray;
 
 
-function fetchActorData($slug)
+function fetchActorData($tmdb_id)
 {
-  $parts = explode("-", $slug);
-  $tmdb_id = end($parts);
-  $apiKey = env('API_KEY');
 
-  $actorUrl = "https://api.themoviedb.org/3/person/$tmdb_id?language=pt-br&api_key=$apiKey";
+    $apiKey = env('API_KEY');
 
-  $tmdbResponse = Http::get($actorUrl);
+    $actorUrl = "https://api.themoviedb.org/3/person/$tmdb_id?language=pt-br&api_key=$apiKey";
+    $actorEnUsUrl = "https://api.themoviedb.org/3/person/$tmdb_id?api_key=$apiKey";
 
-  $actorData = $tmdbResponse?->json();
 
-  if (!$actorData) {
-    return;
-  }
+    $tmdbResponse = Http::get($actorUrl);
 
-  $profilePath = $actorData['profile_path'] ?? "";
+    $actorData = $tmdbResponse?->json();
 
-  $urlFoto = empty($profilePath) ? "assets/no-photo.png" : "https://image.tmdb.org/t/p/w300$profilePath";
+    if (empty($actorData['biography'])) {
 
-  $arrayAtor = [
-    'tmdb_id' => $tmdb_id,
-    'biografia' => $actorData['biography'] ?? "Não há informações cadastradas para o ator",
-    'imdb_id'  => $actorData['imdb_id'] ?? "nulo$tmdb_id",
-    'nome'  => $actorData['name'] ?? "",
-    'nascimento'  => $actorData['birthday'] ?? "0001-01-01",
-    'morte'  => $actorData['deathday'] ?? "0001-01-01",
-    'genero_sexo'  => $actorData['gender'] ?? "M",
-    'local_nascimento'  => $actorData['place_of_birth'] ?? "Não há informações cadastradas para o ator",
-    'popularidade'  => $actorData['popularity'] ?? 0.0,
-    'poster'  => $urlFoto,
-    'imagem'  => $urlFoto,
-    'imagem_fallback'  => $urlFoto,
-  ];
-  $ator = new Ator();
+        $tmdbResponse = Http::get($actorEnUsUrl);
 
-  $ator->fill($arrayAtor);
-  Ator::updateOrCreate(
-    ['tmdb_id' => $ator->tmdb_id],
-    $arrayAtor
-  );
+        $actorData = $tmdbResponse?->json();
+    }
 
-  return $arrayAtor;
+    if (!$actorData) {
+        return;
+    }
+
+    $actorArray = createActorDataArray($actorData, $tmdb_id);
+
+    return $actorArray;
 }

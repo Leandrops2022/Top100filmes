@@ -29,7 +29,8 @@ class Filme extends Model
         'genero_3',
         'diretor',
         'poster_fallback',
-        'data_lancamento'
+        'data_lancamento',
+        'adulto'
     ];
 
     public function movie_vote()

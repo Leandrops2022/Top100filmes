@@ -7,10 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MovieVotingRequest;
 
 use App\Models\Filme;
-use App\Models\Ator;
 use App\Models\ListaDoUsuario;
 use App\Models\Movie_votes;
-use App\Models\MovieVideo;
 use App\Models\RelacionamentoListaFilme;
 use App\Models\TextosDosTop100;
 use App\Models\ViewDetalhesFilmes;
@@ -23,8 +21,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-
 
 use Illuminate\Validation\ValidationException;
 
@@ -185,7 +181,7 @@ class FilmeController extends Controller
             $elenco = ViewElenco::where('id_filme', $filme->id)
                 ->orderBy('ordem_importancia', 'asc')->limit(15)->get();
 
-            if (count($elenco) == 0) {
+            if (count($elenco) < 10) {
 
                 $elenco = fetchElenco($filme);
             }
@@ -290,9 +286,12 @@ class FilmeController extends Controller
     public function oldRouteRedirect($id)
     {
         try {
+
             $filme = Filme::where('tmdb_id', $id)->first();
+
             if (!$filme) {
                 $filme = fetchTmdbMovieData($id);
+
                 if (!$filme) {
                     return view('404.index');
                 }
