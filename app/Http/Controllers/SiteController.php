@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Artigo;
 use App\Models\Filme;
-use App\Models\Destaques;
+use App\Models\Destaque;
 use App\Models\ListaDoUsuario;
 use App\Models\MiniLista;
 use App\Models\Noticia;
@@ -42,7 +42,7 @@ class SiteController extends Controller
 
             $minilistas = MiniLista::orderBy('created_at', 'desc')->limit(4)->get();
 
-            $destaques = Destaques::get();
+            $destaques = Destaque::get();
 
             return view('home.index')->with(['nosCinemas' => $nosCinemas, 'destaques' => $destaques, 'minilistas' => $minilistas]);
         } catch (Exception $e) {

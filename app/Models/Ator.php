@@ -22,7 +22,9 @@ class Ator extends Model
         'popularidade',
         'poster',
         'imagem',
-        'imagem_fallback'
+        'imagem_fallback',
+        'updated_at',
+        'created_at'
     ];
 
     public function filme()

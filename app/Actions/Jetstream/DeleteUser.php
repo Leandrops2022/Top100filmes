@@ -2,9 +2,9 @@
 
 namespace App\Actions\Jetstream;
 
-use App\Models\FilmesAssistidos;
+use App\Models\FilmeAssistido;
 use App\Models\ListaDoUsuario;
-use App\Models\Movie_votes;
+use App\Models\Movie_vote;
 use App\Models\RelacionamentoListaFilme;
 use App\Models\User;
 use Laravel\Jetstream\Contracts\DeletesUsers;
@@ -23,8 +23,8 @@ class DeleteUser implements DeletesUsers
             RelacionamentoListaFilme::where('id_lista', $lista->id)->delete();
         }
         $listasDoUsuario->each->delete();
-        Movie_votes::where('user_id', $user->id)->delete();
-        FilmesAssistidos::where('id_usuario', $user->id)->delete();
+        Movie_vote::where('user_id', $user->id)->delete();
+        FilmeAssistido::where('id_usuario', $user->id)->delete();
         $user->delete();
     }
 }

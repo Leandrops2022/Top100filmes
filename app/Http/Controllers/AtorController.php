@@ -11,64 +11,24 @@ use function App\HelperFunctions\actorNeedsTmdbData;
 use function App\HelperFunctions\handleException;
 use function App\HelperFunctions\fetchActorData;
 use function App\HelperFunctions\fetchAlsoWorkedOn;
-
+use function App\HelperFunctions\badActorDataArray;
 
 class AtorController extends Controller
 {
+
+
+
     public function showDetalhesAtor($slug)
     {
         try {
             $this->logVisitor();
 
-            $ator = Ator::where('slug', '=', $slug)->first();
-
             $parts = explode("-", $slug);
             $tmdb_id = end($parts);
 
-            if (!$ator) {
-                // if actor is not found in the database, but came as new data from
-                // tmdb api in the now playing section, it fetches data and creates
-                // a new actor record
-                $actorDataArray = fetchActorData($tmdb_id);
-
-                if (!$actorDataArray || $actorDataArray == '') {
-                    return view('404.index');
-                }
-
-                $ator = new Ator();
-                $ator->fill($actorDataArray);
-                $ator->id = $tmdb_id;
-
-                $ator->save();
-            }
-            if (actorNeedsTmdbData($ator)) {
-                // in this case actor lacks some data and need some updating
-                $actorDataArray =  fetchActorData($tmdb_id);
-                $ator->fill($actorDataArray);
-                $ator->update();
-            }
-
-            // formating date for exhibition in the brazillian pattern
-            if ($ator->nascimento && Carbon::hasFormat($ator->nascimento, 'Y-m-d')) {
-                $nascimento = Carbon::createFromFormat('Y-m-d', $ator->nascimento);
-                $ator->nascimento = $nascimento->format('d/m/Y');
-            }
-
-            // formating date for exhibition in the brazillian pattern
-            if ($ator->morte && Carbon::hasFormat($ator->morte, 'Y-m-d')) {
-                $dataMorte = Carbon::createFromFormat('Y-m-d', $ator->morte);
-                $ator->morte = $dataMorte->format('d/m/Y');
-            }
-
-            //the actor id has to be padded with 0 because the api can't find actors if id has few digits;
-            $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
-
-            $filmesEmQueAtuou = fetchAlsoWorkedOn($paddedActorId);
-
-            foreach ($filmesEmQueAtuou as $filme) {
-                $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';
-                $filme->poster_fallback = $filme->poster_fallback ?? 'assets/no-image.png';
-            }
+            $data = $this->getActorData($tmdb_id);
+            $ator = $data['ator'];
+            $filmesEmQueAtuou = $data['filmesEmQueAtuou'];
 
             return view('ator.index')->with(['ator' => $ator, 'filmesEmQueAtuou' => $filmesEmQueAtuou]);
         } catch (Exception $e) {
@@ -80,58 +40,86 @@ class AtorController extends Controller
     public function detalhesAtorRotaAntiga($id)
     {
         try {
-            $ator = Ator::where('id', $id)->first();
 
             $tmdb_id = $id;
 
-            if (!$ator) {
-                // if actor is not found in the database, but came as new data from
-                // tmdb api in the now playing section, it fetches data and creates
-                // a new actor record
-                $actorDataArray = fetchActorData($tmdb_id);
-
-                if (!$actorDataArray || $actorDataArray == '') {
-                    return view('404.index');
-                }
-
-                $ator = new Ator();
-                $ator->fill($actorDataArray);
-                $ator->id = $tmdb_id;
-
-                $ator->save();
-            }
-            if (actorNeedsTmdbData($ator)) {
-
-                // in this case actor lacks some data and need some updating
-                $actorDataArray =  fetchActorData($tmdb_id);
-                $ator->fill($actorDataArray);
-                $ator->update();
-            }
-
-
-            if ($ator->nascimento && Carbon::hasFormat($ator->nascimento, 'Y-m-d')) {
-                $nascimento = Carbon::createFromFormat('Y-m-d', $ator->nascimento);
-                $ator->nascimento = $nascimento->format('d/m/Y');
-            }
-
-            if ($ator->morte && Carbon::hasFormat($ator->morte, 'Y-m-d')) {
-                $dataMorte = Carbon::createFromFormat('Y-m-d', $ator->morte);
-                $ator->morte = $dataMorte->format('d/m/Y');
-            }
-
-            //the actor id has to be padded with 0 because the api can't find actors if id has few digits;
-            $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
-            $filmesEmQueAtuou = fetchAlsoWorkedOn($paddedActorId);
-
-            foreach ($filmesEmQueAtuou as $filme) {
-                $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';
-                $filme->poster_fallback = $filme->poster_fallback ?? 'assets/no-image.png';
-            }
+            $data = $this->getActorData($tmdb_id);
+            $ator = $data['ator'];
+            $filmesEmQueAtuou = $data['filmesEmQueAtuou'];
 
             return view('ator.index')->with(['ator' => $ator, 'filmesEmQueAtuou' => $filmesEmQueAtuou]);
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);
         }
+    }
+
+    private function updateActorData($ator, $tmdb_id)
+    {
+        $actorDataArray = fetchActorData($tmdb_id);
+
+        if (!badActorDataArray($actorDataArray)) {
+            $ator->fill($actorDataArray);
+            $ator->save();
+        }
+    }
+
+    private function createNewActor($ator, $tmdb_id)
+    {
+        $actorDataArray = fetchActorData($tmdb_id);
+
+        if (badActorDataArray($actorDataArray)) {
+            throw new Exception("Error Processing Request - Actor $ator is null", 1);
+        } else {
+            $ator = new Ator();
+            $ator->fill($actorDataArray);
+            $ator->id = $tmdb_id;
+            $ator->save();
+        }
+        return $ator;
+    }
+
+    private function formatDates($ator)
+    {
+        foreach (['nascimento', 'morte'] as $dateField) {
+            if ($ator->$dateField && Carbon::hasFormat($ator->$dateField, 'Y-m-d')) {
+                $date = Carbon::createFromFormat('Y-m-d', $ator->$dateField);
+                $ator->$dateField = $date->format('d/m/Y');
+            }
+        }
+    }
+
+    private function setFallbackPosters($filmesEmQueAtuou)
+    {
+        foreach ($filmesEmQueAtuou as $filme) {
+            $filme->poster_mobile = $filme->poster_mobile ?? 'assets/no-image.png';
+            $filme->poster_fallback = $filme->poster_fallback ?? 'assets/no-image.png';
+        }
+    }
+
+    private function getActorData($tmdb_id)
+    {
+        $ator = Ator::where('tmdb_id', '=', $tmdb_id)->first();
+
+        if ($ator && actorNeedsTmdbData($ator)) {
+            $this->updateActorData($ator, $tmdb_id);
+        } elseif (!$ator) {
+            $ator = $this->createNewActor($ator, $tmdb_id);
+        }
+
+        $this->formatDates($ator);
+
+        //the actor id has to be padded with 0 because the api can't find actors if id has few digits;
+        $paddedActorId = str_pad($ator->id, 6, "0", STR_PAD_LEFT);
+        $filmesEmQueAtuou = fetchAlsoWorkedOn($paddedActorId);
+
+        $this->setFallbackPosters($filmesEmQueAtuou);
+
+        $results = [
+            "ator" => $ator,
+            "filmesEmQueAtuou" => $filmesEmQueAtuou
+        ];
+
+        return $results;
     }
 }

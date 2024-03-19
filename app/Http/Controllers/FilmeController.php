@@ -8,11 +8,11 @@ use App\Http\Requests\MovieVotingRequest;
 
 use App\Models\Filme;
 use App\Models\ListaDoUsuario;
-use App\Models\Movie_votes;
+use App\Models\Movie_vote;
 use App\Models\RelacionamentoListaFilme;
-use App\Models\TextosDosTop100;
+use App\Models\TextoDoTop100;
 use App\Models\ViewDetalhesFilmes;
-use App\Models\ViewsTop100;
+use App\Models\ViewTop100;
 use App\Models\ViewElenco;
 
 use Exception;
@@ -31,7 +31,6 @@ use function App\HelperFunctions\fetchElenco;
 use function App\HelperFunctions\getWhereToWatchData;
 use function App\HelperFunctions\movieNeedsTmdbData;
 
-
 class FilmeController extends Controller
 {
 
@@ -45,7 +44,7 @@ class FilmeController extends Controller
             $tokenApi = null;
             $top100 = $request->segment(1);
             $votes = [];
-            $filmes = ViewsTop100::query()
+            $filmes = ViewTop100::query()
                 ->from($top100)
                 ->select(
                     'id',
@@ -62,7 +61,7 @@ class FilmeController extends Controller
                 )
                 ->orderBy('rank', 'desc')
                 ->paginate(10);
-            $textosArray = TextosDosTop100::query()->where('nome', $top100)
+            $textosArray = TextoDoTop100::query()->where('nome', $top100)
                 ->get();
             $textos = $textosArray[0];
             $tokenApi = null;
@@ -81,7 +80,7 @@ class FilmeController extends Controller
                     ->pluck('id_filme')
                     ->toArray();
 
-                $votes = Movie_votes::join(
+                $votes = Movie_vote::join(
                     $top100,
                     'movie_votes.filme_id',
                     '=',
@@ -152,8 +151,6 @@ class FilmeController extends Controller
 
             $filme = ViewDetalhesFilmes::where('slug', $slug)->first();
 
-
-
             if (!$filme) {
                 // this part of the code is due to a modification in the slug generation, that caused old registered 
                 // movies in the database to have the previous slug pattern to return as not found
@@ -170,7 +167,6 @@ class FilmeController extends Controller
             }
 
             if (movieNeedsTmdbData($filme)) {
-
                 $filme = fetchTmdbMovieData($filme->tmdb_id, true);
             }
 
@@ -239,7 +235,7 @@ class FilmeController extends Controller
     public function storeVote(
         $id,
         MovieVotingRequest $request,
-        Movie_votes $vote
+        Movie_vote $vote
     ) {
 
         try {
@@ -251,7 +247,7 @@ class FilmeController extends Controller
                 $idFilme = $id;
                 $notaNova = $request->nota;
 
-                $movieVote = Movie_votes::where([
+                $movieVote = Movie_vote::where([
                     'user_id' => $idUsuario,
                     'filme_id' => $idFilme
                 ])->first();
@@ -320,7 +316,7 @@ class FilmeController extends Controller
             $filmesDaLista = null;
             $tokenApi = null;
             $votes = [];
-            $filmes = ViewsTop100::query()
+            $filmes = ViewTop100::query()
                 ->from('melhoresfilmes2023')
                 ->select(
                     'id',
@@ -351,7 +347,7 @@ class FilmeController extends Controller
                     ->pluck('id_filme')
                     ->toArray();
 
-                $votes = Movie_votes::join(
+                $votes = Movie_vote::join(
                     'melhoresfilmes2023',
                     'movie_votes.filme_id',
                     '=',

@@ -11,6 +11,7 @@ class Filme extends Model
 
     protected $table = 'filmes';
 
+
     protected $fillable = [
         'titulo_portugues',
         'resumo_portugues',
@@ -30,12 +31,14 @@ class Filme extends Model
         'diretor',
         'poster_fallback',
         'data_lancamento',
-        'adulto'
+        'adulto',
+        'updated_at',
+        'created_at'
     ];
 
     public function movie_vote()
     {
-        return $this->belongsTo(Movie_votes::class);
+        return $this->belongsTo(Movie_vote::class);
     }
 
     public function elenco()

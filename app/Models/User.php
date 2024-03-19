@@ -67,6 +67,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function movie_vote()
     {
-        return $this->belongsTo(Movie_votes::class);
+        return $this->belongsTo(Movie_vote::class);
     }
 }

@@ -20,6 +20,10 @@ function fetchActorData($tmdb_id)
 
     $actorData = $tmdbResponse?->json();
 
+    //here I check if biography is empty for values in brazilian portugues, if 
+    //it is, I fetch data from english source just to have something to present
+    //even if in english, as user can use a translator
+
     if (empty($actorData['biography'])) {
 
         $tmdbResponse = Http::get($actorEnUsUrl);

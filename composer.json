@@ -45,7 +45,8 @@
             "app/HelperFunctions/isTmdbMovieDataOk.php",
             "app/HelperFunctions/assembleMovieInfoArray.php",
             "app/HelperFunctions/createActorDataArray.php",
-            "app/HelperFunctions/actorNeedsTmdbData.php"
+            "app/HelperFunctions/actorNeedsTmdbData.php",
+            "app/HelperFunctions/badActorDataArray.php"
         ]
     },
     "autoload-dev": {
