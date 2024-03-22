@@ -4,18 +4,18 @@ namespace App\HelperFunctions;
 
 use Illuminate\Support\Facades\Http;
 
-function getWhereToWatchData($filme)
+function getWhereToWatchData($data)
 {
-    $apiKey = env('API_KEY');
+    // $apiKey = env('API_KEY');
 
-    if (!isset($filme->tmdb_id) || $filme->tmdb_id == null || $filme->tmdb_id == "") {
-        $whereToWatch = [];
-        return $whereToWatch;
-    }
+    // if (!isset($filme->tmdb_id) || $filme->tmdb_id == null || $filme->tmdb_id == "") {
+    //     $whereToWatch = [];
+    //     return $whereToWatch;
+    // }
 
-    $response = Http::get("https://api.themoviedb.org/3/movie/$filme->tmdb_id/watch/providers?api_key=$apiKey");
-    $data = $response->json();
-    $whereToWatch = $data['results']['BR']['flatrate'] ?? [];
+    // $response = Http::get("https://api.themoviedb.org/3/movie/$filme->tmdb_id/watch/providers?api_key=$apiKey");
+    // $data = $response->json();
+    $whereToWatch = $data['watch/providers\n']['results']['BR']['flatrate'] ?? [];
 
     foreach ($whereToWatch as $key => $value) {
 

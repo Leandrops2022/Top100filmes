@@ -47,7 +47,7 @@ function assembleMovieInfoArray($movieData, $id)
         "quantidade_de_votos" => $voteCount,
         "arrecadacao" => $revenue,
         "data_lancamento" => $releaseDate,
-        "adult" => $adult
+        "adulto" => $adult
     ];
 
     return $movieDataArray;

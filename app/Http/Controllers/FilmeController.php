@@ -11,16 +11,17 @@ use App\Models\ListaDoUsuario;
 use App\Models\Movie_vote;
 use App\Models\RelacionamentoListaFilme;
 use App\Models\TextoDoTop100;
-use App\Models\ViewDetalhesFilmes;
+use App\Models\ViewDetalheFilme;
 use App\Models\ViewTop100;
 use App\Models\ViewElenco;
 
 use Exception;
-
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 use Illuminate\Validation\ValidationException;
 
@@ -30,6 +31,8 @@ use function App\HelperFunctions\fetchMovieVideos;
 use function App\HelperFunctions\fetchElenco;
 use function App\HelperFunctions\getWhereToWatchData;
 use function App\HelperFunctions\movieNeedsTmdbData;
+use function App\HelperFunctions\isTmdbMovieDataOk;
+use function App\HelperFunctions\assembleMovieInfoArray;
 
 class FilmeController extends Controller
 {
@@ -147,18 +150,15 @@ class FilmeController extends Controller
         try {
             $this->logVisitor();
 
-            $apiKey = env('API_KEY');
-
-            $filme = ViewDetalhesFilmes::where('slug', $slug)->first();
+            $filme = ViewDetalheFilme::where('slug', $slug)->first();
 
             if (!$filme) {
                 // this part of the code is due to a modification in the slug generation, that caused old registered 
                 // movies in the database to have the previous slug pattern to return as not found
-
                 $title = str_replace('-', ' ', $slug);
                 $titleWithoutYear = preg_replace('/\s+\d{4}$/', '', $title);
 
-                $filme = ViewDetalhesFilmes::where('titulo_portugues', 'like', '%' . $titleWithoutYear . '%')
+                $filme = ViewDetalheFilme::where('titulo_portugues', 'like', '%' . $titleWithoutYear . '%')
                     ->first();
 
                 if ($filme == [] || $filme == "") {
@@ -166,53 +166,31 @@ class FilmeController extends Controller
                 }
             }
 
-            if (movieNeedsTmdbData($filme)) {
-                $filme = fetchTmdbMovieData($filme->tmdb_id, true);
-            }
+            $allMovieRelatedData = $this->getTmdbMovieData($filme->tmdb_id);
 
-            $whereToWatch = getWhereToWatchData($filme) ?? [];
+            $filme->fill($allMovieRelatedData['movieArray']);
+            $this->checkIfMovieNeedsUpdate($filme);
 
-            $movieVideos = fetchMovieVideos($filme->tmdb_id, $filme->id);
+            $dataLancamento = Carbon::parse($filme->data_lancamento);
+            $filme->data_lancamento = $dataLancamento->format('d/m/Y');
 
-            $elenco = ViewElenco::where('id_filme', $filme->id)
-                ->orderBy('ordem_importancia', 'asc')->limit(15)->get();
+            $whereToWatch = $allMovieRelatedData['whereToWatch'];
 
-            if (count($elenco) < 10) {
+            $movieVideos = fetchMovieVideos(
+                $allMovieRelatedData['videos'],
+                $filme->tmdb_id,
+                $filme->id
+            );
 
-                $elenco = fetchElenco($filme);
-            }
+            $elenco = $this->getCastData($filme, $allMovieRelatedData);
 
-            $movieVote = 1;
-            $idUsuario = auth()->id();
+            $finalData = $this->getUserListAndVoteData($request, $filme);
 
-            $idUsuario
-                ? $movieVote = DB::select('SELECT * FROM movie_votes WHERE 
-                user_id = ? AND filme_id = ?', [$idUsuario, $filme->id])
-                : $movieVote = 1;
+            $movieVote = $finalData['movieVote'];
+            $tap = $finalData['tap'];
+            $idLista = $finalData['idLista'];
+            $filme = $finalData['filme'];
 
-            $idLista = null;
-            $tap = null;
-            if ($idUsuario) {
-                $idLista = session('idListaUsuario');
-                $tap = $request->cookie('tap');
-            }
-
-            $resultadosFilmes = RelacionamentoListaFilme::where(
-                'id_lista',
-                $idLista
-            )
-                ->pluck('id_filme')
-                ->toArray();
-
-
-            $filme->botaoAdicionar = true;
-            if (in_array($filme->id, $resultadosFilmes)) {
-                $filme->botaoAdicionar = false;
-            }
-
-
-            $data = Carbon::parse($filme->data_lancamento);
-            $filme->data_lancamento = $data->format('d/m/Y');
 
             $metaDescription = substr($filme->texto, 0, 150) . '...';
             $filme->metaDescription = strip_tags($metaDescription);
@@ -226,6 +204,28 @@ class FilmeController extends Controller
                 'movieVideos',
                 'whereToWatch'
             ));
+        } catch (Exception $e) {
+            $resposta = handleException($e);
+            return back()->withErrors($resposta);
+        }
+    }
+
+    public function oldRouteRedirect($id)
+    {
+        try {
+
+            $filme = Filme::where('tmdb_id', $id)->first();
+
+            if (!$filme) {
+
+                $newMovie = $this->tryToCreateFromTmdbApi($id);
+                if ($newMovie) {
+                    return redirect("/filme/$newMovie->slug", 301);
+                }
+                return view('404.index');
+            }
+
+            return redirect("/filme/$filme->slug", 301);
         } catch (Exception $e) {
             $resposta = handleException($e);
             return back()->withErrors($resposta);
@@ -279,33 +279,7 @@ class FilmeController extends Controller
         }
     }
 
-    public function oldRouteRedirect($id)
-    {
-        try {
 
-            $filme = Filme::where('tmdb_id', $id)->first();
-
-            if (!$filme) {
-                $filme = fetchTmdbMovieData($id);
-
-                if (!$filme) {
-                    return view('404.index');
-                }
-            }
-
-            if (movieNeedsTmdbData($filme)) {
-                $filme = fetchTmdbMovieData($id, true);
-            }
-
-            $data = Carbon::parse($filme->data_lancamento);
-            $filme->data_lancamento = $data->format('d/m/Y');
-
-            return redirect("/filme/$filme->slug", 301);
-        } catch (Exception $e) {
-            $resposta = handleException($e);
-            return back()->withErrors($resposta);
-        }
-    }
 
     public function showMelhoresDoAno2023(Request $request)
     {
@@ -318,18 +292,7 @@ class FilmeController extends Controller
             $votes = [];
             $filmes = ViewTop100::query()
                 ->from('melhoresfilmes2023')
-                ->select(
-                    'id',
-                    'slug',
-                    'rank',
-                    'nota',
-                    'titulo_portugues',
-                    'ano_lancamento',
-                    'duracao',
-                    'tagline',
-                    'poster_mobile',
-                    'poster_fallback'
-                )
+                ->select('*')
                 ->orderBy('rank', 'desc')
                 ->paginate(10);
             $tokenApi = null;
@@ -391,5 +354,122 @@ class FilmeController extends Controller
             $resposta = handleException($e);
             return back()->withErrors($resposta);
         }
+    }
+
+    private function tryToCreateFromTmdbApi($tmdbId): Filme
+    {
+        $movieData = $this->getTmdbMovieData($tmdbId)['movieArray'];
+
+        $filme = new Filme();
+        $filme->fill($movieData);
+        $filme->save();
+        $filme->refresh();
+
+        return $filme;
+    }
+
+    private function getTmdbMovieData($tmdbMovieId): array
+    {
+        $apiKey = env('API_KEY');
+
+        $ptBrData = "https://api.themoviedb.org/3/movie/$tmdbMovieId?language=pt-BR&" .
+            "api_key=$apiKey&append_to_response=credits," .
+            "videos,watch/providers";
+
+        $enUSData = "https://api.themoviedb.org/3/movie/$tmdbMovieId?" .
+            "api_key=$apiKey&append_to_response=credits," .
+            "videos,watch/providers";
+
+        $data = Http::get($ptBrData)->json();
+
+        $data = isTmdbMovieDataOk($data) ? $data : Http::get($enUSData)?->json();
+
+        $movieDataArray = assembleMovieInfoArray($data, $tmdbMovieId);
+        $cast = $data['credits']['cast'] ?? [];
+        $videos = $data['videos']['results'] ?? [];
+        $watchProviders = $data['watch/providers']['results']['BR']['flatrate'] ?? [];
+
+        $allMovieRelatedData = [
+            "movieArray" => $movieDataArray,
+            "cast" => $cast,
+            "videos" => $videos,
+            "whereToWatch" => $watchProviders
+        ];
+
+        return $allMovieRelatedData;
+    }
+
+    private function checkIfMovieNeedsUpdate(ViewDetalheFilme $movie): void
+    {
+        $defaultThreshold = 7;
+        $lastUpdated = $movie->updated_at ? now()->diffInDays(Carbon::parse($movie->updated_at)) : $defaultThreshold;
+        if ($lastUpdated >= 7) {
+
+            $movieArray = $movie->toArray();
+            $movieArray['updated_at'] = now();
+            unset($movieArray['genero']);
+            unset($movieArray['elenco']);
+
+            Filme::where('id', $movie->id)->update($movieArray);
+        }
+    }
+
+    private function getCastData(
+        ViewDetalheFilme $filme,
+        array $allMovieRelatedData
+    ): Collection|array {
+        $elenco = ViewElenco::where('id_filme', $filme->id)
+            ->orderBy('ordem_importancia', 'asc')->limit(15)->get();
+
+        if (count($elenco) < 10) {
+            //will use cast data from api, saving data in the database aswell
+            $elenco = fetchElenco($allMovieRelatedData['cast'], $filme->id);
+        }
+
+        return $elenco;
+    }
+
+    private function getUserListAndVoteData(
+        Request $request,
+        ViewDetalheFilme $filme
+    ): array {
+        $movieVote = 1;
+        $idUsuario = auth()->id();
+
+        $idUsuario
+            ? $movieVote = DB::select('SELECT * FROM movie_votes WHERE 
+            user_id = ? AND filme_id = ?', [$idUsuario, $filme->id])
+            : $movieVote = 1;
+
+        //this part of the code fetches user api token to manage watchlist
+        $idLista = null;
+        $tap = null;
+        if ($idUsuario) {
+            $idLista = session('idListaUsuario');
+            $tap = $request->cookie('tap');
+        }
+
+        //lista de filmes que o usuario adicionou
+        $resultadosFilmes = RelacionamentoListaFilme::where(
+            'id_lista',
+            $idLista
+        )
+            ->pluck('id_filme')
+            ->toArray();
+
+
+        //faz o botao de adicionar novo filme desaparecer se já tiver adicionado
+        //na lista do usuario
+        $filme->botaoAdicionar = true;
+        if (in_array($filme->id, $resultadosFilmes)) {
+            $filme->botaoAdicionar = false;
+        }
+
+        return [
+            "movieVote" => $movieVote,
+            "tap" => $tap,
+            "idLista" => $idLista,
+            "filme" => $filme
+        ];
     }
 }

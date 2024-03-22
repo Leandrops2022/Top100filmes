@@ -21,50 +21,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
-//     Route::post('/adicionaFilmeNaLista', function (AdicionaFilmeRequest $request) {
+    Route::post('/adicionaFilmeNaLista', function (AdicionaFilmeRequest $request) {
 
-//         $idLista = $request->input('id_lista');
+        $idLista = $request->input('id_lista');
 
-//         $quantidadeLista = RelacionamentoListaFilme::where('id_lista', $idLista)->count();
+        $quantidadeLista = RelacionamentoListaFilme::where('id_lista', $idLista)->count();
 
-//         if ($quantidadeLista == 100) {
-//             return response()->json("Você só pode adicionar 100 filmes na lista", 403);
-//         }
+        if ($quantidadeLista == 100) {
+            return response()->json("Você só pode adicionar 100 filmes na lista", 403);
+        }
 
-//         $adicoes = $request->input('lista');
+        $adicoes = $request->input('lista');
 
-//         $now = Carbon::now();
+        $now = Carbon::now();
 
-//         $valuesToInsert = [];
+        $valuesToInsert = [];
 
-//         foreach ($adicoes as $elemento) {
+        foreach ($adicoes as $elemento) {
 
-//             $valuesToInsert[] = [
-//                 'id_lista' => $idLista,
-//                 'id_filme' => $elemento,
-//                 'created_at' => $now,
-//                 'updated_at' => $now,
-//             ];
-//         }
+            $valuesToInsert[] = [
+                'id_lista' => $idLista,
+                'id_filme' => $elemento,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ];
+        }
 
-//         $listaDoUsuario = RelacionamentoListaFilme::insertOrIgnore($valuesToInsert);
+        $listaDoUsuario = RelacionamentoListaFilme::insertOrIgnore($valuesToInsert);
 
-//         return response()->json($listaDoUsuario, 201);
-//     });
+        return response()->json($listaDoUsuario, 201);
+    });
 
-//     Route::delete('/removerFilme/{id}', function (Request $request) {
-//         $idUsuario =  $request->user()->id;
-//         $idFilme =  $request->id;
-//         $listaDoUsuario = ListaDoUsuario::where('id_usuario', $idUsuario)->get();
-//         $idLista = $listaDoUsuario[0]->id;
+    Route::delete('/removerFilme/{id}', function (Request $request) {
+        $idUsuario =  $request->user()->id;
+        $idFilme =  $request->id;
+        $listaDoUsuario = ListaDoUsuario::where('id_usuario', $idUsuario)->get();
+        $idLista = $listaDoUsuario[0]->id;
 
-//         RelacionamentoListaFilme::where([
-//             'id_lista' => $idLista,
-//             'id_filme' => $idFilme,
-//         ])->delete();
+        RelacionamentoListaFilme::where([
+            'id_lista' => $idLista,
+            'id_filme' => $idFilme,
+        ])->delete();
 
-//         return response()->noContent();
-//     });
-// });
+        return response()->noContent();
+    });
+});

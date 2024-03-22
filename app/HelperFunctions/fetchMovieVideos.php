@@ -9,18 +9,17 @@ use Carbon\Carbon;
 use App\Models\MovieVideo;
 
 
-function fetchMovieVideos($movieTmdbId, $movieId)
+function fetchMovieVideos($movieVideos, $movieTmdbId, $movieId)
 {
 
     $apiKey = env('API_KEY');
 
-    $urlPtBr = "https://api.themoviedb.org/3/movie/$movieTmdbId/videos?api_key=$apiKey&language=pt-BR";
+    // $urlPtBr = "https://api.themoviedb.org/3/movie/$movieTmdbId/videos?api_key=$apiKey&language=pt-BR";
     $urlEnUS = "https://api.themoviedb.org/3/movie/$movieTmdbId/videos?api_key=$apiKey&language=en-US";
 
-    $movieVideos = Http::get($urlPtBr)?->json();
+    // $movieVideos = Http::get($urlPtBr)?->json();
 
-
-    if ($movieVideos['results'] == "" || !$movieVideos['results']) {
+    if (empty($movieVideos['results'])) {
         $movieVideos = Http::get($urlEnUS)?->json();
     }
 
