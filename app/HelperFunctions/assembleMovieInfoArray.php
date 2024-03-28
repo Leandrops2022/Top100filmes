@@ -18,8 +18,8 @@ function assembleMovieInfoArray($movieData, $id)
     $gender3 = !isset($movieData['genres'][2]['id']) || empty($movieData['genres'][2]['id']) ? 0 : $movieData['genres'][2]['id'];
     $poster = empty($movieData['poster_path']) ? "assets/no-image.png" : $baseTmdbUrl . $movieData['poster_path'];
     $score = empty($movieData['vote_average']) ? 0 : round(floatval($movieData['vote_average']), 2);
-    $imdbId = empty($movieData['imdb_id']) ? "nulo" . $movieData['id'] : $movieData['imdb_id'];
     $tmdbId = empty($movieData['id']) ? $id : $movieData['id'];
+    $imdbId = empty($movieData['imdb_id']) ? "nulo" . $tmdbId : $movieData['imdb_id'];
     $tagline = empty($movieData['tagline']) ? "" : substr($movieData['tagline'], 0, 80);
     $voteCount = empty($movieData['vote_count']) ? 0 : $movieData['vote_count'];
     $revenue = empty($movieData['revenue']) ? 0 : $movieData['revenue'];

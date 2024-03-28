@@ -64,12 +64,12 @@ class AtorController extends Controller
         }
     }
 
-    private function createNewActor($ator, $tmdb_id)
+    private function createNewActor($tmdb_id)
     {
         $actorDataArray = fetchActorData($tmdb_id);
 
         if (badActorDataArray($actorDataArray)) {
-            throw new Exception("Error Processing Request - Actor $ator is null", 1);
+            throw new Exception("Error Processing Request - Actor is null", 1);
         } else {
             $ator = new Ator();
             $ator->fill($actorDataArray);
@@ -104,7 +104,7 @@ class AtorController extends Controller
         if ($ator && actorNeedsTmdbData($ator)) {
             $this->updateActorData($ator, $tmdb_id);
         } elseif (!$ator) {
-            $ator = $this->createNewActor($ator, $tmdb_id);
+            $ator = $this->createNewActor($tmdb_id);
         }
 
         $this->formatDates($ator);
